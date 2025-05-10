@@ -11,7 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('character', function (Blueprint $table) {
+            $table->id()->autoincrement();//autoincrements
+            $table->string('nombre',30);//cadena longitud 30
+            $table->foreignId('race_id');
+            $table->foreignId('user_id');
+            $table->integer('FUE');
+            $table->integer('DES');
+            $table->integer('CON');
+            $table->integer('INT');
+            $table->integer('SAB');
+            $table->integer('CAR');
+            $table->integer('lvl');
+            $table->integer('CA');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('character');
     }
 };

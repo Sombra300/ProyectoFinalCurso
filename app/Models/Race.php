@@ -11,7 +11,15 @@ class Race extends Model
         return $this->hasMany(Character::class);
     }
 
-    public function subrace(): HasMany{
+    public function subraces(): HasMany{
         return $this->hasMany(SubRace::class);
+    }
+
+    public function abilitys(): HasMany{
+        return $this->hasMany(Ability::class);
+    }
+
+    public function spels(): HasMany{
+        return $this->hasMany(Spel::class);
     }
 }

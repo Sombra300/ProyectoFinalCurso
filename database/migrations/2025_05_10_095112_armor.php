@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spell', function (Blueprint $table) {
+        Schema::create('armor', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
-            $table->string('descripcion')->nullable();
-            $table->string('coste')->nullable();
-            $table->boolean('ataque')->nullable();
-            $table->integer('daño');
+            $table->foreignId('item_id');
+            $table->string('tipo');
+            $table->boolean('desSig');//bool, defecto false
+            $table->boolean('pluesCA');//bool, defecto false
+            $table->integer('desMax');
+            $table->integer('CA');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('spell');
+        Schema::dropIfExists('armor');
     }
 };

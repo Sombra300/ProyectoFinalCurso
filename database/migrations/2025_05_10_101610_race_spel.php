@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('race_spel', function (Blueprint $table){
+            $table->foreignId('race_id')->constrained();
+            $table->foreignId('spel_id')->constrained();
+            $table->unique(['race_id', 'spel_id'], 'foreign_keys');
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('race_spel');
     }
 };

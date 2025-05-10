@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('character_clase', function (Blueprint $table){
+            $table->foreignId('character_id')->constrained();
+            $table->foreignId('clase_id')->constrained();
+            $table->unique(['character_id', 'clase_id'], 'foreign_keys');
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('character_clase');
     }
 };

@@ -11,14 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('character_item', function (Blueprint $table){
+            $table->foreignId('character_id')->constrained();
+            $table->foreignId('item_id')->constrained();
+            $table->unique(['character_id', 'item_id'], 'foreign_keys');
+        });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('character_item');
     }
 };

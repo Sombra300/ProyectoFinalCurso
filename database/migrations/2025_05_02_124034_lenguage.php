@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('lenguage', function (Blueprint $table) {
+            $table->id()->autoincrement();//autoincrements
+            $table->string('nombre',30);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('lenguage');
     }
 };

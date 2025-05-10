@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+         Schema::create('ability', function (Blueprint $table) {
+            $table->id()->autoincrement();//autoincrements
+            $table->string('name',100);//cadena longitud 30
+            $table->string('cost',100);//cadena longitud 100
+            $table->string('reuseTime');//text
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('ability');
     }
 };

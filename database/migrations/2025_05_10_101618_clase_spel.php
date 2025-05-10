@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('race', function (Blueprint $table) {
-            $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
-            $table->string('descripcion')->nullable();
-            $table->integer('velocidad');
-            $table->timestamps();
+        Schema::create('clase_spel', function (Blueprint $table){
+            $table->foreignId('clase_id')->constrained();
+            $table->foreignId('spel_id')->constrained();
+            $table->unique(['clase_id', 'spel_id'], 'foreign_keys');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('race');
+        Schema::dropIfExists('clase_spel');
     }
 };
