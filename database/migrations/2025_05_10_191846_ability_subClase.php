@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ability_subClase', function (Blueprint $table){
-            $table->foreignId('ability_id')->constrained();
-            $table->foreignId('subClase_id')->constrained();
+            $table->foreignId('ability_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subClase_id')->constrained()->onDelete('cascade');
             $table->unique(['ability_id', 'subClase_id'], 'foreign_keys');
         });
     }

@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clase', function (Blueprint $table) {
+        Schema::create('clases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);//cadena longitud 30
             $table->boolean('CompArmaSimple');//bool, defecto false
             $table->boolean('CompArmaMarcial');//bool, defecto false
-            $table->boolean('CompArmadura');//bool, defecto false
-            $table->boolean('CompArmadura');//bool, defecto false
-            $table->boolean('CompArmadura');//bool, defecto false
+            $table->boolean('CompArmaduraSimp');//bool, defecto false
+            $table->boolean('CompArmaduraLig');//bool, defecto false
+            $table->boolean('CompArmaduraPes');//bool, defecto false
             $table->boolean('CompEscudo');//bool, defecto false
             $table->string('descripcion')->nullable();
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clase');
+        Schema::dropIfExists('clases');
     }
 };

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('character_lenguage', function (Blueprint $table){
-            $table->foreignId('character_id')->constrained();
-            $table->foreignId('lenguage_id')->constrained();
-            $table->unique(['character_id', 'lenguage_id'], 'foreign_keys');
+            $table->foreignId('character_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lenguage_id')->constrained()->onDelete('cascade');
+            $table->unique(['character_id', 'lenguage_id']);
         });
     }
 

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subClase', function (Blueprint $table) {
+        Schema::create('subClases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);
-            $table->foreignId('clase_id');
+            $table->foreignId('clase_id')->onDelete('cascade');
             $table->string('descripcion')->nullable();
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subClase');
+        Schema::dropIfExists('subClases');
     }
 };

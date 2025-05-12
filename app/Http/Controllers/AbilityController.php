@@ -11,7 +11,8 @@ class AbilityController extends Controller
      */
     public function index()
     {
-        //
+        $abilities=Ability::all();
+        return view('abilities.index');
     }
 
     /**
@@ -19,7 +20,7 @@ class AbilityController extends Controller
      */
     public function create()
     {
-        //
+        return view('abilities.create');
     }
 
     /**
@@ -27,7 +28,16 @@ class AbilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ability=new Ability();
+        $ability->name=$request->input('name');
+        $ability->description=$request->input('description');
+        $ability->date=$request->input('date');
+        $ability->hour=$request->input('hour');
+        $ability->type=$request->input('type');
+        $ability->tags=$request->input('tags');
+        $ability->visible=$request->input('visible');
+        $ability->save();
+        return redirect()->route('abilities.show', $ability->id);
     }
 
     /**
@@ -35,7 +45,8 @@ class AbilityController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ability=ability::find($id);
+        return view('abilities.show' , compact('ability'));
     }
 
     /**
@@ -43,7 +54,8 @@ class AbilityController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ability=ability::find($id);
+        return view('abilities.edit', compact('id'), compact('ability'));
     }
 
     /**
@@ -51,7 +63,15 @@ class AbilityController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ability->name=$request->input('name');
+        $ability->description=$request->input('description');
+        $ability->date=$request->input('date');
+        $ability->hour=$request->input('hour');
+        $ability->type=$request->input('type');
+        $ability->tags=$request->input('tags');
+        $ability->visible=$request->input('visible');
+        $ability->save();
+        return redirect()->route('abilities.show', $ability->id);
     }
 
     /**
@@ -59,6 +79,7 @@ class AbilityController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ability::findOrFail($id)->delete();
+       return redirect()->route('abilities.index');
     }
 }

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('armor', function (Blueprint $table) {
+        Schema::create('armors', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->foreignId('item_id');
+            $table->foreignId('item_id')->onDelete('cascade');
             $table->string('tipo');
             $table->boolean('desSig');//bool, defecto false
             $table->boolean('pluesCA');//bool, defecto false
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('armor');
+        Schema::dropIfExists('armors');
     }
 };
