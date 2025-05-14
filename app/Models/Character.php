@@ -38,4 +38,8 @@ class Character extends Model
         return $this->hasMany(Spel::class);
     }
 
+    public function likes():HasMany{
+        return $this->hasMany(Like::class);
+    }
+
 }

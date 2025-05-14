@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Spell extends Model
 {
@@ -25,5 +26,9 @@ class Spell extends Model
 
     public function clase(): HasMany{
         return $this->hasMany(Clase::class);
+    }
+
+    public function ability(): HasOne{
+        return $this->hasMany(Ability::class);
     }
 }
