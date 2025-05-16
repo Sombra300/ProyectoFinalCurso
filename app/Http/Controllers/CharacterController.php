@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Character;
 
 class CharacterController extends Controller
 {
@@ -11,7 +12,13 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $characters=Character::all();
+        return view('characters.index');
+    }
+
+    public function propios(){
+        $characters = Character::where('user_id', Auth::id())->get();
+        return view('index', compact('characters'));
     }
 
     /**
@@ -19,7 +26,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        //
+        return view('characters.create');
     }
 
     /**
@@ -27,7 +34,20 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $character=new Character();
+        $character->nombre=$request->input('nombre');
+        $character->user_id=Auth::user()->id;
+        $character->race_id=$request->input('race_id');
+        $character->FUE=$request->input('FUE');
+        $character->DES=$request->input('DES');
+        $character->CON=$request->input('CON');
+        $character->INT=$request->input('INT');
+        $character->SAB=$request->input('SAB');
+        $character->CAR=$request->input('CAR');
+        $character->lvl=$request->input('lvl');
+        $character->CA=$request->input('CA');
+        $character->save();
+        return redirect()->route('characters.show', $character->id);
     }
 
     /**
@@ -35,7 +55,8 @@ class CharacterController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $character=Character::find($id);
+        return view('characters.show', compact('character'));
     }
 
     /**
@@ -43,7 +64,8 @@ class CharacterController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $character=Character::find($id);
+        return view('characters.edit', compact('id'), compact('character'));
     }
 
     /**
@@ -51,7 +73,19 @@ class CharacterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $character->nombre=$request->input('nombre');
+        $character->race_id=$request->input('race_id');
+        $character->FUE=$request->input('FUE');
+        $character->DES=$request->input('DES');
+        $character->CON=$request->input('CON');
+        $character->INT=$request->input('INT');
+        $character->SAB=$request->input('SAB');
+        $character->CAR=$request->input('CAR');
+        $character->lvl=$request->input('lvl');
+        $character->CA=$request->input('CA');
+        $character->save();
+
+        return redirect()->route('characters.show', $character->id);
     }
 
     /**
@@ -59,6 +93,7 @@ class CharacterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Character::findOrFail($id)->delete();
+       return redirect()->route('characters.index');
     }
 }

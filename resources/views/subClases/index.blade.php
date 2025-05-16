@@ -1,3 +1,12 @@
-<div>
-    <!-- If you do not have a consistent goal in life, you can not live it in a consistent way. - Marcus Aurelius -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

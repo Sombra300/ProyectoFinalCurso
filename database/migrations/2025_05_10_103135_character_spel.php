@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('character_spel', function (Blueprint $table){
+        Schema::create('character_spell', function (Blueprint $table){
             $table->foreignId('character_id')->constrained()->onDelete('cascade');
-            $table->foreignId('spel_id')->constrained()->onDelete('cascade');
-            $table->unique(['character_id', 'spel_id']);
+            $table->foreignId('spell_id')->constrained()->onDelete('cascade');
+            $table->unique(['character_id', 'spell_id']);
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('character_spel');
+        Schema::dropIfExists('character_spell');
     }
 };

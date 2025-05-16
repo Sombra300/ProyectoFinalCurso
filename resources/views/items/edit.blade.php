@@ -1,3 +1,12 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

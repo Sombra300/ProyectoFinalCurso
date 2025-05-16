@@ -1,3 +1,12 @@
-<div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

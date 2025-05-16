@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lenguage;
 
 class LenguageController extends Controller
 {
@@ -11,7 +12,8 @@ class LenguageController extends Controller
      */
     public function index()
     {
-        //
+        $lenguages=Lenguage::all();
+        return view('lenguages.index');
     }
 
     /**
@@ -19,7 +21,7 @@ class LenguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('lenguages.create');
     }
 
     /**
@@ -27,7 +29,10 @@ class LenguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lenguage=new Lenguage();
+        $lenguage->nombre=$request->input('nombre');
+        $lenguage->save();
+        return redirect()->route('lenguages.show', $lenguage->id);
     }
 
     /**
@@ -35,7 +40,8 @@ class LenguageController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $lenguage=Lenguage::find($id);
+        return view('lenguages.show', compact('lenguage'));
     }
 
     /**
@@ -43,7 +49,7 @@ class LenguageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -51,7 +57,10 @@ class LenguageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $lenguage->nombre=$request->input('nombre');
+        $lenguage->save();
+
+        return redirect()->route('lenguages.show', $lenguage->id);
     }
 
     /**
@@ -59,6 +68,7 @@ class LenguageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Lenguage::findOrFail($id)->delete();
+       return redirect()->route('lenguages.index');
     }
 }

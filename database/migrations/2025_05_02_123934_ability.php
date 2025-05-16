@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name',100);//cadena longitud 30
             $table->string('cost',100);//cadena longitud 100
             $table->string('reuseTime');//text
+            $table->string('description');//text
             $table->timestamps();
         });
     }

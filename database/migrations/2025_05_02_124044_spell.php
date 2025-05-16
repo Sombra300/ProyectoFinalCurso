@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spels', function (Blueprint $table) {
+        Schema::create('spells', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);
             $table->string('descripcion')->nullable();
             $table->string('coste')->nullable();
             $table->boolean('ataque')->nullable();
             $table->integer('daño');
+            $table->string('tipoDaño')->nullable();
+            $table->integer('nivel');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('spels');
+        Schema::dropIfExists('spells');
     }
 };

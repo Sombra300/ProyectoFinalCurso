@@ -1,3 +1,12 @@
-<div>
-    <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

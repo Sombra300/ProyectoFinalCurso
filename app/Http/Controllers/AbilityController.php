@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ability;
 
 class AbilityController extends Controller
 {
@@ -31,11 +32,8 @@ class AbilityController extends Controller
         $ability=new Ability();
         $ability->name=$request->input('name');
         $ability->description=$request->input('description');
-        $ability->date=$request->input('date');
-        $ability->hour=$request->input('hour');
-        $ability->type=$request->input('type');
-        $ability->tags=$request->input('tags');
-        $ability->visible=$request->input('visible');
+        $ability->cost=$request->input('cost');
+        $ability->reuseTime=$request->input('reuseTime');
         $ability->save();
         return redirect()->route('abilities.show', $ability->id);
     }
@@ -45,7 +43,7 @@ class AbilityController extends Controller
      */
     public function show(string $id)
     {
-        $ability=ability::find($id);
+        $ability=Ability::find($id);
         return view('abilities.show' , compact('ability'));
     }
 
@@ -54,7 +52,7 @@ class AbilityController extends Controller
      */
     public function edit(string $id)
     {
-        $ability=ability::find($id);
+        $ability=Ability::find($id);
         return view('abilities.edit', compact('id'), compact('ability'));
     }
 
@@ -65,11 +63,8 @@ class AbilityController extends Controller
     {
         $ability->name=$request->input('name');
         $ability->description=$request->input('description');
-        $ability->date=$request->input('date');
-        $ability->hour=$request->input('hour');
-        $ability->type=$request->input('type');
-        $ability->tags=$request->input('tags');
-        $ability->visible=$request->input('visible');
+        $ability->cost=$request->input('cost');
+        $ability->reuseTime=$request->input('reuseTime');
         $ability->save();
         return redirect()->route('abilities.show', $ability->id);
     }
@@ -79,7 +74,7 @@ class AbilityController extends Controller
      */
     public function destroy(string $id)
     {
-        ability::findOrFail($id)->delete();
+        Ability::findOrFail($id)->delete();
        return redirect()->route('abilities.index');
     }
 }

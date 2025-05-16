@@ -1,3 +1,12 @@
-<div>
-    <!-- I begin to speak only when I am certain what I will say is not better left unsaid. - Cato the Younger -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

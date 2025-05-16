@@ -8,7 +8,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\SpelController;
+use App\Http\Controllers\SpellController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LikeController;
 
@@ -55,7 +55,7 @@ Route::resource('subClases', SubClaseController::class);
 Route::resource('races', RaceController::class);
 Route::resource('subRaces', SubRaceController::class);
 Route::resource('abilities', AbilityController::class);
-Route::resource('spells', Controller::class);
+Route::resource('spells', SpellController::class);
 Route::resource('characters', CharacterController::class);
 Route::resource('users', UserController::class);
 Route::resource('auth', LoginController::class);

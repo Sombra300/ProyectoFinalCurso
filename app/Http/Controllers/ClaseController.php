@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Clase;
 
-class ClassController extends Controller
+class ClaseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $clases=Clase::all();
+        return view('clases.index');
     }
 
     /**
@@ -19,7 +21,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+        return view('clases.create');
     }
 
     /**
@@ -27,7 +29,17 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clase=new Clase();
+        $clase->nombre=$request->input('nombre');
+        $clase->descripcion=$request->input('descripcion');
+        $clase->CompArmaSimple=$request->input('CompArmaSimple');
+        $clase->CompArmaMarcial=$request->input('CompArmaMarcial');
+        $clase->CompArmaduraSimp=$request->input('CompArmaduraSimp');
+        $clase->CompArmaduraLig=$request->input('CompArmaduraLig');
+        $clase->CompArmaduraPes=$request->input('CompArmaduraPes');
+        $clase->CompEscudo=$request->input('CompEscudo');
+        $clase->save();
+        return redirect()->route('clases.show', $clase->id);
     }
 
     /**
@@ -35,7 +47,8 @@ class ClassController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $clase=Clase::find($id);
+        return view('clases.show', compact('clase'));
     }
 
     /**
@@ -43,7 +56,8 @@ class ClassController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $clase=Clase::find($id);
+        return view('clases.edit', compact('id'), compact('clase'));
     }
 
     /**
@@ -51,7 +65,17 @@ class ClassController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $clase->nombre=$request->input('nombre');
+        $clase->descripcion=$request->input('descripcion');
+        $clase->CompArmaSimple=$request->input('CompArmaSimple');
+        $clase->CompArmaMarcial=$request->input('CompArmaMarcial');
+        $clase->CompArmaduraSimp=$request->input('CompArmaduraSimp');
+        $clase->CompArmaduraLig=$request->input('CompArmaduraLig');
+        $clase->CompArmaduraPes=$request->input('CompArmaduraPes');
+        $clase->CompEscudo=$request->input('CompEscudo');
+        $clase->save();
+
+        return redirect()->route('clases.show', $clase->id);
     }
 
     /**
@@ -59,6 +83,7 @@ class ClassController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Clase::findOrFail($id)->delete();
+       return redirect()->route('clases.index');
     }
 }

@@ -1,3 +1,12 @@
-<div>
-    <!-- It is never too late to be what you might have been. - George Eliot -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')

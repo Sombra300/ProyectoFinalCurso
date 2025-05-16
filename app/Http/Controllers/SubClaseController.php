@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SubRace;
 
-class SubRaceController extends Controller
+use App\Models\SubClase;
+
+class SubClaseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -20,7 +21,7 @@ class SubRaceController extends Controller
      */
     public function create()
     {
-        return view('subRaces.create');
+        return view('subClases.create');
     }
 
     /**
@@ -28,12 +29,12 @@ class SubRaceController extends Controller
      */
     public function store(Request $request, string $id)
     {
-        $subRace=new SubRace();
-        $subRace->name=$request->input('name');
-        $subRace->race_id=$id;
-        $subRace->descripcion=$request->input('descripcion');
-        $subRace->save();
-        return redirect()->route('races.show', $subRace->race_id);
+        $subClase=new SubCace();
+        $subClase->name=$request->input('name');
+        $subClase->clase_id=$id;
+        $subClase->descripcion=$request->input('descripcion');
+        $subClase->save();
+        return redirect()->route('clases.show', $subClase->clase_id);
     }
 
     /**
@@ -41,7 +42,7 @@ class SubRaceController extends Controller
      */
     public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -49,8 +50,8 @@ class SubRaceController extends Controller
      */
     public function edit(string $id)
     {
-        $subRace=SubRace::find($id);
-        return view('subRaces.edit', compact('id'), compact('subRace'));
+        $subClase=SubClase::find($id);
+        return view('subClases.edit', compact('id'), compact('subClase'));
     }
 
     /**
@@ -58,10 +59,10 @@ class SubRaceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $subRace->name=$request->input('name');
-        $subRace->descripcion=$request->input('descripcion');
-        $subRace->save();
-        return redirect()->route('races.show', $subRace->id);
+        $subClase->name=$request->input('name');
+        $subClase->descripcion=$request->input('descripcion');
+        $subClase->save();
+        return redirect()->route('clases.show', $subClase->id);
     }
 
     /**
@@ -69,7 +70,7 @@ class SubRaceController extends Controller
      */
     public function destroy(string $id)
     {
-        SubRace::findOrFail($id)->delete();
-       return redirect()->route('races.index');
+       SubClase::findOrFail($id)->delete();
+       return redirect()->route('clases.index');
     }
 }

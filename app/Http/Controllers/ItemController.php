@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -11,7 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items=Item::all();
+        return view('items.index');
     }
 
     /**
@@ -19,7 +21,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+         return view('items.create');
     }
 
     /**
@@ -27,7 +29,13 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item=new Item();
+        $item->name=$request->input('name');
+        $item->descripcion=$request->input('descripcion');
+        $item->peso=$request->input('peso');
+        $item->precio=$request->input('precio');
+        $item->save();
+        return redirect()->route('items.show', $item->id);
     }
 
     /**
@@ -35,7 +43,8 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item=Item::find($id);
+        return view('items.show', compact('item'));
     }
 
     /**
@@ -43,7 +52,8 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item=Item::find($id);
+        return view('items.edit', compact('id'), compact('item'));
     }
 
     /**
@@ -51,7 +61,12 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item->name=$request->input('name');
+        $item->descripcion=$request->input('descripcion');
+        $item->peso=$request->input('peso');
+        $item->precio=$request->input('precio');
+        $item->save();
+        return redirect()->route('items.show', $item->id);
     }
 
     /**
@@ -59,6 +74,7 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Item::findOrFail($id)->delete();
+       return redirect()->route('items.index');
     }
 }

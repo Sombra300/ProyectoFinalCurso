@@ -1,3 +1,12 @@
-<div>
-    <!-- Well begun is half done. - Aristotle -->
-</div>
+@extends('partials.layout')
+@section('titulo')
+
+@endsection('titulo')
+@section('estilo')
+
+@endsection('estilo')
+@section('body')
+
+
+
+@endsection('body')
