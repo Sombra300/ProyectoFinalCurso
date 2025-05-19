@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre',30);//cadena longitud 30
             $table->boolean('CompArmaSimple');//bool, defecto false
             $table->boolean('CompArmaMarcial');//bool, defecto false
-            $table->boolean('CompArmaduraSimp');//bool, defecto false
+            $table->boolean('CompArmaduraMed');//bool, defecto false
             $table->boolean('CompArmaduraLig');//bool, defecto false
             $table->boolean('CompArmaduraPes');//bool, defecto false
             $table->boolean('CompEscudo');//bool, defecto false

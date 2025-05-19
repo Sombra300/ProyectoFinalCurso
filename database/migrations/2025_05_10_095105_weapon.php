@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('alcanceNormal');
             $table->integer('alcanceExtra');
             $table->string('tipoArma');
-            $table->boolean('propVer');//bool, defecto false
             $table->boolean('propSut');//bool, defecto false
             $table->boolean('prop2Manos');//bool, defecto false
             $table->boolean('propPesada');//bool, defecto false

@@ -21,6 +21,7 @@ class BackgroundController extends Controller
      */
     public function create()
     {
+        $lenguages=Lenguage::all();
         return view('backgrounds.create');
     }
 
