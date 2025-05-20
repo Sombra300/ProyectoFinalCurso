@@ -36,6 +36,7 @@ class ArmorController extends Controller
         $item->peso=$request->input('peso');
         $item->precio=$request->input('precio');
         $item->save();
+
         $armor=new Armor();
         $armor->item_id=$item->id;
         $armor->tipo=$request->input('tipo');
@@ -43,6 +44,7 @@ class ArmorController extends Controller
         $armor->pluesCA=$request->input('pluesCA');
         $armor->desMax=$request->input('desMax');
         $armor->CA=$request->input('CA');
+        $armor->associate(Item::findOrFail($item->id));
         $armor->save();
         return redirect()->route('itemss.show', $armor->id);
     }

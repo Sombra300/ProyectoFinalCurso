@@ -14,9 +14,9 @@ return new class extends Migration
          Schema::create('abilities', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('name',100);//cadena longitud 30
-            $table->string('cost',100);//cadena longitud 100
+            $table->string('coste',100);//cadena longitud 100
             $table->string('reuseTime');//text
-            $table->string('description');//text
+            $table->string('descripcion');//text
             $table->timestamps();
         });
     }

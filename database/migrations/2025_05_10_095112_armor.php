@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('armors', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->foreignId('item_id')->onDelete('cascade');
-            $table->string('typeArm');
-            $table->boolean('desSig');//bool, defecto false
+            $table->string('tipoArm');
+            $table->boolean('desSig');
             $table->integer('desMax');
             $table->integer('CA');
             $table->timestamps();

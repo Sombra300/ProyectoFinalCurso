@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('clases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);//cadena longitud 30
-            $table->boolean('CompArmaSimple');//bool, defecto false
-            $table->boolean('CompArmaMarcial');//bool, defecto false
-            $table->boolean('CompArmaduraMed');//bool, defecto false
-            $table->boolean('CompArmaduraLig');//bool, defecto false
-            $table->boolean('CompArmaduraPes');//bool, defecto false
-            $table->boolean('CompEscudo');//bool, defecto false
+            $table->boolean('CompArmaSimple');
+            $table->boolean('CompArmaMarcial');
+            $table->boolean('CompArmaduraMed');
+            $table->boolean('CompArmaduraLig');
+            $table->boolean('CompArmaduraPes');
+            $table->boolean('CompEscudo');
             $table->string('descripcion')->nullable();
             $table->timestamps();
         });
