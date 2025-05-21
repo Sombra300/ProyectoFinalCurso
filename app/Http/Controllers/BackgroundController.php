@@ -39,6 +39,8 @@ class BackgroundController extends Controller
         $background->CompArmaduraLig=$request->input('CompArmaduraLig');
         $background->CompArmaduraPes=$request->input('CompArmaduraPes');
         $background->CompEscudo=$request->input('CompEscudo');
+        $background->lenguage_id=$request->input('lenguage_id');
+        $background->associate(Lenguage::findOrFail($request->input('lenguage_id')));
         $background->save();
         return redirect()->route('backgrounds.show', $background->id);
     }

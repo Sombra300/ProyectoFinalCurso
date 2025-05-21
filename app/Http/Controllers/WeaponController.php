@@ -47,6 +47,7 @@ class WeaponController extends Controller
         $weapon->propSut=$request->input('propSut');
         $weapon->prop2Manos=$request->input('prop2Manos');
         $weapon->propPesada=$request->input('propPesada');
+        $weapon->associate(Item::findOrFail($item->id));
 
         $weapon->save();
         return redirect()->route('items.show', $weapon->id);

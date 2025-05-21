@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('INT');
             $table->integer('SAB');
             $table->integer('CAR');
-            $table->integer('lvl');
+            $table->integer('lvl')->default(1);
             $table->integer('CA');
             $table->timestamps();
         });
@@ -35,4 +35,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('characters');
     }
+
+    
 };

@@ -13,7 +13,7 @@ class CharacterApiController extends Controller
      */
     public function index()
     {
-         $characters=Character::all();
+        $characters=Character::all();
         return response()->json($characters);
     }
 
@@ -22,8 +22,6 @@ class CharacterApiController extends Controller
      */
     public function store(Request $request)
     {
-        $character=Character::find($id);
-        return view('characters.show', compact('character'));
     }
 
     /**
@@ -32,7 +30,8 @@ class CharacterApiController extends Controller
     public function show(Character $character)
     {
         $character=Character::find($id);
-        return view('characters.edit', compact('id'), compact('character'));
+        return view('characters.show', compact('character'));
+        
     }
 
     /**
@@ -62,4 +61,6 @@ class CharacterApiController extends Controller
     {
         //
     }
+
+
 }

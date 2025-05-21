@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('character_clase', function (Blueprint $table){
+        Schema::create('character_clase', function (Blueprint $table) {
             $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('clase_id')->constrained()->onDelete('cascade');
-            $table->integer('level');
+            $table->foreignId('subclase_id')->nullable()->constrained('subclases')->nullOnDelete();
+            $table->integer('lvl')->default(1);
             $table->unique(['character_id', 'clase_id']);
         });
     }

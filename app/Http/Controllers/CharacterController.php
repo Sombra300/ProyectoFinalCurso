@@ -46,6 +46,9 @@ class CharacterController extends Controller
         $character->CAR=$request->input('CAR');
         $character->lvl=$request->input('lvl');
         $character->CA=$request->input('CA');
+        $character->associate(User::findOrFail(Auth::user()->id));
+        $character->associate(Race::findOrFail($request->input('race_id')));
+        $character->attach(Clase::findOrFail($request->input('clase_id')));
         $character->save();
         return redirect()->route('characters.show', $character->id);
     }
@@ -96,4 +99,34 @@ class CharacterController extends Controller
         Character::findOrFail($id)->delete();
        return redirect()->route('characters.index');
     }
+
+    public function equip(Character $character, Request $request)
+    {
+        $item = Item::findOrFail($request->input('item_id'));
+
+    if ($character->items()->where('item_id', $item->id)->exists()) {
+        $character->items()->detach($item->id);
+        if(input('cantidad')>0){
+            $character->items()->attach($item->id, ['cantidad' => $input('cantidad')]);
+        }
+        return redirect()->route('characters.edit', $character->id);
+    } else {
+        $character->items()->attach($item->id, ['cantidad' => $input('cantidad')]);
+        return redirect()->route('characters.show', $character->id);
+    }
+
+    }
+
+    public function addClase(Character $character, Request $request)
+    {
+        $clase = Clase::findOrFail($request->input('clase_id'));
+    }
+
+    public function addClaseLVL(Character $character, Request $request)
+    {
+        $clase = Clase::findOrFail($request->input('clase_id'));
+        $character->clases()->detach($clase->id);
+        $character->clases()->attach($clases->id, ['cantidad' => $input('cantidad')]);
+    }
+
 }

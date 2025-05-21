@@ -38,6 +38,7 @@ class ClaseController extends Controller
         $clase->CompArmaduraLig=$request->input('CompArmaduraLig');
         $clase->CompArmaduraPes=$request->input('CompArmaduraPes');
         $clase->CompEscudo=$request->input('CompEscudo');
+        $clase->lvlSubClase=$request->input('lvlSubClase');
         $clase->save();
         return redirect()->route('clases.show', $clase->id);
     }

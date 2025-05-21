@@ -32,6 +32,7 @@ class SubRaceController extends Controller
         $subRace->name=$request->input('name');
         $subRace->race_id=$id;
         $subRace->descripcion=$request->input('descripcion');
+        $subRace->associate(Race::findOrFail($id));
         $subRace->save();
         return redirect()->route('races.show', $subRace->race_id);
     }

@@ -11,31 +11,31 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Character extends Model
 {
     public function user(): BelongsTo{
-        return $this->BelongsTo(Character::class);
+        return $this->belongsTo(User::class);
     }
 
     public function race(): BelongsTo{
-        return $this->BelongsTo(Race::class);
+        return $this->belongsTo(Race::class);
     }
 
     public function background(): BelongsTo{
-        return $this->BelongsTo(Background::class);
+        return $this->belongsTo(Background::class);
     }
 
     public function clase(): BelongsToMany{
-        return $this->BelongsTo(Clase::class);
+        return $this->belongsToMany(Clase::class);
     }
 
     public function items(): BelongsToMany{
-        return $this->BelongsTo(Item::class);
+        return $this->belongsToMany(Item::class);
     }
 
     public function lenguages(): BelongsToMany{
-        return $this->BelongsTo(Lenguage::class);
+        return $this->belongsToMany(Lenguage::class);
     }
 
-    public function spels(): HasMany{
-        return $this->hasMany(Spel::class);
+    public function spells(): HasMany{
+        return $this->hasMany(Spell::class);
     }
 
     public function likes():HasMany{

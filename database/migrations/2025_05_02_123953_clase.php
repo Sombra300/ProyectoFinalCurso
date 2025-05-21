@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('CompArmaduraLig');
             $table->boolean('CompArmaduraPes');
             $table->boolean('CompEscudo');
+            $table->integer('lvlSubClase');
             $table->string('descripcion')->nullable();
             $table->timestamps();
         });

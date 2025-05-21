@@ -33,6 +33,7 @@ class SubClaseController extends Controller
         $subClase->name=$request->input('name');
         $subClase->clase_id=$id;
         $subClase->descripcion=$request->input('descripcion');
+        $subClase->associate(Clase::findOrFail($id));
         $subClase->save();
         return redirect()->route('clases.show', $subClase->clase_id);
     }
