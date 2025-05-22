@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('backgrounds', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
+            $table->string('nombre',30)>unique();
             $table->string('descripcion')->nullable();
-            $table->boolean('CompArmaSimple');//bool, defecto false
-            $table->boolean('CompArmaMarcial');//bool, defecto false
-            $table->boolean('CompArmaduraMed');//bool, defecto false
-            $table->boolean('CompArmaduraLig');//bool, defecto false
-            $table->boolean('CompArmaduraPes');//bool, defecto false
-            $table->boolean('CompEscudo');//bool, defecto false
+            $table->boolean('CompArmaSimple')->nullable();
+            $table->boolean('CompArmaMarcial')->nullable();
+            $table->boolean('CompArmaduraMed')->nullable();
+            $table->boolean('CompArmaduraLig')->nullable();
+            $table->boolean('CompArmaduraPes')->nullable();
+            $table->boolean('CompEscudo')->nullable();
             $table->foreignId('lenguage_id')->nullOnDelete()->nullable();
             $table->timestamps();
         });

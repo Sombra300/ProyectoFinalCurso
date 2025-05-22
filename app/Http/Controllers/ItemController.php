@@ -27,7 +27,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
         $item=new Item();
         $item->name=$request->input('name');
@@ -59,7 +59,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ItemRequest $request, string $id)
     {
         $item->name=$request->input('name');
         $item->descripcion=$request->input('descripcion');

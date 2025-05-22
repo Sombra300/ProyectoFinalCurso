@@ -28,7 +28,7 @@ class BackgroundController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BackgroundRequest $request)
     {
         $background=new Background();
         $background->nombre=$request->input('nombre');
@@ -66,7 +66,7 @@ class BackgroundController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BackgroundRequest $request, string $id)
     {
         $background->nombre=$request->input('nombre');
         $background->descripcion=$request->input('descripcion');

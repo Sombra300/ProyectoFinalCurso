@@ -17,7 +17,7 @@ class LoginController extends Controller
         return view('auth.signup');
     }
 
-    public function signup(SignupRequest $request): RedirectResponse
+    public function signup(SignupRequest $request)
     {
         $user=new User();
         $user->name=$request->get('name');

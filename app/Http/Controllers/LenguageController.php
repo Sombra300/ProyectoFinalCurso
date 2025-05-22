@@ -27,7 +27,7 @@ class LenguageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LenguageRequest $request)
     {
         $lenguage=new Lenguage();
         $lenguage->nombre=$request->input('nombre');
@@ -55,7 +55,7 @@ class LenguageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(LenguageRequest $request, string $id)
     {
         $lenguage->nombre=$request->input('nombre');
         $lenguage->save();

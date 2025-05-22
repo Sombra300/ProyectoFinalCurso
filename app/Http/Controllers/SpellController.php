@@ -27,7 +27,7 @@ class SpellController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SpellRequest $request)
     {
         $spell=new Spell();
         $spell->nombre=$request->input('nombre');
@@ -62,7 +62,7 @@ class SpellController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SpellRequest $request, string $id)
     {
 
         $spell->nombre=$request->input('nombre');

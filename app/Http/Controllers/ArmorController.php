@@ -28,7 +28,7 @@ class ArmorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArmorRequest $request)
     {
         $item=new Item();
         $item->name=$request->input('name');
@@ -70,7 +70,7 @@ class ArmorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ArmorRequest $request, string $id)
     {
         $item = $armor->item;
 

@@ -32,7 +32,7 @@ class CharacterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CharacterRequest $request)
     {
         $character=new Character();
         $character->nombre=$request->input('nombre');
@@ -132,7 +132,7 @@ class CharacterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CharacterRequest $request, string $id)
     {
         $character->nombre=$request->input('nombre');
         $character->race_id=$request->input('race_id');
@@ -214,7 +214,7 @@ class CharacterController extends Controller
        return redirect()->route('characters.index');
     }
 
-    public function have(Character $character, Request $request)
+    public function have(Character $character, CharacterRequest $request)
     {
         $item = Item::findOrFail($request->input('item_id'));
 
@@ -230,7 +230,7 @@ class CharacterController extends Controller
     }
 
     }
-    public function equip(Character $character, Request $request)
+    public function equip(Character $character, CharacterRequest $request)
     {
         $item = Item::findOrFail($request->input('item_id'));
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('item_id')->onDelete('cascade');
             $table->string('tipoArm');
             $table->boolean('desSig');
-            $table->integer('desMax');
+            $table->integer('DESMax');
             $table->integer('CA');
             $table->timestamps();
         });

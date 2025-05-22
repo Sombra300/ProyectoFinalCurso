@@ -27,9 +27,9 @@ class SubClaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $id)
+    public function store(SubClaseRequest $request, string $id)
     {
-        $subClase=new SubCace();
+        $subClase=new SubClase();
         $subClase->name=$request->input('name');
         $subClase->clase_id=$id;
         $subClase->descripcion=$request->input('descripcion');
@@ -58,7 +58,7 @@ class SubClaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SubClaseRequest $request, string $id)
     {
         $subClase->name=$request->input('name');
         $subClase->descripcion=$request->input('descripcion');

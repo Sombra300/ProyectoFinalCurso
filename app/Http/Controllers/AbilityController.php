@@ -27,7 +27,7 @@ class AbilityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AbilityRequest $request)
     {
         $ability=new Ability();
         $ability->name=$request->input('name');
@@ -59,7 +59,7 @@ class AbilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AbilityRequest $request, string $id)
     {
         $ability->name=$request->input('name');
         $ability->description=$request->input('description');

@@ -26,7 +26,7 @@ class SubRaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $id)
+    public function store(SubRaceRequest $request, string $id)
     {
         $subRace=new SubRace();
         $subRace->name=$request->input('name');
@@ -57,7 +57,7 @@ class SubRaceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SubRaceRequest $request, string $id)
     {
         $subRace->name=$request->input('name');
         $subRace->descripcion=$request->input('descripcion');

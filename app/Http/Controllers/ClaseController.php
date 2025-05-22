@@ -27,7 +27,7 @@ class ClaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClaseRequest $request)
     {
         $clase=new Clase();
         $clase->nombre=$request->input('nombre');
@@ -64,7 +64,7 @@ class ClaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ClaseRequest $request, string $id)
     {
         $clase->nombre=$request->input('nombre');
         $clase->descripcion=$request->input('descripcion');
