@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('equiped', function (Blueprint $table){
             $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
-            $table->unique(['character_id', 'item_id']);
+            $table->string('sitio');
         });
     }
 

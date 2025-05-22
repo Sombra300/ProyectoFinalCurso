@@ -13,14 +13,14 @@ class Clase extends Model
     }
 
     public function abilitys(): HasMany{
-        return $this->hasMany(Ability::class);
+        return $this->hasMany(Ability::class)->withPivot('lvl');
     }
 
     public function spells(): HasMany{
-        return $this->hasMany(Spell::class);
+        return $this->hasMany(Spell::class)->withPivot('lvl');
     }
 
     public function characters(): BelongsToMany{
-        return $this->belongsToMany(Character::class)->withPivot('lvl', 'subclase_id');
+        return $this->belongsToMany(Character::class);
     }
 }

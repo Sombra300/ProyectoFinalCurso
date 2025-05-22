@@ -23,11 +23,15 @@ class Character extends Model
     }
 
     public function clase(): BelongsToMany{
-        return $this->belongsToMany(Clase::class);
+        return $this->belongsToMany(Clase::class)->withPivot('lvl', 'subclase_id', 'modComp');
     }
 
     public function items(): BelongsToMany{
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class)->withPivot('cantidad');
+    }
+
+    public function equipedItems(): BelongsToMany{
+        return $this->belongsToMany(Item::class)->withPivot('sitio');
     }
 
     public function lenguages(): BelongsToMany{

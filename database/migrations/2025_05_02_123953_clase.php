@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('clases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);//cadena longitud 30
+            $table->integer('dadoGolpe');
             $table->boolean('CompArmaSimple');
             $table->boolean('CompArmaMarcial');
             $table->boolean('CompArmaduraMed');

@@ -17,6 +17,6 @@ class Item extends Model
     }
 
     public function characters(): BelongsToMany{
-        return $this->belongsToMany(Character::class)->withPivot('cantidad');
+        return $this->belongsToMany(Character::class);
     }
 }
