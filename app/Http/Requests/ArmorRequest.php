@@ -26,8 +26,7 @@ class ArmorRequest extends FormRequest
             'descripcion'=> ['nullable', 'string'],
             'peso'=> ['required', 'numeric', 'min:0'],
             'precio'=> ['required', 'integer', 'min:0'],
-            'item_id'       => ['required', 'exists:items,id'],
-            'TipoArmor' => ['required', 'string', 'in:Ligera,Media,Pesada,Escudo'],
+            'tipoArm' => ['required', 'string', 'in:ligera,media,pesada,escudo'],
             'desSig'    => ['required', 'boolean'],
             'DESMax'    => ['required', 'integer', 'min:0'],
             'CA'        => ['required', 'integer', 'min:0'],
@@ -37,11 +36,8 @@ class ArmorRequest extends FormRequest
     public function messages()
     {
         return [
-        'item_id.required'=> 'El ID del ítem es obligatorio',
-        'item_id.exists' => 'El ítem seleccionado no es válido',
-        
-        'TipoArmor.required'=> 'El campo TipoArmor es obligatorio',
-        'TipoArmor.in'=> 'El valor seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
+        'tipoArm.required'=> 'El campo Tipo Armadura ha sido manipulado a un valor nulo, por favor intentelo de nuevo mas tarde',
+        'tipoArm.in'=> 'El valor seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
 
         'desSig.required'=> 'El campo desSig es obligatorio',
         'desSig.boolean'=> 'El campo desSig debe ser verdadero o falso',

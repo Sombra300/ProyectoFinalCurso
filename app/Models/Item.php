@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Item extends Model
 {
     public function armor(): HasOne{
-        return $this->hasMany(Armor::class);
+        return $this->hasOne(Armor::class);
     }
 
     public function weapon(): HasOne{
-        return $this->hasMany(Weapon::class);
+        return $this->hasOne(Weapon::class);
     }
 
     public function characters(): BelongsToMany{

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\WeaponRequest;
 use App\Models\Weapon;
 use App\Models\Item;
 
@@ -47,10 +48,10 @@ class WeaponController extends Controller
         $weapon->propSut=$request->input('propSut');
         $weapon->prop2Manos=$request->input('prop2Manos');
         $weapon->propPesada=$request->input('propPesada');
-        $weapon->associate(Item::findOrFail($item->id));
 
         $weapon->save();
-        return redirect()->route('items.show', $weapon->id);
+        $weapon->item()->associate($item);
+        return redirect()->route('items.index');
     }
 
     /**
@@ -94,7 +95,7 @@ class WeaponController extends Controller
         $weapon->propPesada = $request->boolean('propPesada');
         $weapon->save();
 
-        return redirect()->route('weapons.show', $weapon->id);
+        return redirect()->route('items.index', $weapon->id);
     }
 
     /**

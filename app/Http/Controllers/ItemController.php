@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 
 class ItemController extends Controller
@@ -13,7 +14,7 @@ class ItemController extends Controller
     public function index()
     {
         $items=Item::all();
-        return view('items.index');
+        return view('items.index', compact ('items'));
     }
 
     /**
@@ -30,12 +31,12 @@ class ItemController extends Controller
     public function store(ItemRequest $request)
     {
         $item=new Item();
-        $item->name=$request->input('name');
+        $item->nombre=$request->input('nombre');
         $item->descripcion=$request->input('descripcion');
         $item->peso=$request->input('peso');
         $item->precio=$request->input('precio');
         $item->save();
-        return redirect()->route('items.show', $item->id);
+        return redirect()->route('items.index', $item->id);
     }
 
     /**
@@ -44,7 +45,7 @@ class ItemController extends Controller
     public function show(string $id)
     {
         $item=Item::find($id);
-        return view('items.show', compact('item'));
+        return view('items.index', compact('item'));
     }
 
     /**
@@ -61,12 +62,12 @@ class ItemController extends Controller
      */
     public function update(ItemRequest $request, string $id)
     {
-        $item->name=$request->input('name');
+        $item->nombre=$request->input('nombre');
         $item->descripcion=$request->input('descripcion');
         $item->peso=$request->input('peso');
         $item->precio=$request->input('precio');
         $item->save();
-        return redirect()->route('items.show', $item->id);
+        return redirect()->route('items.index', $item->id);
     }
 
     /**

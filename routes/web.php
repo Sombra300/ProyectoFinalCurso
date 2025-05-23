@@ -12,6 +12,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SpellController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
 
 

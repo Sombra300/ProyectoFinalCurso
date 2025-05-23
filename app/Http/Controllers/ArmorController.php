@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ArmorRequest;
 use App\Models\Armor;
 use App\Models\Item;
 
@@ -31,7 +32,7 @@ class ArmorController extends Controller
     public function store(ArmorRequest $request)
     {
         $item=new Item();
-        $item->name=$request->input('name');
+        $item->nombre=$request->input('nombre');
         $item->descripcion=$request->input('descripcion');
         $item->peso=$request->input('peso');
         $item->precio=$request->input('precio');
@@ -39,14 +40,13 @@ class ArmorController extends Controller
 
         $armor=new Armor();
         $armor->item_id=$item->id;
-        $armor->tipo=$request->input('tipo');
+        $armor->tipoArm=$request->input('tipoArm');
         $armor->desSig=$request->input('desSig');
-        $armor->pluesCA=$request->input('pluesCA');
-        $armor->desMax=$request->input('desMax');
+        $armor->DESMax=$request->input('DESMax');
         $armor->CA=$request->input('CA');
-        $armor->associate(Item::findOrFail($item->id));
         $armor->save();
-        return redirect()->route('itemss.show', $armor->id);
+        $armor->item()->associate($item);
+        return redirect()->route('items.index');
     }
 
     /**
@@ -74,17 +74,16 @@ class ArmorController extends Controller
     {
         $item = $armor->item;
 
-        $item->name = $request->input('name');
+        $item->nombre = $request->input('nombre');
         $item->descripcion = $request->input('descripcion');
         $item->peso = $request->input('peso');
         $item->precio = $request->input('precio');
         $item->save();
 
         $armor->item_id=$item->id;
-        $armor->tipo=$request->input('tipo');
+        $armor->tipoArm=$request->input('tipoArm');
         $armor->desSig=$request->input('desSig');
-        $armor->pluesCA=$request->input('pluesCA');
-        $armor->desMax=$request->input('desMax');
+        $armor->DESMax=$request->input('DESMax');
         $armor->CA=$request->input('CA');
         $armor->save();
 

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Weapon extends Model
 {
     public function item(): BelongsTo{
-        return $this->BelongsTo(Item::class);
+        return $this->belongsTo(Item::class);
     }
 }

@@ -26,7 +26,6 @@ class WeaponRequest extends FormRequest
             'descripcion'=> ['nullable', 'string'],
             'peso'=> ['required', 'numeric', 'min:0'],
             'precio'=> ['required', 'integer', 'min:0'],
-            'item_id'       => ['required', 'exists:items,id'],
             'tipoDaño'      => ['required', 'string'],
             'daño'          => ['required', 'integer', 'min:0'],
             'alcanceNormal' => ['required', 'integer', 'min:0'],
@@ -41,8 +40,6 @@ class WeaponRequest extends FormRequest
     public function messages()
     {
         return [
-            'item_id.required'=> 'El ID del ítem es obligatorio',
-            'item_id.exists' => 'El ítem seleccionado no es válido',
 
             'tipoDaño.required'=> 'El tipo de daño es obligatorio',
 

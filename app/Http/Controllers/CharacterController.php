@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CharacterRequest;
 use App\Models\Character;
 
 class CharacterController extends Controller
