@@ -33,9 +33,9 @@ class AbilityRequest extends FormRequest
     {
         return [
             'nombre.required'=>'El nombre no puede estar vacio',
+            'descripcion.required'=>'Tienes que indicar que hace la habilidad',
             'coste.required'=>'El coste de la habilidad no puede estar vacio',
             'reuseTime.required'=>'Tienes que indicar cada cuanto se puede usar la habilidad, si es una habilidad pasiba puedes simplemente escribir la condicion o poner siempre',
-            'descripcion.required'=>'Tienes que indicar que hace la habilidad',
         ];
     }
 }

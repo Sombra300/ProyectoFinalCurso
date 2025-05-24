@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('spells', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
+            $table->string('nombre',30)->unique();
             $table->string('descripcion')->nullable();
             $table->string('coste')->nullable();
             $table->boolean('ataque')->nullable();
             $table->integer('daño');
-            $table->string('tipoDaño')->nullable();
+            $table->string('tipoDaño');
             $table->integer('nivel');
             $table->timestamps();
         });

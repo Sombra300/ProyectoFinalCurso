@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
+            $table->string('nombre',30)->unique();
             $table->string('descripcion')->nullable();
             $table->double('peso');
             $table->integer('precio');

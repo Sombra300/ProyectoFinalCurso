@@ -26,14 +26,14 @@ class WeaponRequest extends FormRequest
             'descripcion'=> ['nullable', 'string'],
             'peso'=> ['required', 'numeric', 'min:0'],
             'precio'=> ['required', 'integer', 'min:0'],
-            'tipoDaño'      => ['required', 'string'],
-            'daño'          => ['required', 'integer', 'min:0'],
+            'tipoDaño' => ['required', 'string', 'in:contundente,perforante,cortante'],
+            'daño' => ['required', 'integer', 'min:0'],
             'alcanceNormal' => ['required', 'integer', 'min:0'],
             'alcanceExtra'  => ['required', 'integer', 'min:0'],
-            'tipoArma'      => ['required', 'string'],
-            'propSut'       => ['nullable', 'boolean'],
-            'prop2Manos'    => ['nullable', 'boolean'],
-            'propPesada'    => ['nullable', 'boolean'],
+            'tipoArma'=> ['required', 'string', 'in:simple,marcial'],
+            'propSut'  => ['nullable', 'boolean'],
+            'prop2Manos'=> ['nullable', 'boolean'],
+            'propPesada' => ['nullable', 'boolean'],
         ];
     }
 
@@ -42,6 +42,7 @@ class WeaponRequest extends FormRequest
         return [
 
             'tipoDaño.required'=> 'El tipo de daño es obligatorio',
+            'tipoDaño.in'=> 'El valor del campo Tipo de Daño seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
 
             'daño.required'=> 'El daño es obligatorio',
             'daño.integer' => 'El daño debe ser un número entero',
@@ -56,6 +57,7 @@ class WeaponRequest extends FormRequest
             'alcanceExtra.min' => 'El alcance extra no puede ser negativo',
 
             'tipoArma.required'=> 'El tipo de arma es obligatorio',
+            'tipoArma.in'=> 'El valor del campo Tipo de Arma seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
 
             'propSut.boolean'=> 'El campo propSut debe ser verdadero o falso',
             'prop2Manos.boolean'=> 'El campo prop2Manos debe ser verdadero o falso',

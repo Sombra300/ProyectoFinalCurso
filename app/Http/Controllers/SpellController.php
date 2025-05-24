@@ -14,7 +14,7 @@ class SpellController extends Controller
     public function index()
     {
         $spells=Spell::all();
-        return view('spells.index');
+        return view('spells.index',compact ('spells'));
     }
 
     /**
@@ -39,7 +39,7 @@ class SpellController extends Controller
         $spell->tipoDaño=$request->input('tipoDaño');
         $spell->nivel=$request->input('nivel');
         $spell->save();
-        return redirect()->route('spells.show', $spell->id);
+        return redirect()->route('spells.index');
     }
 
     /**
@@ -47,8 +47,6 @@ class SpellController extends Controller
      */
     public function show(string $id)
     {
-        $spell=Spell::find($id);
-        return view('spells.show', compact('spell'));
     }
 
     /**
@@ -75,7 +73,7 @@ class SpellController extends Controller
         $spell->nivel=$request->input('nivel');
         $spell->save();
 
-        return redirect()->route('spells.show', $spell->id);
+        return redirect()->route('spells.index');
     }
 
     /**

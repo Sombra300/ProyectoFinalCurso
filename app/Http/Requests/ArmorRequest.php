@@ -27,9 +27,9 @@ class ArmorRequest extends FormRequest
             'peso'=> ['required', 'numeric', 'min:0'],
             'precio'=> ['required', 'integer', 'min:0'],
             'tipoArm' => ['required', 'string', 'in:ligera,media,pesada,escudo'],
-            'desSig'    => ['required', 'boolean'],
-            'DESMax'    => ['required', 'integer', 'min:0'],
-            'CA'        => ['required', 'integer', 'min:0'],
+            'desSig'=> ['boolean'],
+            'DESMax' => ['required', 'integer', 'min:0'],
+            'CA' => ['required', 'integer', 'min:0'],
         ];
     }
 
@@ -37,9 +37,8 @@ class ArmorRequest extends FormRequest
     {
         return [
         'tipoArm.required'=> 'El campo Tipo Armadura ha sido manipulado a un valor nulo, por favor intentelo de nuevo mas tarde',
-        'tipoArm.in'=> 'El valor seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
+        'tipoArm.in'=> 'El valor del campo Tipo Armadura seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
 
-        'desSig.required'=> 'El campo desSig es obligatorio',
         'desSig.boolean'=> 'El campo desSig debe ser verdadero o falso',
 
         'DESMax.required'=> 'Has de indicar cuanta Clase Armadura se añade como maximo por el Modificador de Destreza con esta armadura',

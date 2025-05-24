@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subClases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
+            $table->string('nombre',30)->unique();
             $table->foreignId('clase_id')->onDelete('cascade');
             $table->string('descripcion')->nullable();
             $table->timestamps();

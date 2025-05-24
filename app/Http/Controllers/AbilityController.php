@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AbilityRequest;
 use App\Models\Ability;
 
 class AbilityController extends Controller
@@ -13,7 +14,7 @@ class AbilityController extends Controller
     public function index()
     {
         $abilities=Ability::all();
-        return view('abilities.index');
+        return view('abilities.index',compact ('abilities'));
     }
 
     /**
@@ -30,12 +31,12 @@ class AbilityController extends Controller
     public function store(AbilityRequest $request)
     {
         $ability=new Ability();
-        $ability->name=$request->input('name');
-        $ability->description=$request->input('description');
-        $ability->cost=$request->input('cost');
+        $ability->nombre=$request->input('nombre');
+        $ability->descripcion=$request->input('descripcion');
+        $ability->coste=$request->input('coste');
         $ability->reuseTime=$request->input('reuseTime');
         $ability->save();
-        return redirect()->route('abilities.show', $ability->id);
+        return redirect()->route('abilities.index');
     }
 
     /**
@@ -44,7 +45,7 @@ class AbilityController extends Controller
     public function show(string $id)
     {
         $ability=Ability::find($id);
-        return view('abilities.show' , compact('ability'));
+        return view('abilities.index' , compact('ability'));
     }
 
     /**
@@ -61,9 +62,9 @@ class AbilityController extends Controller
      */
     public function update(AbilityRequest $request, string $id)
     {
-        $ability->name=$request->input('name');
-        $ability->description=$request->input('description');
-        $ability->cost=$request->input('cost');
+        $ability->nombre=$request->input('nombre');
+        $ability->descripcion=$request->input('descripcion');
+        $ability->coste=$request->input('coste');
         $ability->reuseTime=$request->input('reuseTime');
         $ability->save();
         return redirect()->route('abilities.show', $ability->id);

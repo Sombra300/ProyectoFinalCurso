@@ -27,7 +27,7 @@ class SpellRequest extends FormRequest
         'coste' => ['nullable', 'string'],
         'ataque'=> ['nullable', 'boolean'],
         'daño'=> ['required', 'integer', 'min:0'],
-        'tipoDaño'=> ['nullable', 'string'],
+        'tipoDaño'=> ['nullable', 'string', 'in:sin,acido,cura,fuego,fuerza,frio,necrotico,psiquico,radiante,rayo,trueno,veneno'],
         'nivel'=> ['required', 'integer', 'min:0'],
     ];
     }
@@ -49,6 +49,7 @@ class SpellRequest extends FormRequest
             'daño.min'=> 'El daño no puede ser negativo',
 
             'tipoDaño.string'=> 'El tipo de daño debe ser texto',
+            'tipoDaño.in'=> 'El valor del campo Tipo de Daño seleccionado ha sido manipulado a uno no aceptable, por favor intentelo de nuevo mas tarde',
 
             'nivel.required'=> 'El nivel es obligatorio',
             'nivel.integer'=> 'El nivel debe ser un número entero',

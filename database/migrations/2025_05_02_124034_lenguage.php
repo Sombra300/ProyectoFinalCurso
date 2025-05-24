@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lenguages', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
-            $table->string('nombre',30);
+            $table->string('nombre',30)->unique();
             $table->timestamps();
         });
     }

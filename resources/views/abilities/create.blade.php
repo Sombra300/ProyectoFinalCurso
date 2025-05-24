@@ -6,16 +6,16 @@
 
 @endsection('estilo')
 @section('body')
-<form action="{{route('events.store')}}" method="post">
+<form action="{{route('abilities.store')}}" method="post">
     @csrf
-    <label for="name">Nombre</label>
-    <input type="text" id="name" name="name">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre">
     <br>
-    <label for="description">Descripcion</label>
-    <input type="text" id="description" name="description">
+    <label for="descripcion">Descripcion</label>
+    <input type="text" id="descripcion" name="descripcion">
     <br>
-    <label for="cost">Coste</label>
-    <input type="text" id="cost" name="cost">
+    <label for="coste">Coste</label>
+    <input type="text" id="coste" name="coste">
     <br>
     <label for="reuseTime">Tiempo de reutilización</label>
     <input type="text" id="reuseTime" name="reuseTime">

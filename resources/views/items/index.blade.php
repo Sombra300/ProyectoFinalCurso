@@ -1,6 +1,16 @@
 @extends('partials.layout')
 @section('titulo')
-
+<style>
+    .Item{
+        
+    }
+    .Weapon{
+        background-color: rgb(238, 132, 132)
+    }
+    .Armor{
+        background-color: rgb(134, 241, 157)
+    }
+</style>
 @endsection('titulo')
 @section('estilo')
 
@@ -10,7 +20,7 @@
 <div id="ITEMS" class="container">
     @forelse ($items as $item)
         @if (!$item->weapon && !$item->armor)
-            <div>
+            <div class="Item">
                 {{$item->nombre}}
                 <div>
                     <div class="">Valor:{{$item->precio}}</div>
@@ -27,7 +37,7 @@
 <div id="WEAPONS" class="container">
     @forelse ($items as $item)
         @if ($item->weapon)
-            <div>
+            <div class="Weapon">
                 {{$item->nombre}}
                 <div>
                     <div class="">Valor:{{$item->precio}}</div>
@@ -63,7 +73,7 @@
 <div id="ARMORS" class="container">
     @forelse ($items as $item)
         @if ($item->armor)
-            <div>
+            <div class="Armor">
                 {{$item->nombre}}
                 <div>
                     <div>

@@ -7,39 +7,40 @@
 @endsection('estilo')
 @section('body')
 
-<form action="{{route('events.store')}}" method="post">
+<form action="{{route('spells.store')}}" method="post">
     @csrf
-    <label for="name">Nombre</label>
-    <input type="text" id="name" name="name">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre">
     <br>
-    <label for="description">Descripcion</label>
-    <input type="text" id="description" name="description">
+    <label for="descripcion">Descripcion</label>
+    <input type="text" id="descripcion" name="descripcion">
     <br>
-    <label for="cost">Coste</label>
-    <input type="text" id="cost" name="cost">
+    <label for="coste">Coste/Materiales necesarios</label>
+    <input type="text" id="coste" name="coste">
     <br>
-    <label for="reuseTime">Tiempo de reutilización</label>
-    <input type="text" id="reuseTime" name="reuseTime">
+    <label for="daño">Caras del dado que usa el hechizo</label>
+    <input type="number" id="daño" name="daño">
     <br>
-    <label for="hour">Hora</label>
-    <input type="time" id="hour" name="hour">
+    <label for="nivel">Nivel del espacio de conjuro del hechizo</label>
+    <input type="number" id="nivel" name="nivel">
     <br>
-    <label for="lenguage1">Tipo</label>
-    <select name="type" id="type">
-        <option value="official">Official</option>
-        <option value="exhibition">Exhibition</option>
-        <option value="charity">Charity</option>
+    <label for="tipoDaño">Tipo de Daño</label>
+    <select name="tipoDaño" id="tipoDaño">
+        <option value="acido">Acido</option>
+        <option value="cura">Curativo</option>
+        <option value="fuego">Fuego</option>
+        <option value="fuerza">Fuerza</option>
+        <option value="frio">Frio</option>
+        <option value="necrotico">Necrotico</option>
+        <option value="psiquico">Psiquico</option>
+        <option value="radiante">Radiante</option>
+        <option value="rayo">Rayo</option>
+        <option value="trueno">Trueno</option>
+        <option value="veneno">Veneno</option>
+        <option value="sin">Efecto de la descripcion</option>
     </select>
     <br>
-    <br>
-    <label for="tags">Etiquetas</label>
-    <input type="text" id="tags" name="tags">
-    <br>
-    <label for="visible">Visibilidad</label>
-    <select id="visible" name="visible">
-        <option value="0">Oculto</option>
-        <option value="1">Visible</option>
-    </select>
+    <input type="checkbox" name="ataque" id="ataque"><label for="ataque">El lanzador del conjuro necesita hacer tirada de ataque </label>
     <br>
     <input type="submit" value="Guardar">
 </form>
