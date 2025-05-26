@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SubRaceRequest;
+use App\Models\Race;
 use App\Models\SubRace;
 
 class SubRaceController extends Controller
@@ -19,21 +20,20 @@ class SubRaceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        return view('subRaces.create');
+        return view('subRaces.create', compact('id'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SubRaceRequest $request, string $id)
+    public function store(SubRaceRequest $request)
     {
         $subRace=new SubRace();
-        $subRace->name=$request->input('name');
-        $subRace->race_id=$id;
+        $subRace->nombre=$request->input('nombre');
+        $subRace->race_id=$request->input('race_id');
         $subRace->descripcion=$request->input('descripcion');
-        $subRace->associate(Race::findOrFail($id));
         $subRace->save();
         return redirect()->route('races.show', $subRace->race_id);
     }
@@ -60,7 +60,7 @@ class SubRaceController extends Controller
      */
     public function update(SubRaceRequest $request, string $id)
     {
-        $subRace->name=$request->input('name');
+        $subRace->nombre=$request->input('nombre');
         $subRace->descripcion=$request->input('descripcion');
         $subRace->save();
         return redirect()->route('races.show', $subRace->id);
@@ -72,6 +72,6 @@ class SubRaceController extends Controller
     public function destroy(string $id)
     {
         SubRace::findOrFail($id)->delete();
-       return redirect()->route('races.index');
+        return redirect()->route('races.index');
     }
 }

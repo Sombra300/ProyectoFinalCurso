@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subClases', function (Blueprint $table) {
+        Schema::create('sub_clases', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30)->unique();
             $table->foreignId('clase_id')->onDelete('cascade');

@@ -1,16 +1,5 @@
 @extends('partials.layout')
 @section('titulo')
-<style>
-    .Item{
-        
-    }
-    .Weapon{
-        background-color: rgb(238, 132, 132)
-    }
-    .Armor{
-        background-color: rgb(134, 241, 157)
-    }
-</style>
 @endsection('titulo')
 @section('estilo')
 

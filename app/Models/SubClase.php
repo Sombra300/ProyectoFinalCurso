@@ -12,8 +12,8 @@ class SubClase extends Model
         return $this->BelongsTo(Clase::class);
     }
 
-    public function abilitys(): HasMany{
-        return $this->hasMany(Ability::class);
+    public function abilities(): BelongsToMany {
+        return $this->belongsToMany(Ability::class, 'ability_subClase');
     }
 
     public function spels(): HasMany{

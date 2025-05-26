@@ -31,14 +31,11 @@ class SubRaceRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.required'=> 'El nombre es obligatorio.',
-            'nombre.string'=> 'El nombre debe ser texto.',
-            'nombre.max'=> 'El nombre no puede superar los 30 caracteres.',
+            'nombre.required'=> 'El nombre es obligatorio',
+            'nombre.max'=> 'El nombre no puede superar los 30 caracteres',
 
-            'race_id.required'=> 'Debe seleccionar una raza.',
-            'race_id.exists'=> 'La raza seleccionada no es válida.',
-
-            'descripcion.string'=> 'La descripción debe ser texto.',
+            'race_id.required'=> 'Le pedimos que no manipule datos del formulario para asi lograr su funcionamiento adecuado',
+            'race_id.exists'=> 'Le pedimos que no manipule datos del formulario para asi lograr su funcionamiento adecuado',
         ];
     }
 }

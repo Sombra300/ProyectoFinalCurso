@@ -1,4 +1,4 @@
-@extends('partials.layout')
+@extends('partials.layoutADMIN')
 @section('titulo')
 
 @endsection('titulo')

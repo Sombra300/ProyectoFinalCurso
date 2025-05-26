@@ -22,29 +22,26 @@ class RaceRequest extends FormRequest
     public function rules(): array
     {
          return [
-            'nombre'=> ['required', 'string', 'max:30'],
+            'nombre' => ['required', 'string', 'max:30', 'unique:races,nombre'],
             'descripcion'=> ['nullable', 'string'],
-            'peso'=> ['required', 'numeric', 'min:0'],
-            'precio'=> ['required', 'integer', 'min:0'],
+            'tamaño' => ['required', 'string', 'in:pequeña,media,grande'],
+            'velocidad'  => ['required', 'integer', 'min:0'],
         ];
     }
 
     public function messages()
     {
         return [
-            'nombre.required'=> 'El nombre es obligatorio',
-            'nombre.string'=> 'El nombre debe ser texto',
-            'nombre.max'=> 'El nombre no puede superar los 30 caracteres',
+            'nombre.required'=> 'El nombre de la raza es obligatorio',
+            'nombre.max' => 'El nombre de la raza no puede superar los 30 caracteres',
+            'nombre.unique' => 'Este nombre de raza ya está registrado',
 
-            'descripcion.string' => 'La descripción debe ser texto',
+            'tamaño.required'=> 'El tamaño es obligatorio',
+            'tamaño.in'=> 'El tamaño ha sido manipulado a un valor no aceptable',
 
-            'peso.required'=> 'El peso es obligatorio',
-            'peso.numeric'=> 'El peso debe ser un número válido',
-            'peso.min'=> 'El peso no puede ser negativo',
-
-            'precio.required' => 'El precio es obligatorio',
-            'precio.integer' => 'El precio debe ser un número entero',
-            'precio.min' => 'El precio no puede ser negativo',
+            'velocidad.required'=> 'La velocidad de movimiento es obligatoria',
+            'velocidad.integer' => 'La velocidad de movimiento debe ser un número entero',
+            'velocidad.min'=> 'La velocidad de movimiento no puede ser negativa',
         ];
     }
 }

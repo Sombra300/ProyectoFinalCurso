@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subRaces', function (Blueprint $table) {
+        Schema::create('sub_races', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);
             $table->foreignId('race_id')->onDelete('cascade');

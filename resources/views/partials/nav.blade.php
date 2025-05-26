@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="{{route('abilities.index')}}">Habilidades</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{route('lenguages.index')}}">Lenguajes</a>
+                </li>
                 @if (Auth::check())
                     @if (Auth::user()->rol=='admin')
                         <li class="nav-item">
@@ -40,7 +43,7 @@
                             <a class="nav-link"  href="{{route('clases.create')}}">Añadir Clase</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"  href="{{route('races.index')}}">Añadir Raza</a>
+                            <a class="nav-link"  href="{{route('races.create')}}">Añadir Raza</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  href="{{route('items.create')}}">Añadir Objeto</a>
@@ -50,6 +53,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"  href="{{route('abilities.create')}}">Añadir Habilidad</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="{{route('lenguages.create')}}">Añadir Lenguaje</a>
                         </li>
                     @endif
                 <li class="nav-item">

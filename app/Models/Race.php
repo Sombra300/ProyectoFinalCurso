@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Race extends Model
 {
@@ -15,11 +16,7 @@ class Race extends Model
         return $this->hasMany(SubRace::class);
     }
 
-    public function abilitys(): HasMany{
-        return $this->hasMany(Ability::class);
-    }
-
-    public function spels(): HasMany{
-        return $this->hasMany(Spel::class);
-    }
+    public function abilities(): BelongsToMany {
+    return $this->belongsToMany(Ability::class, 'ability_race');
+}
 }

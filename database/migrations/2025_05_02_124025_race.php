@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30)->unique();
             $table->string('descripcion')->nullable();
+            $table->string('tamaño');
             $table->integer('velocidad');
             $table->timestamps();
         });

@@ -16,11 +16,7 @@ class Ability extends Model
         return $this->BelongsTo(SubClase::class);
     }
 
-    public function race(): BelongsToMany{
+    public function race(): BelongsToMany {
         return $this->BelongsTo(Race::class);
-    }
-
-    public function spel(): HasOne{
-        return $this->hasMany(Spel::class);
     }
 }
