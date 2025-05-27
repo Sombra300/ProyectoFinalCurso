@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ability extends Model
 {
-    public function clase(): BelongsToMany{
-        return $this->BelongsTo(Clase::class);
+    public function clases(): BelongsToMany{
+        return $this->belongsToMany(Clase::class, 'ability_clase')->withPivot('lvl');
     }
 
     public function subClase(): BelongsToMany{
-        return $this->BelongsTo(SubClase::class);
+        return $this->belongsToMany(Clase::class, 'ability_subClase')->withPivot('lvl');
     }
 
     public function race(): BelongsToMany {

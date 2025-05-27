@@ -14,7 +14,7 @@ class ClaseController extends Controller
     public function index()
     {
         $clases=Clase::all();
-        return view('clases.index');
+        return view('clases.index',compact ('clases'));
     }
 
     /**
@@ -35,10 +35,11 @@ class ClaseController extends Controller
         $clase->descripcion=$request->input('descripcion');
         $clase->CompArmaSimple=$request->input('CompArmaSimple');
         $clase->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $clase->CompArmaduraSimp=$request->input('CompArmaduraSimp');
         $clase->CompArmaduraLig=$request->input('CompArmaduraLig');
+        $clase->CompArmaduraMed=$request->input('CompArmaduraMed');
         $clase->CompArmaduraPes=$request->input('CompArmaduraPes');
         $clase->CompEscudo=$request->input('CompEscudo');
+        $clase->dadoGolpe=$request->input('dadoGolpe');
         $clase->lvlSubClase=$request->input('lvlSubClase');
         $clase->save();
         return redirect()->route('clases.show', $clase->id);
@@ -71,10 +72,12 @@ class ClaseController extends Controller
         $clase->descripcion=$request->input('descripcion');
         $clase->CompArmaSimple=$request->input('CompArmaSimple');
         $clase->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $clase->CompArmaduraSimp=$request->input('CompArmaduraSimp');
+        $clase->CompArmaduraMed=$request->input('CompArmaduraMed');
         $clase->CompArmaduraLig=$request->input('CompArmaduraLig');
         $clase->CompArmaduraPes=$request->input('CompArmaduraPes');
         $clase->CompEscudo=$request->input('CompEscudo');
+        $clase->dadoGolpe=$request->input('dadoGolpe');
+        $clase->lvlSubClase=$request->input('lvlSubClase');
         $clase->save();
 
         return redirect()->route('clases.show', $clase->id);

@@ -12,12 +12,12 @@ class Clase extends Model
         return $this->hasMany(SubClase::class);
     }
 
-    public function abilitys(): HasMany{
-        return $this->hasMany(Ability::class)->withPivot('lvl');
+    public function abilities(): BelongsToMany{
+        return $this->belongsToMany(Ability::class, 'ability_clase')->withPivot('lvl');
     }
 
-    public function spells(): HasMany{
-        return $this->hasMany(Spell::class)->withPivot('lvl');
+    public function spells(): BelongsToMany{
+        return $this->hasMany(Spell::class, 'clase_spell')->withPivot('lvl');
     }
 
     public function characters(): BelongsToMany{

@@ -13,6 +13,6 @@ class SubRace extends Model
     }
 
     public function abilities(): BelongsToMany {
-        return $this->belongsToMany(Ability::class, 'ability_Sub_race');
+        return $this->belongsToMany(Ability::class, 'ability_sub_race');
     }
 }

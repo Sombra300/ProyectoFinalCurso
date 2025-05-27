@@ -52,18 +52,18 @@ class SubRaceController extends Controller
     public function edit(string $id)
     {
         $subRace=SubRace::find($id);
-        return view('subRaces.edit', compact('id'), compact('subRace'));
+        return view('subRaces.edit', compact('subRace'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(SubRaceRequest $request, string $id)
+    public function update(SubRaceRequest $request, SubRace $subRace)
     {
         $subRace->nombre=$request->input('nombre');
         $subRace->descripcion=$request->input('descripcion');
         $subRace->save();
-        return redirect()->route('races.show', $subRace->id);
+        return redirect()->route('races.show', $subRace->race_id);
     }
 
     /**

@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30)->unique();//cadena longitud 30
             $table->integer('dadoGolpe');
-            $table->boolean('CompArmaSimple');
-            $table->boolean('CompArmaMarcial');
-            $table->boolean('CompArmaduraMed');
-            $table->boolean('CompArmaduraLig');
-            $table->boolean('CompArmaduraPes');
-            $table->boolean('CompEscudo');
+            $table->boolean('CompArmaSimple')->nullable();
+            $table->boolean('CompArmaMarcial')->nullable();
+            $table->boolean('CompArmaduraLig')->nullable();
+            $table->boolean('CompArmaduraMed')->nullable();
+            $table->boolean('CompArmaduraPes')->nullable();
+            $table->boolean('CompEscudo')->nullable();
             $table->integer('lvlSubClase');
             $table->string('descripcion')->nullable();
             $table->timestamps();

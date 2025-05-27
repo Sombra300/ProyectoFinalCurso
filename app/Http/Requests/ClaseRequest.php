@@ -30,7 +30,7 @@ class ClaseRequest extends FormRequest
             'CompArmaduraLig'=> ['nullable', 'boolean'],
             'CompArmaduraPes'=> ['nullable', 'boolean'],
             'CompEscudo'=> ['nullable', 'boolean'],
-            'lvlSubClase'=> ['required', 'integer', 'min:0'],
+            'lvlSubClase'=> ['required', 'integer', 'min:1', 'max:20'],
             'descripcion'=> ['nullable', 'string'],
         ];
     }
@@ -38,25 +38,25 @@ class ClaseRequest extends FormRequest
     public function messages()
     {
         return [
-            'nombre.required' => 'El nombre es obligatorio',
-            'nombre.max'=> 'El nombre no puede exceder 30 caracteres',
+            'nombre.required' => 'El nombre de la clase es obligatorio',
+            'nombre.max'=> 'El nombre de la clase no puede exceder 30 caracteres',
 
-            'dadoGolpe.required'=> 'El dado de golpe es obligatorio',
-            'dadoGolpe.integer'=> 'El dado de golpe debe ser un número entero',
-            'dadoGolpe.min'=> 'El dado de golpe debe ser al menos 1',
+            'dadoGolpe.required'=> 'El dado de golpe de la clase es obligatorio',
+            'dadoGolpe.integer'=> 'El dado de golpe de la clase debe ser un número entero',
+            'dadoGolpe.min'=> 'El dado de golpe de la clase debe ser al menos 1',
 
-            'CompArmaSimple.boolean' => 'El campo CompArmaSimple debe ser verdadero o falso',
-            'CompArmaMarcial.boolean'=> 'El campo CompArmaMarcial debe ser verdadero o falso',
-            'CompArmaduraMed.boolean'=> 'El campo CompArmaduraMed debe ser verdadero o falso',
-            'CompArmaduraLig.boolean'=> 'El campo CompArmaduraLig debe ser verdadero o falso',
-            'CompArmaduraPes.boolean'=> 'El campo CompArmaduraPes debe ser verdadero o falso',
+            'CompArmaSimple.boolean' => 'El campo Competencia con Arma Simple debe ser verdadero o falso',
+            'CompArmaMarcial.boolean'=> 'El campo Competencia con Arma Marcial debe ser verdadero o falso',
+            'CompArmaduraMed.boolean'=> 'El campo Competencia con Armadura Media debe ser verdadero o falso',
+            'CompArmaduraLig.boolean'=> 'El campo Competencia con Armadura Ligera debe ser verdadero o falso',
+            'CompArmaduraPes.boolean'=> 'El campo Competencia con Armadura Pesada debe ser verdadero o falso',
             'CompEscudo.boolean'=> 'El campo CompEscudo debe ser verdadero o falso',
 
-            'lvlSubClase.required'=> 'El nivel de subclase es obligatorio',
-            'lvlSubClase.integer'=> 'El nivel de subclase debe ser un número entero',
-            'lvlSubClase.min'=> 'El nivel de subclase no puede ser negativo',
+            'lvlSubClase.required'=> 'El nivel en el que la clase consigue la subclase es obligatorio',
+            'lvlSubClase.integer'=> 'El nivel en el que la clase consigue la subclase debe ser un número entero',
+            'lvlSubClase.min'=> 'El nivel en el que la clase consigue la subclase no puede ser menor a 1',
+            'lvlSubClase.max'=> 'El nivel en el que la clase consigue la subclase no puede ser mallor a 20',
 
-            'descripcion.string'=> 'La descripción debe ser texto',
         ];
     }
 }

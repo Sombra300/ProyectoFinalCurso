@@ -9,6 +9,7 @@ Editar {{$race->nombre}}
 
 <form action="{{route('races.update', $race->id)}}" method="post">
     @csrf
+    @method('put')
     <label for="nombre">Nombre</label>
     <input type="text" id="nombre" name="nombre" value="{{$race->nombre}}">
     <br>

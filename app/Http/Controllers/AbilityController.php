@@ -108,15 +108,23 @@ class AbilityController extends Controller
         $entity->abilities()->toggle($ability_id);
 
         if($type=='race'){
-            $races=Race::all();
-            return view('races.index', compact('races'));
+            $race=Race::find($external_id);
+            return redirect()->route('races.show', compact('race'));
         }
-        if($type=='subrace'){}
+        if($type=='subrace'){
+            $subRace=SubRace::find($external_id);
+            $race=Race::find($subRace->race_id);
+            return redirect()->route('races.show', compact('race'));
+        }
         if($type=='clase'){
             $clase=Clase::find($external_id);
-            return view('races.show', compact('clase'));
+            return redirect()->route('clases.show', compact('clase'));
         }
-        if($type=='subclase'){}
+        if($type=='subclase'){
+            $subClase=SubClase::find($external_id);
+            $clase=Clase::find($subRace->clase_id);
+            return redirect()->route('clases.show', compact('clase'));
+        }
     }
 
 }

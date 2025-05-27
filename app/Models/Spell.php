@@ -12,23 +12,7 @@ class Spell extends Model
         return $this->hasMany(Character::class);
     }
 
-    public function race(): HasMany{
-        return $this->hasMany(Race::class);
-    }
-
-    public function subrace(): HasMany{
-        return $this->hasMany(SubRace::class);
-    }
-
-    public function subclase(): HasMany{
-        return $this->hasMany(SubClase::class);
-    }
-
-    public function clase(): HasMany{
-        return $this->hasMany(Clase::class);
-    }
-
-    public function ability(): HasOne{
-        return $this->hasMany(Ability::class);
+    public function clase(): BelongsToMany{
+        return $this->belongsToMany(Clase::class, 'clase_spell')->withPivot('lvl');
     }
 }

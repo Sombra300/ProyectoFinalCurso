@@ -23,7 +23,6 @@ class SubRaceRequest extends FormRequest
     {
         return [
             'nombre'=> ['required', 'string', 'max:30'],
-            'race_id'=> ['required', 'exists:races,id'],
             'descripcion'=> ['nullable', 'string'],
         ];
     }
@@ -33,9 +32,6 @@ class SubRaceRequest extends FormRequest
         return [
             'nombre.required'=> 'El nombre es obligatorio',
             'nombre.max'=> 'El nombre no puede superar los 30 caracteres',
-
-            'race_id.required'=> 'Le pedimos que no manipule datos del formulario para asi lograr su funcionamiento adecuado',
-            'race_id.exists'=> 'Le pedimos que no manipule datos del formulario para asi lograr su funcionamiento adecuado',
         ];
     }
 }
