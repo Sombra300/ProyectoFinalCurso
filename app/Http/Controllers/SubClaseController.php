@@ -20,21 +20,20 @@ class SubClaseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        return view('subClases.create');
+        return view('subClases.create', compact('id'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SubClaseRequest $request, string $id)
+    public function store(SubClaseRequest $request)
     {
         $subClase=new SubClase();
-        $subClase->name=$request->input('name');
-        $subClase->clase_id=$id;
+        $subClase->nombre=$request->input('nombre');
+        $subClase->clase_id=$request->input('clase_id');
         $subClase->descripcion=$request->input('descripcion');
-        $subClase->associate(Clase::findOrFail($id));
         $subClase->save();
         return redirect()->route('clases.show', $subClase->clase_id);
     }

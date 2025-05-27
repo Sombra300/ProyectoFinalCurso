@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ability_subClase', function (Blueprint $table){
             $table->foreignId('ability_id')->constrained()->onDelete('cascade');
             $table->foreignId('sub_clase_id')->constrained()->onDelete('cascade');
-            $table->integer('lvl')->default(3);
+            $table->integer('lvl')->default(1);
             $table->unique(['ability_id', 'sub_clase_id'], 'foreign_keys');
         });
     }

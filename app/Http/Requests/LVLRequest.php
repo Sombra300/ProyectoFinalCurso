@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubClaseRequest extends FormRequest
+class LVLRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,17 @@ class SubClaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre'=> ['required', 'string', 'max:30'],
-            'descripcion'=> ['nullable', 'string'],
+            'lvl'=>['required', 'integer', 'min:1', 'max:20']
         ];
     }
 
     public function messages()
     {
         return [
-            'nombre.required'=> 'El nombre es obligatorio',
-            'nombre.string'=> 'El nombre debe ser texto',
-            'nombre.max'=> 'El nombre no puede superar los 30 caracteres',
+            'lvl.required'=> 'El nivel es obligatorio',
+            'lvl.integer'=> 'El nivel debe ser un número entero',
+            'lvl.min'=> 'El nivel no puede ser inferior a 1',
+            'lvl.max'=> 'El nivel no puede ser superior a 20',
         ];
     }
 }

@@ -34,6 +34,9 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="{{route('lenguages.index')}}">Lenguajes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{route('backgrounds.index')}}">Trasfondos</a>
+                </li>
                 @if (Auth::check())
                     @if (Auth::user()->rol=='admin')
                         <li class="nav-item">
@@ -57,6 +60,9 @@
                         <li class="nav-item">
                             <a class="nav-link"  href="{{route('lenguages.create')}}">Añadir Lenguaje</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="{{route('backgrounds.create')}}">Añadir Trasfondo</a>
+                        </li>
                     @endif
                 <li class="nav-item">
                     <a class="nav-link"  href="{{route('users.account')}}">Cuenta</a>
@@ -68,11 +74,9 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="{{route('signup')}}">Regístrarte</a>
                 </li>
-
             @endif
             </ul>
           </div>
         </div>
       </nav>
     </div>
-

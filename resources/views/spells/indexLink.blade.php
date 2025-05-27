@@ -1,4 +1,4 @@
-@extends('partials.layout')
+@extends('partials.layoutADMIN')
 @section('titulo')
 Hechizos
 @endsection('titulo')
@@ -21,6 +21,10 @@ Hechizos
                 @endif
                 <div class="">Espacio de conjuro requerido:{{$spell->nivel}}</div>
                 <div class="">Causa: 1d{{$spell->daño}}</div>
+                <form action="{{ route('spells.linkSpells', ['external_id' => $id, 'spell_id' => $spell->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit">Añadir habilidad</button>
+                </form>
             </div>
         </div>
     @empty

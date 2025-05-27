@@ -59,11 +59,16 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $User)
+    public function update(Request $request, string $id)
     {
-        $user->rol='admin';
+        $user = User::findOrFail($id);
+        if($user->rol=='admin'){
+            $user->rol='member';
+        }else{
+            $user->rol='admin';
+        }
         $user->save();
-        return redirect()->route('users.show', $user->id);
+        return redirect()->route('users.index');
     }
 
     /**

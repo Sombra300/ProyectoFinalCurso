@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SpellRequest;
+use App\Http\Requests\LVLRequest;
 use App\Models\Spell;
+use App\Models\Clase;
 
 class SpellController extends Controller
 {
@@ -55,7 +57,7 @@ class SpellController extends Controller
     public function edit(string $id)
     {
         $spell=Spell::find($id);
-        return view('spells.edit', compact('id'), compact('spell'));
+        return view('spells.edit', compact('spell'));
     }
 
     /**
@@ -63,7 +65,7 @@ class SpellController extends Controller
      */
     public function update(SpellRequest $request, string $id)
     {
-
+        $spell = Spell::findOrFail($id);
         $spell->nombre=$request->input('nombre');
         $spell->descripcion=$request->input('descripcion');
         $spell->coste=$request->input('coste');
@@ -84,4 +86,43 @@ class SpellController extends Controller
         Spell::findOrFail($id)->delete();
        return redirect()->route('spells.index');
     }
+
+    public function indexLink(string $id)
+    {
+        $spells=Spell::all();
+        return view('spells.indexLink',compact ('spells', 'id'));
+    }
+
+
+    public function linkSpells(string $external_id, string $spell_id)
+    {
+
+        $clase = Clase::findOrFail($external_id);
+
+        $clase->spells()->toggle($spell_id);
+
+        return redirect()->route('clases.show', compact('clase'));
+
+    }
+
+    public function editLVL($external_id, $spell_id)
+    {
+        $clase = Clase::findOrFail($external_id);
+        $spell=Spell::find($spell_id);
+        $currentLvl = $clase->spells()->where('spell_id', $spell_id)->first()->pivot->lvl ?? 1;
+
+
+        return view('spells.editLVL', compact('external_id', 'spell', 'currentLvl'));
+    }
+
+    public function updateLVL (LVLRequest $request)
+    {
+        $clase = Clase::findOrFail($request->input('external_id'));
+
+        $clase->spells()->updateExistingPivot($request->input('spell_id'), ['lvl' => $request->input('lvl')]);
+
+        return redirect()->route('clases.show', compact('clase'));
+    }
+
+
 }

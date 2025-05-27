@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AbilityRequest;
+use App\Http\Requests\LVLRequest;
 use App\Models\Ability;
 use App\Models\Race;
 use App\Models\SubRace;
@@ -81,7 +82,7 @@ class AbilityController extends Controller
        return redirect()->route('abilities.index');
     }
 
-     public function indexLink(string $id, string $type)
+    public function indexLink(string $id, string $type)
     {
         $abilities=Ability::all();
         return view('abilities.indexLink',compact ('abilities', 'id', 'type'));
@@ -122,7 +123,58 @@ class AbilityController extends Controller
         }
         if($type=='subclase'){
             $subClase=SubClase::find($external_id);
-            $clase=Clase::find($subRace->clase_id);
+            $clase=Clase::find($subClase->clase_id);
+            return redirect()->route('clases.show', compact('clase'));
+        }
+    }
+
+    public function editLVL($external_id, $ability_id, $type)
+    {
+        $modelMap = [
+            'clase' => \App\Models\Clase::class,
+            'subclase' => \App\Models\SubClase::class,
+        ];
+
+        if (!array_key_exists($type, $modelMap)) {
+            abort(404, "Tipo inválido");
+        }
+
+        $modelClass = $modelMap[$type];
+
+
+        $entity = $modelClass::findOrFail($external_id);
+        $ability=Ability::find($ability_id);
+        $currentLvl = $entity->abilities()->where('ability_id', $ability_id)->first()->pivot->lvl ?? 1;
+
+
+        return view('abilities.editLVL', compact('type', 'external_id', 'ability', 'currentLvl'));
+    }
+
+    public function updateLVL (LVLRequest $request)
+    {
+        $modelMap = [
+            'clase' => \App\Models\Clase::class,
+            'subclase' => \App\Models\SubClase::class,
+        ];
+
+        $type = $request->input('type');
+
+        if (!array_key_exists($type, $modelMap)) {
+            abort(404, "Tipo inválido");
+        }
+
+        $modelClass = $modelMap[$type];
+        $entity = $modelClass::findOrFail($request->input('external_id'));
+
+        $entity->abilities()->updateExistingPivot($request->input('ability_id'), ['lvl' => $request->input('lvl')]);
+
+        if($type=='clase'){
+            $clase=Clase::find($request->input('external_id'));
+            return redirect()->route('clases.show', compact('clase'));
+        }
+        if($type=='subclase'){
+            $subClase=SubClase::find($request->input('external_id'));
+            $clase=Clase::find($subClase->clase_id);
             return redirect()->route('clases.show', compact('clase'));
         }
     }

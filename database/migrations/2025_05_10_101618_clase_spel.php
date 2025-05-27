@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('clase_spell', function (Blueprint $table){
             $table->foreignId('clase_id')->constrained()->onDelete('cascade');
             $table->foreignId('spell_id')->constrained()->onDelete('cascade');
+            $table->integer('lvl')->default(1);
             $table->unique(['clase_id', 'spell_id']);
         });
     }

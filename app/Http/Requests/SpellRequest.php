@@ -22,14 +22,14 @@ class SpellRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'nombre'=> ['required', 'string', 'max:30'],
-        'descripcion'=> ['nullable', 'string'],
-        'coste' => ['nullable', 'string'],
-        'ataque'=> ['nullable', 'boolean'],
-        'daño'=> ['required', 'integer', 'min:0'],
-        'tipoDaño'=> ['nullable', 'string', 'in:sin,acido,cura,fuego,fuerza,frio,necrotico,psiquico,radiante,rayo,trueno,veneno'],
-        'nivel'=> ['required', 'integer', 'min:0'],
-    ];
+            'nombre'=> ['required', 'string', 'max:30'],
+            'descripcion'=> ['nullable', 'string'],
+            'coste' => ['nullable', 'string'],
+            'ataque'=> ['nullable', 'boolean'],
+            'daño'=> ['required', 'integer', 'min:0'],
+            'tipoDaño'=> ['nullable', 'string', 'in:sin,acido,cura,fuego,fuerza,frio,necrotico,psiquico,radiante,rayo,trueno,veneno'],
+            'nivel'=> ['required', 'integer', 'min:0'],
+        ];
     }
 
     public function messages()

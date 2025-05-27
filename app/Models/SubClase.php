@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class SubClase extends Model
 {
@@ -13,10 +13,6 @@ class SubClase extends Model
     }
 
     public function abilities(): BelongsToMany {
-        return $this->belongsToMany(Ability::class, 'ability_subClase');
-    }
-
-    public function spels(): HasMany{
-        return $this->hasMany(Spel::class);
+        return $this->belongsToMany(Ability::class, 'ability_subClase')->withPivot('lvl');
     }
 }

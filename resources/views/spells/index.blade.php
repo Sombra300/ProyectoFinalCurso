@@ -21,6 +21,7 @@ Hechizos
                 @endif
                 <div class="">Espacio de conjuro requerido:{{$spell->nivel}}</div>
                 <div class="">Causa: 1d{{$spell->daño}}</div>
+                <a href="{{ route('spells.edit', $spell->id) }}" class="btn btn-primary">Editar</a>
             </div>
         </div>
     @empty

@@ -10,11 +10,12 @@
 <form action="{{route('items.store')}}" method="post" id="itemForm">
     @csrf
     <label for="type">Tipo</label>
-    <select name="type" id="type" value="{{old('type')}}">
-        <option value="item">Objeto</option>
-        <option value="weapon">Arma</option>
-        <option value="armor">Armadura</option>
+    <select name="type" id="type">
+        <option value="item" {{ old('type') == 'item' ? 'selected' : '' }}>Objeto</option>
+        <option value="weapon" {{ old('type') == 'weapon' ? 'selected' : '' }}>Arma</option>
+        <option value="armor" {{ old('type') == 'armor' ? 'selected' : '' }}>Armadura</option>
     </select>
+
     <br>
     <label for="nombre">Nombre</label>
     <input type="text" id="nombre" name="nombre" value="{{old('nombre')}}">
@@ -72,50 +73,53 @@ function updateFormContent() {
                 <option value="marcial">Marcial</option>
             </select><br>
             <label for="tipoDaño">Tipo de daño</label>
-            <select name="tipoDaño" id="tipoDaño" value="{{old('tipoDaño')}}">
-                <option value="contundente">Contundente</option>
-                <option value="perforante">Perforante</option>
-                <option value="cortante">Cortante</option>
-            </select><br>
+            <select name="tipoDaño" id="tipoDaño">
+                <option value="contundente" {{ old('tipoDaño') == 'contundente' ? 'selected' : '' }}>Contundente</option>
+                <option value="perforante" {{ old('tipoDaño') == 'perforante' ? 'selected' : '' }}>Perforante</option>
+                <option value="cortante" {{ old('tipoDaño') == 'cortante' ? 'selected' : '' }}>Cortante</option>
+            </select>
+            <br>
 
             <label for="daño">Número de caras del dado</label>
-            <input type="number" id="daño" name="daño" value="{{old('daño')}}"><br>
+            <input type="number" id="daño" name="daño" value="{{ old('daño') }}"><br>
 
             <label for="alcanceNormal">Alcance</label>
-            <input type="number" id="alcanceNormal" name="alcanceNormal" value="{{old('alcanceNormal')}}"><br>
+            <input type="number" id="alcanceNormal" name="alcanceNormal" value="{{ old('alcanceNormal') }}"><br>
 
-            <label for="alcanceExtra">Alcance extra con desbentaja</label>
-            <input type="number" id="alcanceExtra" name="alcanceExtra" value="{{old('alcanceExtra')}}"><br>
+            <label for="alcanceExtra">Alcance extra con desventaja</label>
+            <input type="number" id="alcanceExtra" name="alcanceExtra" value="{{ old('alcanceExtra') }}"><br>
 
-            <input type="checkbox" id="propSut" name="propSut" value="1">
+            <input type="checkbox" id="propSut" name="propSut" value="1" {{ old('propSut') ? 'checked' : '' }}>
             <label for="propSut">Sutil</label><br>
 
-            <input type="checkbox" id="prop2Manos" name="prop2Manos" value="1">
+            <input type="checkbox" id="prop2Manos" name="prop2Manos" value="1" {{ old('prop2Manos') ? 'checked' : '' }}>
             <label for="prop2Manos">A 2 manos</label><br>
 
-            <input type="checkbox" id="propPesada" name="propPesada" value="1">
+            <input type="checkbox" id="propPesada" name="propPesada" value="1" {{ old('propPesada') ? 'checked' : '' }}>
             <label for="propPesada">Pesada</label><br>
+
         `
     }
 
     if (selectedType == 'armor') {
         extra.innerHTML = `
             <label for="tipoArm">Tipo de armadura</label>
-            <select name="tipoArm" id="tipoArm" value="{{old('tipoArm')}}">
-                <option value="ligera">Ligera</option>
-                <option value="media">Media</option>
-                <option value="pesada">Pesada</option>
-                <option value="escudo">Escudo</option>
+            <select name="tipoArm" id="tipoArm">
+                <option value="ligera" {{ old('tipoArm') == 'ligera' ? 'selected' : '' }}>Ligera</option>
+                <option value="media" {{ old('tipoArm') == 'media' ? 'selected' : '' }}>Media</option>
+                <option value="pesada" {{ old('tipoArm') == 'pesada' ? 'selected' : '' }}>Pesada</option>
+                <option value="escudo" {{ old('tipoArm') == 'escudo' ? 'selected' : '' }}>Escudo</option>
             </select><br>
 
             <label for="CA">Clase armadura</label>
             <input type="number" id="CA" name="CA" value="{{old('CA')}}"><br>
 
             <label for="DESMax">Bono máximo por modificador de destreza</label>
-            <input type="number" id="DESMax" name="DESMax" value="{{old('DESMax')}}"><br>
+            <input type="number" id="DESMax" name="DESMax" value="{{ old('DESMax') }}"><br>
 
-            <input type="checkbox" id="desSig" name="desSig" value="1">
+            <input type="checkbox" id="desSig" name="desSig" value="1" {{ old('desSig') ? 'checked' : '' }}>
             <label for="desSig">Desventaja en sigilo</label><br>
+
         `
     }
 }

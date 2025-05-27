@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BackgroundRequest;
 use App\Models\Background;
+use App\Models\Lenguage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BackgroundController extends Controller
 {
@@ -14,7 +16,7 @@ class BackgroundController extends Controller
     public function index()
     {
         $backgrounds=Background::all();
-        return view('backgrounds.index');
+        return view('backgrounds.index', compact('backgrounds'));
     }
 
     /**
@@ -23,7 +25,7 @@ class BackgroundController extends Controller
     public function create()
     {
         $lenguages=Lenguage::all();
-        return view('backgrounds.create');
+        return view('backgrounds.create', compact('lenguages'));
     }
 
     /**
@@ -36,14 +38,19 @@ class BackgroundController extends Controller
         $background->descripcion=$request->input('descripcion');
         $background->CompArmaSimple=$request->input('CompArmaSimple');
         $background->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $background->CompArmaduraSimp=$request->input('CompArmaduraSimp');
+        $background->CompArmaduraMed=$request->input('CompArmaduraMed');
         $background->CompArmaduraLig=$request->input('CompArmaduraLig');
         $background->CompArmaduraPes=$request->input('CompArmaduraPes');
         $background->CompEscudo=$request->input('CompEscudo');
         $background->lenguage_id=$request->input('lenguage_id');
-        $background->associate(Lenguage::findOrFail($request->input('lenguage_id')));
+        try {
+            $lenguage = Lenguage::findOrFail($request->input('lenguage_id'));
+            $background->associate($lenguage);
+        } catch (ModelNotFoundException $e) {
+            $background->lenguage_id = null;
+        }
         $background->save();
-        return redirect()->route('backgrounds.show', $background->id);
+        return redirect()->route('backgrounds.index');
     }
 
     /**
@@ -61,7 +68,7 @@ class BackgroundController extends Controller
     public function edit(string $id)
     {
         $background=Background::find($id);
-        return view('backgrounds.edit', compact('id'), compact('background'));
+        return view('backgrounds.edit', compact('background'));
     }
 
     /**
@@ -73,7 +80,7 @@ class BackgroundController extends Controller
         $background->descripcion=$request->input('descripcion');
         $background->CompArmaSimple=$request->input('CompArmaSimple');
         $background->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $background->CompArmaduraSimp=$request->input('CompArmaduraSimp');
+        $background->CompArmaduraMed=$request->input('CompArmaduraMed');
         $background->CompArmaduraLig=$request->input('CompArmaduraLig');
         $background->CompArmaduraPes=$request->input('CompArmaduraPes');
         $background->CompEscudo=$request->input('CompEscudo');

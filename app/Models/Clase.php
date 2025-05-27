@@ -17,7 +17,7 @@ class Clase extends Model
     }
 
     public function spells(): BelongsToMany{
-        return $this->hasMany(Spell::class, 'clase_spell')->withPivot('lvl');
+        return $this->belongsToMany(Spell::class, 'clase_spell')->withPivot('lvl');
     }
 
     public function characters(): BelongsToMany{

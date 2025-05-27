@@ -9,7 +9,6 @@
     <div>
         Nombre de usuario: {{Auth::user()->name}} <br>
         Correo: {{Auth::user()->email}} <br>
-        Fecha de nacimiento: {{Auth::user()->birthday}} <br>
     </div>
     <div>
         <form action="{{route('users.destroy', ['user'=>Auth::user()->id])}}" method="post">

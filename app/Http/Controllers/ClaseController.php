@@ -50,7 +50,7 @@ class ClaseController extends Controller
      */
     public function show(string $id)
     {
-         $clase=Clase::find($id);
+        $clase=Clase::find($id);
         return view('clases.show', compact('clase'));
     }
 
