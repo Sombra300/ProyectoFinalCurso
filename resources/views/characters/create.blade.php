@@ -52,8 +52,8 @@
 
 
         <div class="col-sm-12 col-md-3">
-            <label for="transfondo">Transfondo</label>
-            <select name="transfondo" id="transfondo">
+            <label for="background_id">Transfondo</label>
+            <select name="background_id" id="background_id">
                 @forelse ($backgrounds as $background)
                     <option value="{{$background->id}}" {{ old('background_id') == $background->id ? 'selected' : '' }}>{{$background->nombre}}</option>
                 @empty
@@ -72,8 +72,8 @@
             <input type="number" name="FUE" id="FUE" value="{{ old('FUE') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvFUE" id="CompSalvFUE" value="1" {{ old('CompSalvFUE') ? 'checked' : '' }}>
-                    <label for="CompSalvFUE">Competencia en salvación de fuerza</label>
+                    <input type="checkbox" name="SalvFUE" id="SalvFUE" value="1" {{ old('SalvFUE') ? 'checked' : '' }}>
+                    <label for="SalvFUE">Competencia en salvación de fuerza</label>
                 </div>
                 <div class="col-12" style="display: flex; align-items: center;">
                     <input type="checkbox" name="CompAtletismo" id="CompAtletismo" value="1" {{ old('CompAtletismo') ? 'checked' : '' }}>
@@ -87,8 +87,8 @@
             <input type="number" name="DES" id="DES" value="{{ old('DES') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvDES" id="CompSalvDES" value="1" {{ old('CompSalvDES') ? 'checked' : '' }}>
-                    <label for="CompSalvDES">Competencia en salvación de destreza</label>
+                    <input type="checkbox" name="SalvDES" id="SalvDES" value="1" {{ old('SalvDES') ? 'checked' : '' }}>
+                    <label for="SalvDES">Competencia en salvación de destreza</label>
                 </div>
                 <div class="col-12" style="display: flex; align-items: center;">
                     <input type="checkbox" name="CompAcrobacias" id="CompAcrobacias" value="1" {{ old('CompAcrobacias') ? 'checked' : '' }}>
@@ -110,8 +110,8 @@
             <input type="number" name="CON" id="CON" value="{{ old('CON') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvCON" id="CompSalvCON" value="1" {{ old('CompSalvCON') ? 'checked' : '' }}>
-                    <label for="CompSalvCON">Competencia en salvación de constitución</label>
+                    <input type="checkbox" name="SalvCON" id="SalvCON" value="1" {{ old('SalvCON') ? 'checked' : '' }}>
+                    <label for="SalvCON">Competencia en salvación de constitución</label>
                 </div>
             </div>
         </div>
@@ -121,8 +121,8 @@
             <input type="number" name="INT" id="INT" value="{{ old('INT') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvINT" id="CompSalvINT" value="1" {{ old('CompSalvINT') ? 'checked' : '' }}>
-                    <label for="CompSalvINT">Competencia en salvación de inteligencia</label>
+                    <input type="checkbox" name="SalvINT" id="SalvINT" value="1" {{ old('SalvINT') ? 'checked' : '' }}>
+                    <label for="SalvINT">Competencia en salvación de inteligencia</label>
                 </div>
                 <div class="col-12" style="display: flex; align-items: center;">
                     <input type="checkbox" name="CompConocimArcano" id="CompConocimArcano" value="1" {{ old('CompConocimArcano') ? 'checked' : '' }}>
@@ -152,8 +152,8 @@
             <input type="number" name="SAB" id="SAB" value="{{ old('SAB') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvSAB" id="CompSalvSAB" value="1" {{ old('CompSalvSAB') ? 'checked' : '' }}>
-                    <label for="CompSalvSAB">Competencia en salvación de sabiduría</label>
+                    <input type="checkbox" name="SalvSAB" id="SalvSAB" value="1" {{ old('SalvSAB') ? 'checked' : '' }}>
+                    <label for="SalvSAB">Competencia en salvación de sabiduría</label>
                 </div>
                 <div class="col-12" style="display: flex; align-items: center;">
                     <input type="checkbox" name="CompMedicina" id="CompMedicina" value="1" {{ old('CompMedicina') ? 'checked' : '' }}>
@@ -183,8 +183,8 @@
             <input type="number" name="CAR" id="CAR" value="{{ old('CAR') }}">
             <div class="row">
                 <div class="col-12" style="display: flex; align-items: center;">
-                    <input type="checkbox" name="CompSalvCAR" id="CompSalvCAR" value="1" {{ old('CompSalvCAR') ? 'checked' : '' }}>
-                    <label for="CompSalvCAR">Competencia en salvación de carisma</label>
+                    <input type="checkbox" name="SalvCAR" id="SalvCAR" value="1" {{ old('SalvCAR') ? 'checked' : '' }}>
+                    <label for="SalvCAR">Competencia en salvación de carisma</label>
                 </div>
                 <div class="col-12" style="display: flex; align-items: center;">
                     <input type="checkbox" name="CompEngaño" id="CompEngaño" value="1" {{ old('CompEngaño') ? 'checked' : '' }}>

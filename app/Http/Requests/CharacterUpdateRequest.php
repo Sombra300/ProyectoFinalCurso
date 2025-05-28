@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CharacterRequest extends FormRequest
+class CharacterUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,18 @@ class CharacterRequest extends FormRequest
             'nombre' => ['required', 'string', 'max:30'],
             'race_id' => ['required', 'exists:races,id'],
 
+            'vida' => ['required', 'integer', 'min:0'],
+            'vidaMax' => ['required', 'integer', 'min:0'],
+            'vidaTemp' => ['nullable', 'integer', 'min:0'],
+
             'FUE' => ['required', 'integer'],
             'DES' => ['required', 'integer'],
             'CON' => ['required', 'integer'],
             'INT' => ['required', 'integer'],
             'SAB' => ['required', 'integer'],
             'CAR' => ['required', 'integer'],
+
+            'CA' => ['required', 'integer', 'min:0'],
 
             'CompSalvFUE' => ['nullable', 'boolean'],
             'CompSalvDES' => ['nullable', 'boolean'],
@@ -84,5 +90,4 @@ class CharacterRequest extends FormRequest
             '*.boolean'=> 'Este campo debe ser verdadero o falso',
         ];
     }
-
 }

@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30);//cadena longitud 30
-            $table->foreignId('user_id')->onDelete('cascade');
-            $table->foreignId('race_id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('race_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subrace_id')->nullable()->constrained('sub_races')->nullOnDelete();
+            $table->foreignId('background_id')->nullable()->constrained()->nullOnDelete();
             $table->integer('vida');
             $table->integer('vidaMax');
             $table->integer('vidaTemp')->nullable();
+            $table->integer('CA');
+            $table->integer('velocidad');
             $table->integer('FUE');
             $table->integer('ModFUE');
             $table->integer('DES');
@@ -31,7 +35,6 @@ return new class extends Migration
             $table->integer('ModSAB');
             $table->integer('CAR');
             $table->integer('ModCAR');
-            $table->integer('CA');
             $table->boolean('CompSalvFUE');
             $table->boolean('CompSalvDES');
             $table->boolean('CompSalvINT');
@@ -55,11 +58,11 @@ return new class extends Migration
             $table->boolean('CompSigilo');
             $table->boolean('CompSupervivencia');
             $table->boolean('CompTratoAnimales');
-            $table->integer('SalvFUE');
-            $table->integer('SalvDES');
-            $table->integer('SalvINT');
-            $table->integer('SalvSAB');
-            $table->integer('SalvCAR');
+            $table->boolean('SalvFUE');
+            $table->boolean('SalvDES');
+            $table->boolean('SalvINT');
+            $table->boolean('SalvSAB');
+            $table->boolean('SalvCAR');
             $table->integer('Acrobacias');
             $table->integer('Atletismo');
             $table->integer('ConocimArcano');

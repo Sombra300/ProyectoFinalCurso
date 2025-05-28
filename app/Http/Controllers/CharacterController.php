@@ -67,10 +67,19 @@ class CharacterController extends Controller
      */
     public function store(CharacterRequest $request)
     {
+        $clase=Clase::findOrFail($request->input('clase_id'));
+        $race=Race::findOrFail($request->input('race_id'));
+
         $character=new Character();
         $character->nombre=$request->input('nombre');
         $character->user_id=Auth::user()->id;
         $character->race_id=$request->input('race_id');
+        $character->subrace_id=$request->input('subrace_id');
+        $character->background_id = $request->input('background_id');
+        $character->vida=$clase->dadoGolpe;
+        $character->vidaMax=$clase->dadoGolpe;
+        $character->velocidad=$race->velocidad;
+        $character->CA=10+$this->calacularModEst($request->input('DES'));
         $character->FUE=$request->input('FUE');
         $character->ModFUE=$this->calacularModEst($request->input('FUE'));
         $character->DES=$request->input('DES');
@@ -83,13 +92,6 @@ class CharacterController extends Controller
         $character->ModSAB=$this->calacularModEst($request->input('SAB'));
         $character->CAR=$request->input('CAR');
         $character->ModCAR=$this->calacularModEst($request->input('CAR'));
-        $character->lvl=1;
-        $character->CA=$request->input('CA');
-        $character->CompSalvFUE=$request->input('CompSalvFUE');
-        $character->CompSalvDES=$request->input('CompSalvDES');
-        $character->CompSalvINT=$request->input('CompSalvINT');
-        $character->CompSalvSAB=$request->input('CompSalvSAB');
-        $character->CompSalvCAR=$request->input('CompSalvCAR');
         $character->CompAcrobacias=$request->input('CompAcrobacias');
         $character->CompAtletismo=$request->input('CompAtletismo');
         $character->CompConocimArcano=$request->input('CompConocimArcano');
@@ -113,36 +115,38 @@ class CharacterController extends Controller
         $character->SalvINT=$request->input('SalvINT');
         $character->SalvSAB=$request->input('SalvSAB');
         $character->SalvCAR=$request->input('SalvCAR');
-        $character->Acrobacias=$request->input('Acrobacias');
-        $character->Atletismo=$request->input('Atletismo');
-        $character->ConocimArcano=$request->input('ConocimArcano');
-        $character->Engaño=$request->input('Engaño');
-        $character->Historia=$request->input('Historia');
-        $character->Interpretacion=$request->input('Interpretacion');
-        $character->Intimidacion=$request->input('Intimidacion');
-        $character->Investigacion=$request->input('Investigacion');
-        $character->JuegoManos=$request->input('JuegoManos');
-        $character->Medicina=$request->input('Medicina');
-        $character->Naturaleza=$request->input('Naturaleza');
-        $character->Percepcion=$request->input('Percepcion');
-        $character->Perspicacia=$request->input('Perspicacia');
-        $character->Persuasion=$request->input('Persuasion');
-        $character->Religion=$request->input('Religion');
-        $character->Sigilo=$request->input('Sigilo');
-        $character->Supervivencia=$request->input('Supervivencia');
-        $character->TratoAnimales=$request->input('TratoAnimales');
+        $character->Acrobacias=$this->calacularModEst($request->input('DES'));
+        $character->Atletismo=$this->calacularModEst($request->input('FUE'));
+        $character->ConocimArcano=$this->calacularModEst($request->input('INT'));
+        $character->Engaño=$this->calacularModEst($request->input('CAR'));
+        $character->Historia=$this->calacularModEst($request->input('INT'));
+        $character->Interpretacion=$this->calacularModEst($request->input('CAR'));
+        $character->Intimidacion=$this->calacularModEst($request->input('CAR'));
+        $character->Investigacion=$this->calacularModEst($request->input('INT'));
+        $character->JuegoManos=$this->calacularModEst($request->input('DES'));
+        $character->Medicina=$this->calacularModEst($request->input('SAB'));
+        $character->Naturaleza=$this->calacularModEst($request->input('INT'));
+        $character->Percepcion=$this->calacularModEst($request->input('SAB'));
+        $character->Perspicacia=$this->calacularModEst($request->input('SAB'));
+        $character->Persuasion=$this->calacularModEst($request->input('CAR'));
+        $character->Religion=$this->calacularModEst($request->input('INT'));
+        $character->Sigilo=$this->calacularModEst($request->input('DES'));
+        $character->Supervivencia=$this->calacularModEst($request->input('SAB'));
+        $character->TratoAnimales=$this->calacularModEst($request->input('SAB'));
         $character->historiaPersonaje=$request->input('historiaPersonaje');
         $character->rasgosPersonaje=$request->input('rasgosPersonaje');
         $character->idealesPersonaje=$request->input('idealesPersonaje');
         $character->vinculosPersonaje=$request->input('vinculosPersonaje');
         $character->defectosPersonaje=$request->input('defectosPersonaje');
-        $character->associate(User::findOrFail(Auth::user()->id));
-        $character->associate(Race::findOrFail($request->input('race_id')));
-        $character->attach(Clase::findOrFail($request->input('clase_id')));
-        $character->attach(Background::findOrFail($request->input('background_id')));
 
 
         $character->save();
+
+        $character->clase()->attach($request->input('clase_id'), [
+            'sub_clase_id' => $request->input('subclase_id'),
+            'lvl' => $request->input('lvl', 1),
+            'modComp' => $request->input('modComp', 2),
+        ]);
         return redirect()->route('characters.show', $character->id);
     }
 
@@ -212,29 +216,7 @@ class CharacterController extends Controller
         $character->SalvINT=$request->input('SalvINT');
         $character->SalvSAB=$request->input('SalvSAB');
         $character->SalvCAR=$request->input('SalvCAR');
-        $character->Acrobacias=$request->input('Acrobacias');
-        $character->Atletismo=$request->input('Atletismo');
-        $character->ConocimArcano=$request->input('ConocimArcano');
-        $character->Engaño=$request->input('Engaño');
-        $character->Historia=$request->input('Historia');
-        $character->Interpretacion=$request->input('Interpretacion');
-        $character->Intimidacion=$request->input('Intimidacion');
-        $character->Investigacion=$request->input('Investigacion');
-        $character->JuegoManos=$request->input('JuegoManos');
-        $character->Medicina=$request->input('Medicina');
-        $character->Naturaleza=$request->input('Naturaleza');
-        $character->Percepcion=$request->input('Percepcion');
-        $character->Perspicacia=$request->input('Perspicacia');
-        $character->Persuasion=$request->input('Persuasion');
-        $character->Religion=$request->input('Religion');
-        $character->Sigilo=$request->input('Sigilo');
-        $character->Supervivencia=$request->input('Supervivencia');
-        $character->TratoAnimales=$request->input('TratoAnimales');
-        $character->historiaPersonaje=$request->input('historiaPersonaje');
-        $character->rasgosPersonaje=$request->input('rasgosPersonaje');
-        $character->idealesPersonaje=$request->input('idealesPersonaje');
-        $character->vinculosPersonaje=$request->input('vinculosPersonaje');
-        $character->defectosPersonaje=$request->input('defectosPersonaje');
+
         $character->save();
 
         return redirect()->route('characters.show', $character->id);
