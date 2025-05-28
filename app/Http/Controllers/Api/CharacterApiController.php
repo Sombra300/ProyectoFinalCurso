@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Character;
+use App\Models\Background;
+use App\Models\Clase;
+use App\Models\Race;
 use Illuminate\Http\Request;
 
 class CharacterApiController extends Controller
@@ -31,7 +34,7 @@ class CharacterApiController extends Controller
     {
         $character=Character::find($id);
         return view('characters.show', compact('character'));
-        
+
     }
 
     /**

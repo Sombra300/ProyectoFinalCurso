@@ -31,9 +31,34 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        $clases = Clase::orderBy('nombre')->get();
-        $races = Race::orderBy('nombre')->get();
-        $backgrounds = Background::orderBy('nombre')->get();
+        $backgrounds=Background::orderBy('nombre')->get();
+
+        $clases = Clase::orderBy('nombre')->get()->map(function ($clase) {
+            return [
+                'id' => $clase->id,
+                'nombre' => $clase->nombre,
+                'lvlSubClase' => $clase->lvlSubClase,
+                'subclases' => $clase->subclases->map(function ($subclase) {
+                    return [
+                        'id' => $subclase->id,
+                        'nombre' => $subclase->nombre
+                    ];
+                })
+            ];
+        });
+        $races = Race::orderBy('nombre')->get()->map(function ($race){
+            return [
+                'id'=>$race->id,
+                'nombre'=>$race->nombre,
+                'subraces'=>$race->subRaces->map(function ($subrace){
+                    return [
+                        'id'=>$subrace->id,
+                        'nombre'=>$subrace->nombre
+                    ];
+                })
+            ];
+        });
+
         return view('characters.create', compact('clases','races','backgrounds'));
     }
 
@@ -58,7 +83,7 @@ class CharacterController extends Controller
         $character->ModSAB=$this->calacularModEst($request->input('SAB'));
         $character->CAR=$request->input('CAR');
         $character->ModCAR=$this->calacularModEst($request->input('CAR'));
-        $character->lvl=$request->input('lvl');
+        $character->lvl=1;
         $character->CA=$request->input('CA');
         $character->CompSalvFUE=$request->input('CompSalvFUE');
         $character->CompSalvDES=$request->input('CompSalvDES');
@@ -115,6 +140,8 @@ class CharacterController extends Controller
         $character->associate(Race::findOrFail($request->input('race_id')));
         $character->attach(Clase::findOrFail($request->input('clase_id')));
         $character->attach(Background::findOrFail($request->input('background_id')));
+
+
         $character->save();
         return redirect()->route('characters.show', $character->id);
     }

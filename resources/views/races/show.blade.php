@@ -13,7 +13,7 @@
         <a href="{{ route('subRaces.createID', $race->id) }}" class="btn btn-primary">Añadir subraza</a>
         <a href="{{ route('abilities.indexLink', [$race->id,'race']) }}" class="btn btn-primary">Añadir habilidad</a>
         <a href="{{ route('races.edit', $race->id) }}" class="btn btn-primary">Editar raza</a>
-        <form action="{{ route('races.destroy', $race->id) }}" method="POST"  style="display:inline;">
+        <form action="{{ route('races.destroy', $race->id) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Eliminar raza</button>
