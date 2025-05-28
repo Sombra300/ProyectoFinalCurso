@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\LenguageRequest;
+use Illuminate\Http\Request;
 use App\Models\Lenguage;
 
 class LenguageController extends Controller
@@ -14,7 +14,7 @@ class LenguageController extends Controller
     public function index()
     {
         $lenguages=Lenguage::all();
-        return view('lenguages.index');
+        return view('lenguages.index', compact('lenguages'));
     }
 
     /**
@@ -33,7 +33,7 @@ class LenguageController extends Controller
         $lenguage=new Lenguage();
         $lenguage->nombre=$request->input('nombre');
         $lenguage->save();
-        return redirect()->route('lenguages.show', $lenguage->id);
+        return redirect()->route('lenguages.index');
     }
 
     /**
@@ -50,7 +50,8 @@ class LenguageController extends Controller
      */
     public function edit(string $id)
     {
-
+        $lenguage=Lenguage::find($id);
+        return view('lenguages.edit', compact('lenguage'));
     }
 
     /**
@@ -58,10 +59,11 @@ class LenguageController extends Controller
      */
     public function update(LenguageRequest $request, string $id)
     {
+        $lenguage=Lenguage::find($id);
         $lenguage->nombre=$request->input('nombre');
         $lenguage->save();
 
-        return redirect()->route('lenguages.show', $lenguage->id);
+        return redirect()->route('lenguages.index');
     }
 
     /**

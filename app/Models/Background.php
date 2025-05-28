@@ -10,4 +10,9 @@ class Background extends Model
     public function character(): HasMany{
         return $this->hasMany(Character::class);
     }
+
+    public function lenguage()
+    {
+        return $this->belongsTo(Lenguage::class);
+    }
 }

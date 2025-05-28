@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CharacterRequest;
 use App\Models\Character;
+use App\Models\Background;
+use App\Models\Clase;
+use App\Models\Race;
+use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
@@ -27,7 +31,10 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('characters.create');
+        $clases = Clase::orderBy('nombre')->get();
+        $races = Race::orderBy('nombre')->get();
+        $backgrounds = Background::orderBy('nombre')->get();
+        return view('characters.create', compact('clases','races','backgrounds'));
     }
 
     /**

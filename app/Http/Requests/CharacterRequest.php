@@ -23,7 +23,6 @@ class CharacterRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:30'],
-            'user_id' => ['required', 'exists:users,id'],
             'race_id' => ['required', 'exists:races,id'],
 
             'vida' => ['required', 'integer', 'min:0'],
@@ -36,17 +35,12 @@ class CharacterRequest extends FormRequest
             'INT' => ['required', 'integer'],
             'SAB' => ['required', 'integer'],
             'CAR' => ['required', 'integer'],
-            'ModFUE' => ['required', 'integer'],
-            'ModDES' => ['required', 'integer'],
-            'ModCON' => ['required', 'integer'],
-            'ModINT' => ['required', 'integer'],
-            'ModSAB' => ['required', 'integer'],
-            'ModCAR' => ['required', 'integer'],
 
             'CA' => ['required', 'integer', 'min:0'],
 
             'CompSalvFUE' => ['nullable', 'boolean'],
             'CompSalvDES' => ['nullable', 'boolean'],
+            'CompSalvCON' => ['nullable', 'boolean'],
             'CompSalvINT' => ['nullable', 'boolean'],
             'CompSalvSAB' => ['nullable', 'boolean'],
             'CompSalvCAR' => ['nullable', 'boolean'],
@@ -75,24 +69,6 @@ class CharacterRequest extends FormRequest
             'SalvSAB' => ['required', 'integer'],
             'SalvCAR' => ['required', 'integer'],
 
-            'Acrobacias' => ['required', 'integer'],
-            'Atletismo' => ['required', 'integer'],
-            'ConocimArcano' => ['required', 'integer'],
-            'Engaño' => ['required', 'integer'],
-            'Historia' => ['required', 'integer'],
-            'Interpretacion' => ['required', 'integer'],
-            'Intimidacion' => ['required', 'integer'],
-            'Investigacion' => ['required', 'integer'],
-            'JuegoManos' => ['required', 'integer'],
-            'Medicina' => ['required', 'integer'],
-            'Naturaleza' => ['required', 'integer'],
-            'Percepcion' => ['required', 'integer'],
-            'Perspicacia' => ['required', 'integer'],
-            'Persuasion' => ['required', 'integer'],
-            'Religion' => ['required', 'integer'],
-            'Sigilo' => ['required', 'integer'],
-            'Supervivencia' => ['required', 'integer'],
-            'TratoAnimales' => ['required', 'integer'],
 
             'historiaPersonaje' => ['nullable', 'string'],
             'rasgosPersonaje' => ['nullable', 'string'],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\BackgroundRequest;
+use App\Http\Requests\BackgroundUpdateRequest;
 use App\Models\Background;
 use App\Models\Lenguage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -67,15 +68,17 @@ class BackgroundController extends Controller
      */
     public function edit(string $id)
     {
+        $lenguages=Lenguage::all();
         $background=Background::find($id);
-        return view('backgrounds.edit', compact('background'));
+        return view('backgrounds.edit', compact('background', 'lenguages'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(BackgroundRequest $request, string $id)
+    public function update(BackgroundUpdateRequest $request, string $id)
     {
+        $background=Background::findOrFail($id);
         $background->nombre=$request->input('nombre');
         $background->descripcion=$request->input('descripcion');
         $background->CompArmaSimple=$request->input('CompArmaSimple');
@@ -84,9 +87,10 @@ class BackgroundController extends Controller
         $background->CompArmaduraLig=$request->input('CompArmaduraLig');
         $background->CompArmaduraPes=$request->input('CompArmaduraPes');
         $background->CompEscudo=$request->input('CompEscudo');
+        $background->lenguage_id=$request->input('lenguage_id');
         $background->save();
 
-        return redirect()->route('backgrounds.show', $background->id);
+        return redirect()->route('backgrounds.index', $background->id);
     }
 
     /**
