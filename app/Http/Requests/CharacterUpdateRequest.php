@@ -23,11 +23,8 @@ class CharacterUpdateRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:30'],
-            'race_id' => ['required', 'exists:races,id'],
 
-            'vida' => ['required', 'integer', 'min:0'],
             'vidaMax' => ['required', 'integer', 'min:0'],
-            'vidaTemp' => ['nullable', 'integer', 'min:0'],
 
             'FUE' => ['required', 'integer'],
             'DES' => ['required', 'integer'],
@@ -78,11 +75,7 @@ class CharacterUpdateRequest extends FormRequest
             'nombre.required'=> 'El nombre del personaje es obligatorio',
             'nombre.max'=> 'El nombre no puede superar los 30 caracteres',
 
-            'race_id.exists'=> 'La raza seleccionada no es válida',
-
-            'vida.min'=> 'La vida no puede ser negativa',
             'vidaMax.min'=> 'La vida máxima no puede ser negativa',
-            'vidaTemp.min'=> 'La vida temporal no puede ser negativa',
 
             'CA.min'=> 'La Clase de Armadura no puede ser negativa',
 

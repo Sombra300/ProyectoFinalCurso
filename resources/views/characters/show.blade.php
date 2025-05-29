@@ -42,7 +42,7 @@
                             <div class="col-12" id="vida">{{$character->vida}}</div>
                         </div>
                         <div class="col-6">
-                            <div class="col-12">Temporales:{{$character->vidaTemp}}</div>
+                            <div class="col-12">Temporales: <span id="temporales">{{$character->vidaTemp}}</span></div>
                             <div class="col-12">Maximos:{{$character->vidaMax}}</div>
                         </div>
                     </div>
@@ -426,6 +426,13 @@
         <div class="row g-3">
             <div class="col-md-6">
                 <div class="stacked">
+                    @if (Auth::check())
+                        @if (Auth::user()->id==$character->user_id)
+                            <div class="card">
+                                <a href="{{ route('characters.addClase', $character) }}" class="btn btn-primary card-body">Añadir clase</a>
+                            </div>
+                        @endif
+                    @endif
                     @foreach ($character->clases as $clase)
                         <div class="card">
                             <h6>{{$clase->nombre}}</h6>
@@ -441,13 +448,13 @@
                                 <div class="card-body" id="armas">
                                     <div class="card">
                                         <div class="row">
-                                            <div class="col-md-3">{{$item->weapon->nombre}}</div>
+                                            <div class="col-md-3">{{$item->nombre}}</div>
 
                                             <div class="col-md-3">de 1 a {{$item->weapon->daño}}</div>
 
                                             <div class="col-md-3">{{$item->weapon->tipoDaño}}</div>
 
-                                            <div class="col-md-3"><button id="">Tirar ataque</button></div>
+                                            <div class="col-md-3"><button id="arma.{{$item->weapon->id}}">Tirar ataque</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -669,6 +676,10 @@
 
     const character=@json($characterJS);
     console.log('1');
+    const weapons=@json($weapons);
+
+
+    console.log('2');
 
     document.addEventListener('DOMContentLoaded', function() {
     const btnFUE=document.getElementById('purFUE')
@@ -1473,6 +1484,68 @@
     dado20.onclick = function () {
         alert('d20: ' + tirarDado(20))
     }
+    console.log('armas')
+
+    weapons.forEach(arma=>{
+        arma.buttonId ='arma.'+arma.id
+    })
+
+    weapons.forEach(arma=>{
+        const boton=document.getElementById(arma.buttonId)
+        if (boton) {
+            boton.onclick=function () {
+                let result=tirarDado(arma.daño)
+                let mod=0
+                if (arma.propSut==1) {
+                    if(character.ModFUE >= character.ModDES){
+                        mod=character.ModFUE
+                    }else{
+                        mod=character.ModDES
+                    }
+                }
+                alert(`${result} + ${mod} = ${result + mod }`)
+            }
+        }
+    })
+
+
+    console.log(vida);
+
+    const vidaDiv=document.getElementById('vida')
+    const vidaTempDiv=document.getElementById('temporales')
+    const btnMas=document.getElementById('masVida')
+    const btnMenos=document.getElementById('menosVida')
+
+    let vidaActual = vidaDiv.textContent
+    let vidaTemp = character.vidaTemp || 0
+    const vidaMax = vidaDiv.textContent
+    const vidaMin = 0
+
+    function actualizarTemporales() {
+        vidaTempDiv.textContent = vidaTemp
+    }
+
+    btnMas.addEventListener('click', () => {
+        if(vidaActual<vidaMax){
+            vidaActual++
+            vidaDiv.textContent=vidaActual
+        }else{
+            vidaTemp++
+            actualizarTemporales()
+        }
+    });
+
+    btnMenos.addEventListener('click', () => {
+        if(vidaTemp>0){
+            vidaTemp--
+            actualizarTemporales()
+        }else if(vidaActual>vidaMin){
+            vidaActual--
+            vidaDiv.textContent=vidaActual
+        }
+
+    })
+
     console.log('fin');
 })
 

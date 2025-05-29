@@ -19,19 +19,21 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
 
 Route::get('characters/propios', [CharacterController::class, 'propios'])->name('characters.propios');
-
+Route::post('characters/{character}/addclase', [CharacterController::class, 'addClase'])->name('characters.addClase');
+//TODO terminar el web
+Route::post('characters/{character}/modclaselvl', [CharacterController::class, 'modClaseLVL'])->name('characters.modClaseLVL');
 
 Route::get('abilities/link/{id}/{type}', [AbilityController::class, 'indexLink'])->name('abilities.indexLink');
 Route::post('abilities/linkAbilities/{type}/{external_id}/{ability_id}', [AbilityController::class, 'linkAbilities'])->name('abilities.linkAbilities');
 
-Route::get('/abilities/edit-lvl/{external_id}/{ability_id}/{type}', [AbilityController::class, 'editLVL'])->name('abilities.editLVL');
-Route::post('/abilities/update-lvl', [AbilityController::class, 'updateLVL'])->name('abilities.updateLVL');
+Route::get('/abilities/editlvl/{external_id}/{ability_id}/{type}', [AbilityController::class, 'editLVL'])->name('abilities.editLVL');
+Route::post('/abilities/updatelvl', [AbilityController::class, 'updateLVL'])->name('abilities.updateLVL');
 
 Route::get('spells/link/{id}', [SpellController::class, 'indexLink'])->name('spells.indexLink');
 Route::post('spells/linkSpells/{external_id}/{spell_id}', [SpellController::class, 'linkSpells'])->name('spells.linkSpells');
 
-Route::get('/spells/edit-lvl/{external_id}/{spell_id}', [SpellController::class, 'editLVL'])->name('spells.editLVL');
-Route::post('/spells/update-lvl', [SpellController::class, 'updateLVL'])->name('spells.updateLVL');
+Route::get('/spells/editlvl/{external_id}/{spell_id}', [SpellController::class, 'editLVL'])->name('spells.editLVL');
+Route::post('/spells/updatelvl', [SpellController::class, 'updateLVL'])->name('spells.updateLVL');
 
 Route::get('items/link/{id}', [ItemController::class, 'indexLink'])->name('items.indexLink');
 Route::post('items/linkItems/{external_id}/{item_id}', [ItemController::class, 'linkItems'])->name('items.linkItems');

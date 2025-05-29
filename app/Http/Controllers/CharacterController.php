@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CharacterRequest;
+use App\Http\Requests\CharacterUpdateRequest;
 use App\Models\Character;
 use App\Models\Background;
 use App\Models\Clase;
@@ -120,24 +121,6 @@ class CharacterController extends Controller
         $character->SalvINT=$request->input('SalvINT');
         $character->SalvSAB=$request->input('SalvSAB');
         $character->SalvCAR=$request->input('SalvCAR');
-        $character->Acrobacias=$this->calacularModEst($request->input('DES'));
-        $character->Atletismo=$this->calacularModEst($request->input('FUE'));
-        $character->ConocimArcano=$this->calacularModEst($request->input('INT'));
-        $character->Engaño=$this->calacularModEst($request->input('CAR'));
-        $character->Historia=$this->calacularModEst($request->input('INT'));
-        $character->Interpretacion=$this->calacularModEst($request->input('CAR'));
-        $character->Intimidacion=$this->calacularModEst($request->input('CAR'));
-        $character->Investigacion=$this->calacularModEst($request->input('INT'));
-        $character->JuegoManos=$this->calacularModEst($request->input('DES'));
-        $character->Medicina=$this->calacularModEst($request->input('SAB'));
-        $character->Naturaleza=$this->calacularModEst($request->input('INT'));
-        $character->Percepcion=$this->calacularModEst($request->input('SAB'));
-        $character->Perspicacia=$this->calacularModEst($request->input('SAB'));
-        $character->Persuasion=$this->calacularModEst($request->input('CAR'));
-        $character->Religion=$this->calacularModEst($request->input('INT'));
-        $character->Sigilo=$this->calacularModEst($request->input('DES'));
-        $character->Supervivencia=$this->calacularModEst($request->input('SAB'));
-        $character->TratoAnimales=$this->calacularModEst($request->input('SAB'));
         $character->historiaPersonaje=$request->input('historiaPersonaje');
         $character->rasgosPersonaje=$request->input('rasgosPersonaje');
         $character->idealesPersonaje=$request->input('idealesPersonaje');
@@ -183,7 +166,18 @@ class CharacterController extends Controller
                 'CompMedicina', 'CompNaturaleza', 'CompPercepcion', 'CompPerspicacia', 'CompPersuasion',
                 'CompReligion', 'CompSigilo', 'CompSupervivencia', 'CompTratoAnimales')->first();
 
-        return view('characters.show', compact('character','race', 'subrace', 'background', 'maxModComp', 'characterJS'));
+        $weapons = $character->items
+        ->filter(fn($item) => $item->weapon)
+        ->map(fn($item) => [
+            'id' => $item->id,
+            'nombre' => $item->weapon->nombre,
+            'daño' => $item->weapon->daño,
+            'tipoDaño' => $item->weapon->tipoDaño,
+            'tipoArma' => $item->weapon->tipoArma,
+            'propSut' => $item->weapon->propSut,
+        ]);
+
+        return view('characters.show', compact('character','race', 'subrace', 'background', 'maxModComp', 'characterJS', 'weapons'));
     }
 
     /**
@@ -191,27 +185,24 @@ class CharacterController extends Controller
      */
     public function edit(string $id)
     {
+        $backgrounds=Background::orderBy('nombre')->get();
         $character=Character::find($id);
         $race=Race::find($character->race_id);
         if($character->subrace_id!=''){
             $subrace=SubRace::find($character->subrace_id);
         }
-        $background=Background::find($character->background_id);
-        return view('characters.edit', compact('character','race', 'subrace', 'background'));
+        return view('characters.edit', compact('character','race', 'subrace', 'backgrounds'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CharacterRequest $request, string $id)
+    public function update(CharacterUpdateRequest $request, string $id)
     {
+        $character=Character::findOrFail($id);
         $character->nombre=$request->input('nombre');
-        $character->race_id=$request->input('race_id');
-        $character->subrace_id=$request->input('subrace_id');
-        $character->background_id = $request->input('background_id');
-        $character->vida=$request->input('vida');
+        $character->vida=$request->input('vidaMax');
         $character->vidaMax=$request->input('vidaMax');
-        $character->velocidad=$request->input('velocidad');
         $character->CA=10+$this->calacularModEst($request->input('DES'));
         $character->FUE=$request->input('FUE');
         $character->ModFUE=$this->calacularModEst($request->input('FUE'));
@@ -248,24 +239,6 @@ class CharacterController extends Controller
         $character->SalvINT=$request->input('SalvINT');
         $character->SalvSAB=$request->input('SalvSAB');
         $character->SalvCAR=$request->input('SalvCAR');
-        $character->Acrobacias=$this->calacularModEst($request->input('DES'));
-        $character->Atletismo=$this->calacularModEst($request->input('FUE'));
-        $character->ConocimArcano=$this->calacularModEst($request->input('INT'));
-        $character->Engaño=$this->calacularModEst($request->input('CAR'));
-        $character->Historia=$this->calacularModEst($request->input('INT'));
-        $character->Interpretacion=$this->calacularModEst($request->input('CAR'));
-        $character->Intimidacion=$this->calacularModEst($request->input('CAR'));
-        $character->Investigacion=$this->calacularModEst($request->input('INT'));
-        $character->JuegoManos=$this->calacularModEst($request->input('DES'));
-        $character->Medicina=$this->calacularModEst($request->input('SAB'));
-        $character->Naturaleza=$this->calacularModEst($request->input('INT'));
-        $character->Percepcion=$this->calacularModEst($request->input('SAB'));
-        $character->Perspicacia=$this->calacularModEst($request->input('SAB'));
-        $character->Persuasion=$this->calacularModEst($request->input('CAR'));
-        $character->Religion=$this->calacularModEst($request->input('INT'));
-        $character->Sigilo=$this->calacularModEst($request->input('DES'));
-        $character->Supervivencia=$this->calacularModEst($request->input('SAB'));
-        $character->TratoAnimales=$this->calacularModEst($request->input('SAB'));
         $character->historiaPersonaje=$request->input('historiaPersonaje');
         $character->rasgosPersonaje=$request->input('rasgosPersonaje');
         $character->idealesPersonaje=$request->input('idealesPersonaje');
@@ -302,19 +275,6 @@ class CharacterController extends Controller
     }
 
     }
-    public function equip(Character $character, CharacterRequest $request)
-    {
-        $item = Item::findOrFail($request->input('item_id'));
-
-    if ($character->equipedItems()->where('item_id', $item->id)->exists()) {
-        $character->equipedItems()->detach($item->id);
-        return redirect()->route('characters.show', $character->id);
-    } else {
-        $character->equipedItems()->attach($item->id, ['sitio' => $request->input('sitio')]);
-        return redirect()->route('characters.show', $character->id);
-    }
-
-    }
 
     public function addClase(Character $character, Request $request)
     {
@@ -325,11 +285,16 @@ class CharacterController extends Controller
 
     public function modClaseLVL(Character $character, Request $request)
     {
+        //TODO: Crear un formulario que pida a que nivel quiere la clase
         $clase = Clase::findOrFail($request->input('clase_id'));
-        $character->clases()->detach($clase->id);
-        if(request->input('clase_id')>0){
-            $character->clases()->attach($clases->id, ['lvl' => $input('clas_lvl'), 'modComp'=>calcularModComp($request->input('clas_lvl'))]);
+
+        if($request->input('clas_lvl')>0){
+            $clase->characters()->updateExistingPivot($request->input($character->id), ['lvl' => $request->input('clas_lvl'),
+                'modComp' => calcularModComp($request->input('clas_lvl'))]);
+        }else{
+             $clase->characters()->detach($clase->id);
         }
+        
         return redirect()->route('characters.edit', $character->id);
     }
 

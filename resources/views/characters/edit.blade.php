@@ -7,699 +7,231 @@
 @endsection('estilo')
 @section('body')
 
-@extends('partials.layout')
-@section('titulo')
-
-@endsection('titulo')
-@section('estilo')
-
-@endsection('estilo')
-@section('body')
-
 <div class="container">
-    <div class="row">
-        <div class="col-5">
-            <div class="card" style="width: 18rem">
-                <div class="row">
+    <form action="{{route('characters.update', $character->id)}}" method="post">
+    @csrf
+    @method('put')
+        <div class="row">
+            <div class="col-5">
+                <div class="card" style="width: 18rem">
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="text" name="nombre" id="nombre" value="{{$character->nombre}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <span>{{$character->background->nombre}}</span>
+                        </div>
+                        <div class="col-4">{{$race->nombre}}</div>
+                        <div class="col-4"><span id="subrace_id">{{$subrace->nombre}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card">
+                    <div class="col-12">CA</div>
                     <div class="col-12">
-                        <input type="text" name="nombre" id="nombre" value="{{$character->nombre}}"> </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <select name="background_id" id="background_id">
-                            @forelse ($backgrounds as $background)
-                                <option value="{{$background->id}}" {{ $character->background_id == $background->id ? 'selected' : '' }}>{{$background->nombre}}</option>
-                            @empty
-                                <option value="null">No hay trasfondos, no puedes crear el personaje</option>
-                            @endforelse
-                        </select>
-                    </div>
-                    <div class="col-4">{{$race->nombre}}</div>
-                    <div class="col-4"><select name="subrace_id" id="subrace_id"></select></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="card">
-                <div class="col-12">CA</div>
-                <div class="col-12">{{$character->CA}}</div>
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">Puntos de Vida</div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="col-12">Actuales:</div>
-                            <div class="col-12" id="vida">{{$character->vida}}</div>
-                        </div>
-                        <div class="col-6">
-                            <div class="col-12">Temporales:{{$character->vidaTemp}}</div>
-                            <div class="col-12">Maximos:{{$character->vidaMax}}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6"><button class="btn btn-success w-100" id="masVida">+</button></div>
-                        <div class="col-6"><button class="btn btn-danger w-100"  id="menosVida">-</button></div>
+                        <input type="number" name="CA" id="CA" value="{{$character->CA-$character->ModDES}}">
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="card border-dark">
-                <div class="card-body d-flex flex-column flex-md-row flex-wrap justify-content-between gap-2">
-
-                    <div class="border p-3 flex-fill text-center"><button id="d4">1d4</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d6">1d6</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d8">1d8</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d10">1d10</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d12">1d12</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d20">1d20</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <hr>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">FUE</h6>
-                                <p class="card-text" id="FUE">{{$character->FUE}}</p>
-
-                                <div class="col-12">
-                                    <div class="card">
-                                        <card class="row">
-                                            <div class="col-6">Atletismo</div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-6"><button class="btn-secundary" id="btnAtlet">tirar</button></div>
-                                                    <div class="col-6"><button class="btn-secundary" id="btn2Atlet">x2</button></div>
-                                                </div>
-                                            </div>
-                                        </card>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purFUE">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvFUE">Salvación</button></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">DES</h6>
-                                <p class="card-text" id="DES">{{$character->DES}}</p><div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Acrobacias</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnAcro">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Acro">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                <div class="col-12">
-                                    <div class="card">
-                                        <card class="row">
-                                            <div class="col-6">Juego de manos</div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-6"><button class="btn-secundary" id="btnJuegManos">tirar</button></div>
-                                                    <div class="col-6"><button class="btn-secundary" id="btn2JuegManos">x2</button></div>
-                                                </div>
-                                            </div>
-                                        </card>
-                                    </div>
-                                </div><div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Sigilo</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnSig">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Sig">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purDES">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvDES">Salvación</button></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">CON</h6>
-                                <p class="card-text" id="CON">{{$character->CON}}</p>
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purCON">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvCON">Salvación</button></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">INT</h6>
-                                <p class="card-text" id="INT">{{$character->INT}}</p><div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">C. Arcano</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnCArc">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2CArc">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Historia</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnHis">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2His">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Investigación</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnInv">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Inv">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Naturaleza</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnNat">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Nat">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Religión</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnRel">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Rel">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purINT">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvINT">Salvación</button></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">SAB</h6>
-                                <p class="card-text" id="SAB">{{$character->SAB}}</p>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">T. con Animales</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnTAnim">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2TAnim">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Medicina</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnMed">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Med">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Percepción</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnPerce">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Perce">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Perspicacia</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnPerspi">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Perspi">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Supervivencia</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnSuperv">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Superv">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purSAB">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvSAB">Salvación</button></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-6 col-md-4 col-xl-2">
-                            <div class="card">
-                                <h6 class="card-title">CAR</h6>
-                                <p class="card-text" id="CAR">{{$character->CAR}}</p>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Engaño</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnEng">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Eng">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Interpretación</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnInter">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Inter">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Intimidación</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnIntim">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Intim">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <card class="row">
-                                                <div class="col-6">Persuasión</div>
-                                                <div class="col-6">
-                                                    <div class="row">
-                                                        <div class="col-6"><button class="btn-secundary" id="btnPersu">tirar</button></div>
-                                                        <div class="col-6"><button class="btn-secundary" id="btn2Persu">x2</button></div>
-                                                    </div>
-                                                </div>
-                                            </card>
-                                        </div>
-                                    </div>
-
-                                <div class="row">
-                                    <div class="col-6"><button class="btn-primary tirar" id="purCAR">Puro</button></div>
-                                    <div class="col-6"><button class="btn-primary tirar" id="salvCAR">Salvación</button></div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid mt-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="stacked">
-                    @foreach ($character->clases as $clase)
-                        <div class="card">
-                            <h6>{{$clase->nombre}}</h6>
-                            <div class="card-body" id="clases">
-                                Nivel de clase: {{$clase->pivot->lvl}}    Subclase: {{$clase->pivot->subclase_name}} <br>
-                                modComp de la clase {{$clase->pivot->modComp}}
-                            </div>
-                        </div>
-                    @endforeach
-                    @foreach ($character->items as $item)
-                        @if ($item->weapon)
-                            <div class="card">
-                                <div class="card-body" id="armas">
-                                    <div class="card">
-                                        <div class="row">
-                                            <div class="col-md-3">{{$item->weapon->nombre}}</div>
-
-                                            <div class="col-md-3">de 1 a {{$item->weapon->daño}}</div>
-
-                                            <div class="col-md-3">{{$item->weapon->tipoDaño}}</div>
-
-                                            <div class="col-md-3"><button id="">Tirar ataque</button></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                    <div class="card">
-                        <div class="card-body" id="competencias">
-                            <div class="col-2" id="compArmaSimple">
-                                @if ($background->CompArmaSimple==1)
-                                    Armas simples
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaMarcial">
-                                @if ($background->CompArmaMarcial==1)
-                                    Armas marciales
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraLigera">
-                                @if ($background->CompArmaduraLig==1)
-                                    Armadura ligera
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraMedia">
-                                @if ($background->CompArmaduraMed==1)
-                                    Armadura media
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraPesada">
-                                @if ($background->CompArmaduraPes==1)
-                                    Armadura pesada
-                                @endif
-                            </div>
-                            <div class="col-2" id="compescudo">
-                                @if ($background->CompEscudo==1)
-                                    Escudo
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-3">
+            <div class="col-5">
                 <div class="card">
-                    <div class="card-body" id="habilidades">
-                        @foreach ($race->abilities as $ability)
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="col-12 card-title">{{$ability->nombre}}</div>
-                                    <div class="col-12">{{$ability->descripcion}}</div>
-                                    <div class="row">
-                                        <div class="col-6">Coste de habilidad: {{$ability->coste}}</div>
-                                        <div class="col-6">{{$ability->reuseTime}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                        @foreach ($subrace->abilities as $ability)
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="col-12 card-title">{{$ability->nombre}}</div>
-                                    <div class="col-12">{{$ability->descripcion}}</div>
-                                    <div class="row">
-                                        <div class="col-6">Coste de habilidad: {{$ability->coste}}</div>
-                                        <div class="col-6">{{$ability->reuseTime}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                        @foreach ($character->clases as $clase)
-                            @foreach ($clase->abilities as $ability)
-                                @if ($clase->pivot->lvl>=$ability->pivot->lvl)
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="col-12 card-title">{{$ability->nombre}}</div>
-                                            <div class="col-12">{{$ability->descripcion}}</div>
-                                            <div class="row">
-                                                <div class="col-6">Coste de habilidad: {{$ability->coste}}</div>
-                                                <div class="col-6">{{$ability->reuseTime}}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                            @foreach ($clase->subclases as $subclase)
-                                    @if ($subclase->id==$clase->pivot->sub_clase_id)
-                                        @foreach ($subclase->abilities as $ability)
-                                            @if ($clase->pivot->lvl>=$ability->pivot->lvl)
-                                                <div class="col-12">
-                                                    <div class="card">
-                                                        <div class="col-12 card-title">{{$ability->nombre}}</div>
-                                                        <div class="col-12">{{$ability->descripcion}}</div>
-                                                        <div class="row">
-                                                            <div class="col-6">Coste de habilidad: {{$ability->coste}}</div>
-                                                            <div class="col-6">{{$ability->reuseTime}}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                    @endforeach
-                                    @endif
-                            @endforeach
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body" id="objetos">
-                        <a href="{{ route('items.indexLink', $character->id) }}" class="btn btn-primary">Añadir Objetos</a>
-                        @foreach ($character->items as $item)
-                            @if ($item->weapon)
-                                <div class="card weapon">
-                            @elseif ($item->armor)
-                                <div class="card armor">
-                            @else
-                                <div class="card item">
-                            @endif
-                                {{$item->nombre}}: {{$item->pivot->cantidad}} unidades  {{$item->peso*$item->pivot->cantidad}}lbs
-                                @if ($item->armor)
-                                    <br> Tipo armadura: {{$item->armor->tipoArm}}
-                                @endif
-                            </div>
-                        @endforeach
+                    <div class="row">
+                        <div class="col-12">Puntos de Vida</div>
+                        <div class="row">
+                            <label for="vidaMax">Vida maxima</label>
+                            <input type="number" name="vidaMax" id="vidaMax" value="{{$character->vidaMax}}">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-12">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">FUE</div>
+                <input type="number" name="FUE" id="FUE" value="{{ $character->FUE }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvFUE" id="SalvFUE" value="1" {{ $character->SalvFUE ? 'checked' : '' }}>
+                        <label for="SalvFUE">Competencia en salvación de fuerza</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompAtletismo" id="CompAtletismo" value="1" {{ $character->CompAtletismo ? 'checked' : '' }}>
+                        <label for="CompAtletismo">Competencia en Atletismo</label>
+                    </div>
+                </div>
+            </div>
 
-    <div class="container mt-4">
-        <div class="row g-3">
-            @foreach ($character->clases as $clase)
-                @foreach ($clase->spells as $spell)
-                    @if ($clase->pivot->lvl >= $spell->pivot->lvl)
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card {{$spell->tipoDaño}}">
-                                <div class="card-body">
-                                    <h6 class="card-title">{{$spell->nombre}}</h6>
-                                    <p class="card-text">{{$spell->descripcion}}</p>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">DES</div>
+                <input type="number" name="DES" id="DES" value="{{ $character->DES }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvDES" id="SalvDES" value="1" {{ $character->SalvDES ? 'checked' : '' }}>
+                        <label for="SalvDES">Competencia en salvación de destreza</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompAcrobacias" id="CompAcrobacias" value="1" {{ $character->CompAcrobacias ? 'checked' : '' }}>
+                        <label for="CompAcrobacias">Competencia en Acrobacias</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompJuegoManos" id="CompJuegoManos" value="1" {{ $character->CompJuegoManos ? 'checked' : '' }}>
+                        <label for="CompJuegoManos">Competencia en Juego de manos</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompSigilo" id="CompSigilo" value="1" {{ $character->CompSigilo ? 'checked' : '' }}>
+                        <label for="CompSigilo">Competencia en Sigilo</label>
+                    </div>
+                </div>
+            </div>
 
-                                    @if ($spell->ataque)
-                                        <div class="text-warning">
-                                            El lanzador tendrá que hacer una tirada de ataque
-                                        </div>
-                                    @endif
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">CON</div>
+                <input type="number" name="CON" id="CON" value="{{ $character->CON }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvCON" id="SalvCON" value="1" {{ $character->SalvCON ? 'checked' : '' }}>
+                        <label for="SalvCON">Competencia en salvación de constitución</label>
+                    </div>
+                </div>
+            </div>
 
-                                    <div>
-                                        <strong>Espacio de conjuro:</strong> {{$spell->nivel}}
-                                    </div>
-                                    <div>
-                                        <strong>Daño:</strong> 1d{{$spell->daño}}
-                                    </div>
-                                </div>
-                            </div>
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">INT</div>
+                <input type="number" name="INT" id="INT" value="{{ $character->INT }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvINT" id="SalvINT" value="1" {{ $character->SalvINT ? 'checked' : '' }}>
+                        <label for="SalvINT">Competencia en salvación de inteligencia</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompConocimArcano" id="CompConocimArcano" value="1" {{ $character->CompConocimArcano ? 'checked' : '' }}>
+                        <label for="CompConocimArcano">Competencia en Conocimiento Arcano</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompHistoria" id="CompHistoria" value="1" {{ $character->CompHistoria ? 'checked' : '' }}>
+                        <label for="CompHistoria">Competencia en Historia</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompInvestigacion" id="CompInvestigacion" value="1" {{ $character->CompInvestigacion ? 'checked' : '' }}>
+                        <label for="CompInvestigacion">Competencia en Investigación</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompNaturaleza" id="CompNaturaleza" value="1" {{ $character->CompNaturaleza ? 'checked' : '' }}>
+                        <label for="CompNaturaleza">Competencia en naturaleza</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompReligion" id="CompReligion" value="1" {{ $character->CompReligion ? 'checked' : '' }}>
+                        <label for="CompReligion">Competencia en Religión</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">SAB</div>
+                <input type="number" name="SAB" id="SAB" value="{{ $character->SAB }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvSAB" id="SalvSAB" value="1" {{ $character->SalvSAB ? 'checked' : '' }}>
+                        <label for="SalvSAB">Competencia en salvación de sabiduría</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompMedicina" id="CompMedicina" value="1" {{ $character->CompMedicina ? 'checked' : '' }}>
+                        <label for="CompMedicina">Competencia en Medicina</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompPercepcion" id="CompPercepcion" value="1" {{ $character->CompPercepcion ? 'checked' : '' }}>
+                        <label for="CompPercepcion">Competencia en Percepción</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompPerspicacia" id="CompPerspicacia" value="1" {{ $character->CompPerspicacia ? 'checked' : '' }}>
+                        <label for="CompPerspicacia">Competencia en Perspicacia</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompSupervivencia" id="CompSupervivencia" value="1" {{ $character->CompSupervivencia ? 'checked' : '' }}>
+                        <label for="CompSupervivencia">Competencia en Supervivencia</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompTratoAnimales" id="CompTratoAnimales" value="1" {{ $character->CompTratoAnimales ? 'checked' : '' }}>
+                        <label for="CompTratoAnimales">Competencia en Trato con animales</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-xl-2">
+                <div class="col-12">CAR</div>
+                <input type="number" name="CAR" id="CAR" value="{{ $character->CAR }}">
+                <div class="row">
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="SalvCAR" id="SalvCAR" value="1" {{ $character->SalvCAR ? 'checked' : '' }}>
+                        <label for="SalvCAR">Competencia en salvación de carisma</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompEngaño" id="CompEngaño" value="1" {{ $character->CompEngaño ? 'checked' : '' }}>
+                        <label for="CompEngaño">Competencia en Engaño</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompInterpretacion" id="CompInterpretacion" value="1" {{ $character->CompInterpretacion ? 'checked' : '' }}>
+                        <label for="CompInterpretacion">Competencia en Interpretación</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompIntimidacion" id="CompIntimidacion" value="1" {{ $character->CompIntimidacion ? 'checked' : '' }}>
+                        <label for="CompIntimidacion">Competencia en Intimidación</label>
+                    </div>
+                    <div class="col-12" style="display: flex; align-items: center;">
+                        <input type="checkbox" name="CompPersuasion" id="CompPersuasion" value="1" {{ $character->CompPersuasion ? 'checked' : '' }}>
+                        <label for="CompPersuasion">Competencia en Persuasión</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="card">
+                    <div class="col-md-12">
+                        <h6 class="card-title">Historia del personaje</h6>
+                        <textarea class="form-control p-4 text-center" rows="5" name="historiaPersonaje">{{ $character->historiaPersonaje }}</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="card-title">Rasgos del personaje</h6>
+                            <textarea class="form-control p-4 text-center" rows="5" name="rasgosPersonaje">{{ $character->rasgosPersonaje }}</textarea>
                         </div>
-                    @endif
-                @endforeach
+
+                        <div class="col-md-6">
+                            <h6 class="card-title">Ideales del Personaje</h6>
+                            <textarea class="form-control p-4 text-center" rows="5" name="idealesPersonaje">{{ $character->idealesPersonaje }}</textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="card-title">Vínculos del personaje</h6>
+                            <textarea class="form-control p-4 text-center" rows="5" name="vinculosPersonaje">{{ $character->vinculosPersonaje }}</textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="card-title">Defectos/manías del personaje</h6>
+                            <textarea class="form-control p-4 text-center" rows="5" name="defectosPersonaje">{{ $character->defectosPersonaje }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <input type="submit" value="Guardar">
+    </form>
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
             @endforeach
-        </div>
-    </div>
-    <div class="container mt-4">
-    <div class="row g-3">
-
-        <div class="col-md-12">
-            <h6 class="card-title">Historia del personaje</h6>
-            <textarea class="form-control p-4 text-center" rows="5" name="historiaPersonaje">{{ $character->historiaPersonaje }}</textarea>
-        </div>
-
-        <div class="col-md-6">
-            <h6 class="card-title">Rasgos del personaje</h6>
-            <textarea class="form-control p-4 text-center" rows="5" name="rasfosPersonaje">{{ $character->rasfosPersonaje }}</textarea>
-        </div>
-
-        <div class="col-md-6">
-            <h6 class="card-title">Ideales del Personaje</h6>
-            <textarea class="form-control p-4 text-center" rows="5" name="idealesPersonaje">{{ $character->idealesPersonaje }}</textarea>
-        </div>
-
-        <div class="col-md-6">
-            <h6 class="card-title">Vínculos del personaje</h6>
-            <textarea class="form-control p-4 text-center" rows="5" name="vinculosPersonaje">{{ $character->vinculosPersonaje }}</textarea>
-        </div>
-
-        <div class="col-md-6">
-            <h6 class="card-title">Defectos/manías del personaje</h6>
-            <textarea class="form-control p-4 text-center" rows="5" name="defectosPersonaje">{{ $character->defectosPersonaje }}</textarea>
-        </div>
-
-        </div>
-
+        </ul>
+    @endif
 </div>
-<div style="opacity: 0" id="modCompMax"></div>
-
-@endsection('body')
-
-@section('scrips')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const selectRaza = document.getElementById('race_id')
-        const selectSubraza = document.getElementById('subrace_id')
-
-        const raceData = @json($races)
-
-        raceData.forEach(race => {
-            let option=document.createElement('option')
-            option.value=race.id
-            option.textContent=race.nombre
-            selectRaza.appendChild(option)
-        })
-
-        selectRaza.addEventListener('change', function () {
-            const razaID = parseInt(this.value)
-            selectSubraza.innerHTML = ''
-
-            const razaSeleccionada = raceData.find(item => item.id === razaID)
-
-            if (razaSeleccionada.subraces.length > 0) {
-                razaSeleccionada.subraces.forEach(subrace => {
-                    let option = document.createElement('option')
-                    option.value = subrace.id
-                    option.textContent = subrace.nombre
-                    selectSubraza.appendChild(option)
-                });
-            } else {
-                let option = document.createElement('option')
-                option.value = "";
-                option.textContent = "Esta raza no tiene subrazas"
-                selectSubraza.appendChild(option)
-            }
-        })
-
-    })
-
-</script>
-
 
 @endsection('body')

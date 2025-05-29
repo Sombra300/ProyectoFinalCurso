@@ -204,28 +204,34 @@
 
         </div>
     </div>
-    <br>
-        {{-- //TODO style="width: 300px; height: 140px; font-size: 16px; border: 2px solid #ccc; border-radius: 8px; padding: 10px;" --}}
+    <div class="row g-3">
 
-    <label for="historiaPersonaje">Historia del personaje</label>
-    <input type="text" id="historiaPersonaje" name="historiaPersonaje" value="{{ old('historiaPersonaje') }}">
-    <br>
+        <div class="col-md-12">
+            <h6 class="card-title">Historia del personaje</h6>
+            <textarea class="form-control p-4 text-center" rows="5" name="historiaPersonaje">{{ old('historiaPersonaje') }}</textarea>
+        </div>
 
-    <label for="rasgosPersonaje">Rasgos de la personalidad del personaje</label>
-    <input type="text" id="rasgosPersonaje" name="rasgosPersonaje" value="{{ old('rasgosPersonaje') }}">
-    <br>
+        <div class="col-md-6">
+            <h6 class="card-title">Rasgos del personaje</h6>
+            <textarea class="form-control p-4 text-center" rows="5" name="rasfosPersonaje">{{ old('rasfosPersonaje') }}</textarea>
+        </div>
 
-    <label for="idealesPersonaje">Ideales del personaje</label>
-    <input type="text" id="idealesPersonaje" name="idealesPersonaje" value="{{ old('idealesPersonaje') }}">
-    <br>
+        <div class="col-md-6">
+            <h6 class="card-title">Ideales del Personaje</h6>
+            <textarea class="form-control p-4 text-center" rows="5" name="idealesPersonaje">{{ old('idealesPersonaje') }}</textarea>
+        </div>
 
-    <label for="vinculosPersonaje">Vínculos del personaje</label>
-    <input type="text" id="vinculosPersonaje" name="vinculosPersonaje" value="{{ old('vinculosPersonaje') }}">
-    <br>
+        <div class="col-md-6">
+            <h6 class="card-title">Vínculos del personaje</h6>
+            <textarea class="form-control p-4 text-center" rows="5" name="vinculosPersonaje">{{ old('vinculosPersonaje') }}</textarea>
+        </div>
 
-    <label for="defectosPersonaje">Defectos y manías del personaje</label>
-    <input type="text" id="defectosPersonaje" name="defectosPersonaje" value="{{ old('defectosPersonaje') }}">
-    <br>
+        <div class="col-md-6">
+            <h6 class="card-title">Defectos/manías del personaje</h6>
+            <textarea class="form-control p-4 text-center" rows="5" name="defectosPersonaje">{{ old('defectosPersonaje') }}</textarea>
+        </div>
+
+    </div>
 
 
 
@@ -238,7 +244,6 @@
         @endforeach
     </ul>
 @endif
-<div id="divMIO"></div>
 @endsection('body')
 @section('scrips')
 <script>
