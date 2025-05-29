@@ -7,8 +7,12 @@ use App\Http\Requests\CharacterRequest;
 use App\Models\Character;
 use App\Models\Background;
 use App\Models\Clase;
+use App\Models\SubClase;
 use App\Models\Race;
+use App\Models\SubRace;
+use App\Models\Spell;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CharacterController extends Controller
 {
@@ -23,7 +27,7 @@ class CharacterController extends Controller
 
     public function propios(){
         $characters = Character::where('user_id', Auth::id())->get();
-        return view('index', compact('characters'));
+        return view('characters.propios', compact('characters'));
     }
 
     /**
@@ -69,6 +73,7 @@ class CharacterController extends Controller
     {
         $clase=Clase::findOrFail($request->input('clase_id'));
         $race=Race::findOrFail($request->input('race_id'));
+        $subclase=SubClase::findOrFail($request->input('subclase_id'));
 
         $character=new Character();
         $character->nombre=$request->input('nombre');
@@ -142,8 +147,9 @@ class CharacterController extends Controller
 
         $character->save();
 
-        $character->clase()->attach($request->input('clase_id'), [
+        $character->clases()->attach($request->input('clase_id'), [
             'sub_clase_id' => $request->input('subclase_id'),
+            'subclase_name' => $subclase->nombre,
             'lvl' => $request->input('lvl', 1),
             'modComp' => $request->input('modComp', 2),
         ]);
@@ -156,7 +162,28 @@ class CharacterController extends Controller
     public function show(string $id)
     {
         $character=Character::find($id);
-        return view('characters.show', compact('character'));
+        $race=Race::find($character->race_id);
+        if($character->subrace_id!=''){
+            $subrace=SubRace::find($character->subrace_id);
+        }
+        $background=Background::find($character->background_id);
+
+        $modCompData = DB::table('character_clase')
+            ->where('character_id', $character->id)
+            ->pluck('modComp', 'clase_id');
+
+        $maxModComp = $modCompData->max();
+
+        $characterJS=DB::table('characters')
+            ->where('id', $character->id)
+            ->select('ModFUE', 'ModDES', 'ModCON', 'ModINT', 'ModSAB', 'ModCAR',
+                'SalvFUE', 'SalvDES', 'SalvCON', 'SalvINT', 'SalvSAB', 'SalvCAR',
+                'CompAcrobacias', 'CompAtletismo', 'CompConocimArcano', 'CompEngaño', 'CompHistoria',
+                'CompInterpretacion', 'CompIntimidacion', 'CompInvestigacion', 'CompJuegoManos',
+                'CompMedicina', 'CompNaturaleza', 'CompPercepcion', 'CompPerspicacia', 'CompPersuasion',
+                'CompReligion', 'CompSigilo', 'CompSupervivencia', 'CompTratoAnimales')->first();
+
+        return view('characters.show', compact('character','race', 'subrace', 'background', 'maxModComp', 'characterJS'));
     }
 
     /**
@@ -165,7 +192,12 @@ class CharacterController extends Controller
     public function edit(string $id)
     {
         $character=Character::find($id);
-        return view('characters.edit', compact('id'), compact('character'));
+        $race=Race::find($character->race_id);
+        if($character->subrace_id!=''){
+            $subrace=SubRace::find($character->subrace_id);
+        }
+        $background=Background::find($character->background_id);
+        return view('characters.edit', compact('character','race', 'subrace', 'background'));
     }
 
     /**
@@ -175,6 +207,12 @@ class CharacterController extends Controller
     {
         $character->nombre=$request->input('nombre');
         $character->race_id=$request->input('race_id');
+        $character->subrace_id=$request->input('subrace_id');
+        $character->background_id = $request->input('background_id');
+        $character->vida=$request->input('vida');
+        $character->vidaMax=$request->input('vidaMax');
+        $character->velocidad=$request->input('velocidad');
+        $character->CA=10+$this->calacularModEst($request->input('DES'));
         $character->FUE=$request->input('FUE');
         $character->ModFUE=$this->calacularModEst($request->input('FUE'));
         $character->DES=$request->input('DES');
@@ -187,12 +225,6 @@ class CharacterController extends Controller
         $character->ModSAB=$this->calacularModEst($request->input('SAB'));
         $character->CAR=$request->input('CAR');
         $character->ModCAR=$this->calacularModEst($request->input('CAR'));
-        $character->CA=$request->input('CA');
-        $character->CompSalvFUE=$request->input('CompSalvFUE');
-        $character->CompSalvDES=$request->input('CompSalvDES');
-        $character->CompSalvINT=$request->input('CompSalvINT');
-        $character->CompSalvSAB=$request->input('CompSalvSAB');
-        $character->CompSalvCAR=$request->input('CompSalvCAR');
         $character->CompAcrobacias=$request->input('CompAcrobacias');
         $character->CompAtletismo=$request->input('CompAtletismo');
         $character->CompConocimArcano=$request->input('CompConocimArcano');
@@ -216,6 +248,29 @@ class CharacterController extends Controller
         $character->SalvINT=$request->input('SalvINT');
         $character->SalvSAB=$request->input('SalvSAB');
         $character->SalvCAR=$request->input('SalvCAR');
+        $character->Acrobacias=$this->calacularModEst($request->input('DES'));
+        $character->Atletismo=$this->calacularModEst($request->input('FUE'));
+        $character->ConocimArcano=$this->calacularModEst($request->input('INT'));
+        $character->Engaño=$this->calacularModEst($request->input('CAR'));
+        $character->Historia=$this->calacularModEst($request->input('INT'));
+        $character->Interpretacion=$this->calacularModEst($request->input('CAR'));
+        $character->Intimidacion=$this->calacularModEst($request->input('CAR'));
+        $character->Investigacion=$this->calacularModEst($request->input('INT'));
+        $character->JuegoManos=$this->calacularModEst($request->input('DES'));
+        $character->Medicina=$this->calacularModEst($request->input('SAB'));
+        $character->Naturaleza=$this->calacularModEst($request->input('INT'));
+        $character->Percepcion=$this->calacularModEst($request->input('SAB'));
+        $character->Perspicacia=$this->calacularModEst($request->input('SAB'));
+        $character->Persuasion=$this->calacularModEst($request->input('CAR'));
+        $character->Religion=$this->calacularModEst($request->input('INT'));
+        $character->Sigilo=$this->calacularModEst($request->input('DES'));
+        $character->Supervivencia=$this->calacularModEst($request->input('SAB'));
+        $character->TratoAnimales=$this->calacularModEst($request->input('SAB'));
+        $character->historiaPersonaje=$request->input('historiaPersonaje');
+        $character->rasgosPersonaje=$request->input('rasgosPersonaje');
+        $character->idealesPersonaje=$request->input('idealesPersonaje');
+        $character->vinculosPersonaje=$request->input('vinculosPersonaje');
+        $character->defectosPersonaje=$request->input('defectosPersonaje');
 
         $character->save();
 

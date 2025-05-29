@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{$background->nombre}}</h5>
                     <div class="card-text">
-                        <h6>Idioma: {{$background->lenguage->nombre}}</h6>
+                        <h6>Idioma: {{ $background->lenguage->nombre ?? 'No asignado' }}</h6>
                         <h6>Competencias:</h6>
                         <div class="row">
                             @if ($background->CompArmaSimple==1)

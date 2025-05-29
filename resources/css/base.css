@@ -1,0 +1,60 @@
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  color: white;
+}
+
+body {
+  background: linear-gradient(to bottom, #33aedf, #030e31);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+h5 {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  background: none;
+  border: none;
+}
+a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+
+.avatar {
+  max-height: 500px;
+}
+
+.like {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.btnlike {
+  border: none;
+  background: none;
+}
+
+.event {
+  background-color: aliceblue;
+}
+
+#imgLogo {
+  width: 90px;
+  height: 90px;
+}/*# sourceMappingURL=base.css.map */

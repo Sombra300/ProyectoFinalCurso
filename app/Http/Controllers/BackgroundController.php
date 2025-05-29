@@ -16,7 +16,7 @@ class BackgroundController extends Controller
      */
     public function index()
     {
-        $backgrounds=Background::all();
+        $backgrounds=Background::with('lenguage')->get();;
         return view('backgrounds.index', compact('backgrounds'));
     }
 
@@ -37,19 +37,7 @@ class BackgroundController extends Controller
         $background=new Background();
         $background->nombre=$request->input('nombre');
         $background->descripcion=$request->input('descripcion');
-        $background->CompArmaSimple=$request->input('CompArmaSimple');
-        $background->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $background->CompArmaduraMed=$request->input('CompArmaduraMed');
-        $background->CompArmaduraLig=$request->input('CompArmaduraLig');
-        $background->CompArmaduraPes=$request->input('CompArmaduraPes');
-        $background->CompEscudo=$request->input('CompEscudo');
         $background->lenguage_id=$request->input('lenguage_id');
-        try {
-            $lenguage = Lenguage::findOrFail($request->input('lenguage_id'));
-            $background->associate($lenguage);
-        } catch (ModelNotFoundException $e) {
-            $background->lenguage_id = null;
-        }
         $background->save();
         return redirect()->route('backgrounds.index');
     }
@@ -81,13 +69,7 @@ class BackgroundController extends Controller
         $background=Background::findOrFail($id);
         $background->nombre=$request->input('nombre');
         $background->descripcion=$request->input('descripcion');
-        $background->CompArmaSimple=$request->input('CompArmaSimple');
-        $background->CompArmaMarcial=$request->input('CompArmaMarcial');
-        $background->CompArmaduraMed=$request->input('CompArmaduraMed');
-        $background->CompArmaduraLig=$request->input('CompArmaduraLig');
-        $background->CompArmaduraPes=$request->input('CompArmaduraPes');
-        $background->CompEscudo=$request->input('CompEscudo');
-        $background->lenguage_id=$request->input('lenguage_id');
+        $background->lenguage_id=$request->input('lenguage_id')?: null;
         $background->save();
 
         return redirect()->route('backgrounds.index', $background->id);

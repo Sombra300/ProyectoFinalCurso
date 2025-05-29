@@ -7,17 +7,23 @@ Habilidades
 @endsection('estilo')
 @section('body')
 
-@forelse ($abilities as $ability)
-    <div class="container">
-        {{$ability->nombre}}
-        @if ($ability->descripcion!="")
-            <div class="">{{$ability->descripcion}}</div>
-        @else
-        @endif
-        <div class="">Coste de habilidad: {{$ability->coste}}</div>
-        <div class="">{{$ability->reuseTime}}</div>
+<div class="container">
+    @forelse ($abilities as $ability)
+    <div class="card">
+        <div class="col-12">
+            <h6 class="card-title">{{$ability->nombre}}</h6>
+            <div class="card-body">
+                <div>Coste de habilidad: {{$ability->coste}}</div>
+                <div>{{$ability->reuseTime}}</div>
+                <br> 
+                <div >{{$ability->descripcion}}</div>
+            </div>
+        </div>
     </div>
-@empty
+
+
+    @empty
+</div>
 
 @endforelse
 

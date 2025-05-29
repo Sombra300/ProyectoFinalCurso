@@ -22,8 +22,8 @@ class Character extends Model
         return $this->belongsTo(Background::class);
     }
 
-    public function clase(): BelongsToMany{
-        return $this->belongsToMany(Clase::class)->withPivot('lvl', 'subclase_id', 'modComp');
+    public function clases(): BelongsToMany{
+        return $this->belongsToMany(Clase::class)->withPivot('lvl', 'sub_clase_id','subclase_name', 'modComp');
     }
 
     public function items(): BelongsToMany{
@@ -38,8 +38,8 @@ class Character extends Model
         return $this->belongsToMany(Lenguage::class);
     }
 
-    public function spells(): HasMany{
-        return $this->hasMany(Spell::class);
+    public function spells(): BelongsToMany{
+        return $this->belongsToMany(Spell::class, 'character_spell');
     }
 
     public function likes():HasMany{

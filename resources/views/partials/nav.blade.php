@@ -10,7 +10,7 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                     <li class="nav-item">
-                        <a class="nav-link"  href="{{route('index')}}">Mis personajes</a>
+                        <a class="nav-link"  href="{{route('characters.propios')}}">Mis personajes</a>
                     </li>
                 @endif
                 <li class="nav-item">

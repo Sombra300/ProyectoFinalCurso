@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('clase_id')->constrained()->onDelete('cascade');
             $table->foreignId('sub_clase_id')->nullable()->constrained('sub_clases')->nullOnDelete();
+            $table->string('subclase_name')->nullable()->nullOnDelete();
             $table->integer('lvl')->default(1);
             $table->integer('modComp')->default(2);
             $table->unique(['character_id', 'clase_id']);

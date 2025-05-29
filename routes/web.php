@@ -18,6 +18,9 @@ use App\Http\Controllers\LenguageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
 
+Route::get('characters/propios', [CharacterController::class, 'propios'])->name('characters.propios');
+
+
 Route::get('abilities/link/{id}/{type}', [AbilityController::class, 'indexLink'])->name('abilities.indexLink');
 Route::post('abilities/linkAbilities/{type}/{external_id}/{ability_id}', [AbilityController::class, 'linkAbilities'])->name('abilities.linkAbilities');
 
@@ -29,6 +32,9 @@ Route::post('spells/linkSpells/{external_id}/{spell_id}', [SpellController::clas
 
 Route::get('/spells/edit-lvl/{external_id}/{spell_id}', [SpellController::class, 'editLVL'])->name('spells.editLVL');
 Route::post('/spells/update-lvl', [SpellController::class, 'updateLVL'])->name('spells.updateLVL');
+
+Route::get('items/link/{id}', [ItemController::class, 'indexLink'])->name('items.indexLink');
+Route::post('items/linkItems/{external_id}/{item_id}', [ItemController::class, 'linkItems'])->name('items.linkItems');
 
 Route::get('/subraces/createID/{id}', [SubRaceController::class, 'create'])->name('subRaces.createID');
 

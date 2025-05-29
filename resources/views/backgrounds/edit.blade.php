@@ -42,7 +42,7 @@
 
     <label for="lenguage_id">Idioma conocido</label>
     <select name="lenguage_id" id="lenguage_id">
-        <option value="null" {{ $background->lenguage_id == 'null' ? 'selected' : '' }}>Ninguno</option>
+        <option value="" {{ $background->lenguage_id == '' ? 'selected' : '' }}>Ninguno</option>
         @foreach ($lenguages as $lenguage)
             <option value="{{ $lenguage->id }}" {{ $background->lenguage_id == $lenguage->id ? 'selected' : '' }}>
                 {{ $lenguage->nombre }}

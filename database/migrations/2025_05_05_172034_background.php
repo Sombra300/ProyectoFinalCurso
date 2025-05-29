@@ -15,12 +15,6 @@ return new class extends Migration
             $table->id()->autoincrement();//autoincrements
             $table->string('nombre',30)->unique();
             $table->string('descripcion')->nullable();
-            $table->boolean('CompArmaSimple')->nullable();
-            $table->boolean('CompArmaMarcial')->nullable();
-            $table->boolean('CompArmaduraMed')->nullable();
-            $table->boolean('CompArmaduraLig')->nullable();
-            $table->boolean('CompArmaduraPes')->nullable();
-            $table->boolean('CompEscudo')->nullable();
             $table->foreignId('lenguage_id')->nullOnDelete()->nullable();
             $table->timestamps();
         });

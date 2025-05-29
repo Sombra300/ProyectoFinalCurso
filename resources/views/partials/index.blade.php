@@ -1,6 +1,6 @@
 @extends('partials.layout')
 @section('titulo')
-Mis personajes
+Inicio
 @endsection('titulo')
 @section('estilo')
 {{-- <link rel="stylesheet" href="{{ asset('css/logo.css') }}"> --}}
@@ -8,7 +8,7 @@ Mis personajes
 @section('body')
 
 @if (Auth::check())
-
+    <script>window.location.href = "{{ route('characters.propios') }}"</script>
 @else
     <div id="sinlog">
         <h1>Necesitas iniciar sesión para ver tus personajes</h1>

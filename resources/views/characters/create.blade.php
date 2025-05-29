@@ -25,8 +25,7 @@
             <div class="row">
                 <div class="col-12" id="divSubraza">
                    <label for="">Subraza</label>
-                    <select name="subrace_id" id="subrace_id">
-                    </select>
+                    <select name="subrace_id" id="subrace_id"></select>
                 </div>
             </div>
         </div>
@@ -44,8 +43,7 @@
             <div class="row">
                 <div class="col-12">
                     <label for="">Subclase</label>
-                    <select name="subclase_id" id="subclase_id">
-                    </select>
+                    <select name="subclase_id" id="subclase_id"></select>
                 </div>
             </div>
         </div>
@@ -319,18 +317,4 @@
 
     })
 </script>
-<script>
-    const div = document.getElementById('divMIO');
-    console.log('hola')
-    const label = document.createElement('div');
-    //label.setAttribute('for', 'nombre');
-    label.textContent = 'NombreCreado';
 
-    /* const option = document.createElement('option');
-    option.value='nombre';
-    input.setAttribute('id', 'nombre');
-    input.setAttribute('name', 'nombre'); */
-
-    div.appendChild(label);
-    //div.appendChild(input);
-</script>

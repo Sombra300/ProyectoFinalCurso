@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemLinkRequest;
 use App\Models\Item;
+use App\Models\Character;
 
 class ItemController extends Controller
 {
@@ -77,5 +79,31 @@ class ItemController extends Controller
     {
         Item::findOrFail($id)->delete();
        return redirect()->route('items.index');
+    }
+
+
+    public function indexLink(string $id)
+    {
+        $items=Item::all();
+        return view('items.indexLink',compact ('items', 'id'));
+    }
+
+
+    public function linkItems(string $external_id, string $item_id, ItemlinkRequest $request)
+    {
+
+        $character = Character::findOrFail($external_id);
+
+        if ($character->items()->where('item_id', $item_id)->exists()) {
+            $character->items()->detach($item_id);
+            if(input('cantidad')>0){
+                $character->items()->attach($item_id, ['cantidad' => $request->input('cantidad')]);
+            }
+            return redirect()->route('characters.show', compact('character'));
+        } else {
+            $character->items()->attach($item_id, ['cantidad' => $request->input('cantidad')]);
+            return redirect()->route('characters.show', compact('character'));
+        }
+
     }
 }
