@@ -15,7 +15,6 @@
     @yield('body')
     @if (Auth::check())
         @if (Auth::user()->rol=='admin')
-            @include('partials.footer')
         @else
             <script>window.location.href = "{{ route('index') }}"</script>
         @endif
