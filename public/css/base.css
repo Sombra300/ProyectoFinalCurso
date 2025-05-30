@@ -1,0 +1,43 @@
+@charset "UTF-8";
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  background-color: #4A2E14; /* Marrón oscuro */
+  color: #F6E8D2; /* Beige claro */
+}
+
+body {
+  background-color: #F6E8D2; /* Fondo cálido claro */
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: #2A1C10; /* Texto suave en marrón oscuro */
+  font-family: "Roboto", sans-serif;
+}
+
+h5 {
+  color: #4A2E14; /* Marrón oscuro */
+}
+
+a {
+  text-decoration: none;
+  color: #D8A04B; /* Amarillo suave para enlaces */
+  background: none;
+  border: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: #7B4E1D; /* Marrón medio al pasar el mouse */
+}
+
+li {
+  list-style: none;
+}/*# sourceMappingURL=base.css.map */

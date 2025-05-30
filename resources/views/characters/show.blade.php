@@ -429,13 +429,28 @@
                     @if (Auth::check())
                         @if (Auth::user()->id==$character->user_id)
                             <div class="card">
-                                <a href="{{ route('characters.addClase', $character) }}" class="btn btn-primary card-body">Añadir clase</a>
+                                <a href="{{ route('characters.addClase', $character->id) }}" class="btn btn-primary card-body">Añadir clase</a>
                             </div>
                         @endif
                     @endif
                     @foreach ($character->clases as $clase)
                         <div class="card">
-                            <h6>{{$clase->nombre}}</h6>
+
+                            @if (Auth::check())
+                                @if (Auth::user()->id==$character->user_id)
+                                    <div class="card-title d-flex align-items-center gap-2">
+                                        <h6 class="mb-0">{{ $clase->nombre }}</h6>
+                                        <a href="{{ route('characters.modClaseLVL', ['character_id'=>$character->id, 'clase_id'=>$clase->id]) }}"
+                                        class="btn btn-sm btn-primary py-0">
+                                            Editar clase
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="card-title"><h6>{{$clase->nombre}}</h6></div>
+                                @endif
+                            @else
+                                <div class="card-title"><h6>{{$clase->nombre}}</h6></div>
+                            @endif
                             <div class="card-body" id="clases">
                                 Nivel de clase: {{$clase->pivot->lvl}}    Subclase: {{$clase->pivot->subclase_name}} <br>
                                 modComp de la clase {{$clase->pivot->modComp}}
@@ -581,6 +596,7 @@
                                 @if ($item->armor)
                                     <br> Tipo armadura: {{$item->armor->tipoArm}}
                                 @endif
+                                <a href="{{route('items.modCantidad', ['character_id'=>$character->id, 'item_id'=>$item->id])}}" class="btn enlaceBTN">Editar cantidad</a>
                             </div>
                         @endforeach
                     </div>

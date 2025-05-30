@@ -14,6 +14,10 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function likes(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
     public function race(): BelongsTo{
         return $this->belongsTo(Race::class);
     }
@@ -30,20 +34,5 @@ class Character extends Model
         return $this->belongsToMany(Item::class)->withPivot('cantidad');
     }
 
-    public function equipedItems(): BelongsToMany{
-        return $this->belongsToMany(Item::class)->withPivot('sitio');
-    }
-
-    public function lenguages(): BelongsToMany{
-        return $this->belongsToMany(Lenguage::class);
-    }
-
-    public function spells(): BelongsToMany{
-        return $this->belongsToMany(Spell::class, 'character_spell');
-    }
-
-    public function likes():HasMany{
-        return $this->hasMany(Like::class);
-    }
 
 }

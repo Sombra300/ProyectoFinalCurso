@@ -1,0 +1,88 @@
+// 1. Importa Bootstrap (primero)
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+// 2. Variables personalizadas (puedes redefinir las de Bootstrap)
+$primary: #7B4E1D;       // Marrón medio
+$secondary: #D8A04B;     // Amarillo suave
+$light: #F6E8D2;         // Fondo claro
+$dark: #2A1C10;          // Marrón oscuro casi negro
+$body-bg: $light;
+$body-color: $dark;
+$font-family-base: 'Roboto', sans-serif;
+
+// 3. Estilos personalizados
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  background-color: #4A2E14;
+  color: #F6E8D2;
+}
+
+body {
+  background-color: $light;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: $dark;
+  font-family: $font-family-base;
+}
+
+h5 {
+  color: #4A2E14;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary;
+  background: none;
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: $primary;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.avatar {
+  max-height: 500px;
+}
+
+.like {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.btnlike {
+  border: none;
+  background: none;
+}
+
+.event {
+  background-color: #ffffff;
+  border: 1px solid #B8814B;
+  color: $dark;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#imgLogo {
+  width: 90px;
+  height: 90px;
+}
+
+
+
+
+

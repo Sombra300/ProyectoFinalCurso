@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CharacterRequest;
 use App\Http\Requests\CharacterUpdateRequest;
+use App\Http\Requests\LVLclaseRequest;
 use App\Models\Character;
 use App\Models\Background;
 use App\Models\Clase;
@@ -23,7 +24,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters=Character::all();
-        return view('characters.index');
+        return view('characters.index', compact('characters'));
     }
 
     public function propios(){
@@ -276,26 +277,78 @@ class CharacterController extends Controller
 
     }
 
-    public function addClase(Character $character, Request $request)
+
+    public function addClase(string $character_id)
     {
-        $clase = Clase::findOrFail($request->input('clase_id'));
-        $character->clases()->attach($clase->id);
-        return redirect()->route('characters.show', $character->id);
+        $character=Character::findOrFail($character_id);
+        $clases=Clase::whereNotIn('id', $character->clases->pluck('id'))->get();
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                return view('characters.addClase',compact ('clases', 'character_id'));
+            }else{
+                return redirect()->route('index');
+            }
+            return redirect()->route('index');
+        }
     }
 
-    public function modClaseLVL(Character $character, Request $request)
+
+    public function linkClases(string $character_id, string $clase_id)
     {
-        //TODO: Crear un formulario que pida a que nivel quiere la clase
+
+        $character = Character::findOrFail($character_id);
+
+        $character->clases()->toggle($clase_id);
+
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                return redirect()->route('characters.show', compact('character'));
+            }else{
+                return redirect()->route('index');
+            }
+            return redirect()->route('index');
+        }
+
+    }
+
+    public function modclaselvl($character_id, $clase_id)
+    {
+        $clase = Clase::findOrFail($clase_id);
+        $character=Character::find($character_id);
+        $currentlvl = $character->clases()->where('clase_id', $clase_id)->first()->pivot->lvl ?? 1;
+        $subClases = $clase->subClases;
+
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                return view('characters.modclaselvl', compact('character', 'clase', 'currentlvl', 'subClases'));
+            }else{
+                return redirect()->route('index');
+            }
+            return redirect()->route('index');
+        }
+    }
+
+    public function updateclaselvl (LVLclaseRequest $request)
+    {
+        $character=Character::findOrFail($request->input('character_id'));
         $clase = Clase::findOrFail($request->input('clase_id'));
 
-        if($request->input('clas_lvl')>0){
-            $clase->characters()->updateExistingPivot($request->input($character->id), ['lvl' => $request->input('clas_lvl'),
-                'modComp' => calcularModComp($request->input('clas_lvl'))]);
-        }else{
-             $clase->characters()->detach($clase->id);
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                if($request->input('lvl')>0){
+                    $clase->characters()->updateExistingPivot($character->id, ['lvl' => $request->input('lvl'),
+                        'sub_clase_id'=>$request->input('subclase_id'),
+                        'modComp'=>$this->calcularModComp($request->input('lvl'))]);
+                }else{
+                     $clase->characters()->detach($character->id);
+                }
+
+                return redirect()->route('characters.show', $character->id);
+            }else{
+                return redirect()->route('index');
+            }
+            return redirect()->route('index');
         }
-        
-        return redirect()->route('characters.edit', $character->id);
     }
 
     private function calacularModEst($valor)

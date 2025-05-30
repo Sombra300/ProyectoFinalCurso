@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ability_Sub_race', function (Blueprint $table){
-            $table->foreignId('ability_id')->constrained()->onDelete('cascade');
-            $table->foreignId('sub_race_id')->constrained()->onDelete('cascade');
-            $table->unique(['ability_id', 'sub_race_id'], 'foreign_keys');
+        Schema::create('likes', function (Blueprint $table){
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('character_id')->constrained()->onDelete('cascade');
+            $table->unique(['user_id', 'character_id'], 'foreign_keys');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ability_Sub_race');
+        Schema::dropIfExists('likes');
     }
 };

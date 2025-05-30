@@ -19,9 +19,16 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeaponController;
 
 Route::get('characters/propios', [CharacterController::class, 'propios'])->name('characters.propios');
-Route::post('characters/{character}/addclase', [CharacterController::class, 'addClase'])->name('characters.addClase');
-//TODO terminar el web
-Route::post('characters/{character}/modclaselvl', [CharacterController::class, 'modClaseLVL'])->name('characters.modClaseLVL');
+
+
+Route::get('characters/{id}/addClase', [CharacterController::class, 'addClase'])->name('characters.addClase');
+Route::post('characters/linkClases/{character_id}/{clase_id}', [CharacterController::class, 'linkClases'])->name('characters.linkClases');
+Route::get('characters/modclaselvl/{character_id}/{clase_id}', [CharacterController::class, 'modClaseLVL'])->name('characters.modClaseLVL');
+Route::post('characters/updateclaselvl', [CharacterController::class, 'updateClaseLVL'])->name('characters.updateClaseLVL');
+
+
+Route::get('items/modCantidad/{character_id}/{item_id}', [ItemController::class, 'modCantidad'])->name('items.modCantidad');
+Route::post('items/updateCantidad', [ItemController::class, 'updateCantidad'])->name('items.updateCantidad');
 
 Route::get('abilities/link/{id}/{type}', [AbilityController::class, 'indexLink'])->name('abilities.indexLink');
 Route::post('abilities/linkAbilities/{type}/{external_id}/{ability_id}', [AbilityController::class, 'linkAbilities'])->name('abilities.linkAbilities');
@@ -48,8 +55,7 @@ Route::get('login',[LoginController::class, 'loginFrom'])->name('loginFrom');
 Route::post('login',[LoginController::class, 'login'])->name('login');
 Route::post('logout',[LoginController::class, 'logout'])->name('logout');
 
-Route::post('likes', [LikeController::class, 'store'])->name('likes.store');
-Route::delete('likes/{id}', [LikeController::class, 'destroy'])->name('likes.destroy');
+Route::post('like', [LikeController::class, 'like'])->name('likes.like');
 
 Route::get('account', function(){
     return view('users.account');

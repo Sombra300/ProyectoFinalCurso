@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -48,7 +49,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function character(): HasMany{
+    public function characters(): HasMany{
         return $this->hasMany(Character::class);
     }
+
+    public function likes(): BelongsToMany{
+        return $this->belongsToMany(Character::class, 'likes');
+    }
+
 }
