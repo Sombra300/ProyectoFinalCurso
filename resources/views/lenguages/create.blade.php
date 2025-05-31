@@ -7,19 +7,31 @@
 @endsection('estilo')
 @section('body')
 
-<form action="{{route('lenguages.store')}}" method="post">
+<form action="{{ route('lenguages.store') }}" method="POST" class="container my-4 p-4 border rounded shadow-sm bg-light">
     @csrf
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" name="nombre" value="{{old('nombre')}}">
-    <br>
-    <input type="submit" value="Guardar">
+
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control @error('nombre') is-invalid @enderror">
+        @error('nombre')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+
 @if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
+    <div class="container mt-3">
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 @endif
+
 
 @endsection('body')

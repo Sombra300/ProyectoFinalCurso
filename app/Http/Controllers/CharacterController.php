@@ -178,7 +178,13 @@ class CharacterController extends Controller
             'propSut' => $item->weapon->propSut,
         ]);
 
-        return view('characters.show', compact('character','race', 'subrace', 'background', 'maxModComp', 'characterJS', 'weapons'));
+        $clases = DB::table('clases')
+            ->join('character_clase', 'clases.id', '=', 'character_clase.clase_id')
+            ->where('character_clase.character_id', $character->id)
+            ->select('clases.*')
+            ->get();
+
+        return view('characters.show', compact('character','race', 'subrace', 'background', 'maxModComp', 'characterJS', 'weapons', 'clases'));
     }
 
     /**

@@ -8,92 +8,81 @@ body{
     background-color: #faeddb;
 }
 
+li{
+    list-style-type: none
+}
+
+.card{
+    border-radius: 15px;
+    filter: drop-shadow(1px 1px 10px rgba(56, 56, 56, 0.24))
+}
+
 .miniCard{
     text-align: initial;
-    /* color */
+}
+
+.acido{
+    border: 2px solid #fbfbac;
+    filter: drop-shadow(1px 1px 10px #585a1c)
+}
+
+.cura{
+    border: 2px solid #83f4f3;
+    filter: drop-shadow(1px 1px 10px #325653)
+}
+
+.fuego{
+    border: 2px solid #fee0a4;
+    filter: drop-shadow(1px 1px 10px #d77217)
+}
+
+.frio{
+    border: 2px solid #8eecff;
+    filter: drop-shadow(1px 1px 10px #195266)
+}
+
+.fuerza{
+    border: 2px solid #ffc8c9;
+    filter: drop-shadow(1px 1px 10px #802827)
+}
+
+.necrotico{
+    border: 2px solid #daffed;
+    filter: drop-shadow(1px 1px 10px #1f462b)
 }
 
 
-
-.miCard{
-    background-color: #B8814B;
-    border-radius: 5%;
+.psiquico{
+    border: 2px solid #ffdaf8;
+    filter: drop-shadow(1px 1px 10px #554a51)
 }
-/* .btn-primary{
-    background-color: #2A1C10;
-} */
 
-.prueva {
-  padding: 5px;
-  width: 150px;
-  height: 150px;
-  border: solid 1px;
-  text-align: center;
-  line-height: 150px;
-  font-weight: bold;
-  color: white;
-  border-radius: 5px;
-  margin: 5px;
 
-  &.color1 {
-    background-color: #4A2E14;
-    border-color: #4A2E14;
-  }
-
-  &.color2 {
-    background-color: #7B4E1D;
-  }
-
-  &.color3 {
-    background-color: #B8814B;
-  }
-
-  &.color4 {
-    background-color: #F6E8D2;
-  }
-
-  &.color5 {
-    background-color: #D8A04B;
-  }
-
-  &.color6 {
-    background-color: #2A1C10;
-  }
-
-  &.color7 {
-    background-color: #B8814B;
-  }
-
-  &.color8 {
-    background-color: rgba(240, 200, 168, 0.623);
-  }
-
-  &.color9 {
-    background-color: #2A1C10;
-  }
-
-  &.color10 {
-    background-color: #2A1C10;
-  }
-
-  &.color11 {
-    background-color: #2A1C10;
-  }
-
-  &.color12 {
-    background-color: #2A1C10;
-  }
-
-  &.color13 {
-    background-color: #2A1C10;
-  }
-
-  &.color14 {
-    background-color: #2A1C10;
-  }
-
-  &.color15 {
-    background-color: #2A1C10;
-  }
+.radiante{
+    border: 2px solid #fff9cc;
+    filter: drop-shadow(1px 1px 10px #47401e)
 }
+
+
+.rayo{
+    border: 2px solid #b0d2ff;
+    filter: drop-shadow(1px 1px 10px #213659)
+}
+
+.sin{
+    border: 2px solid #cdc1c1;
+    filter: drop-shadow(1px 1px 10px rgba(56, 56, 56, 0.24))
+}
+
+.trueno{
+    border: 2px solid #f0d9ff;
+    filter: drop-shadow(1px 1px 10px #54425e)
+}
+
+
+.veneno{
+    border: 2px solid #d3ea40;
+    filter: drop-shadow(1px 1px 10px #32351a)
+}
+
 

@@ -6,7 +6,21 @@
 @endsection('estilo')
 @section('body')
 
-{{-- TODO nav y comp codig $item y $weapon --}}
+<div class="container">
+    <div class="item-card card mb-3 shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="#ITEMS">Objetos</a>
+                    <a class="nav-link" aria-current="page" href="#WEAPONS">Armas</a>
+                    <a class="nav-link" aria-current="page" href="#ARMORS">Armaduras</a>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 
 <div id="ITEMS" class="container">
     @forelse ($items as $item)
@@ -14,9 +28,9 @@
             <div class="item-card card mb-3 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->nombre }}</h5>
-                    <p class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</p>
-                    <p class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</p>
-                    <p class="mt-2">{{ $item->descripcion }}</p>
+                    <div class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</div>
+                    <div class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</div>
+                    <div class="mt-2">{{ $item->descripcion }}</div>
                 </div>
             </div>
         @endif
@@ -32,38 +46,37 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->nombre }}</h5>
 
-                    <p class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</p>
-                    <p class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</p>
+                    <div class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</div>
+                    <div class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</div>
 
-                    <p class="mb-1">
+                    <div class="mb-1">
                         <strong>Daño:</strong> 1d{{ $item->weapon->daño }} {{ $item->weapon->tipoDaño }}
-                    </p>
+                    </div>
 
-                    <p class="mb-1"><strong>Alcance normal:</strong> {{ $item->weapon->alcanceNormal }}</p>
+                    <div class="mb-1"><strong>Alcance normal:</strong> {{ $item->weapon->alcanceNormal }}</div>
 
                     @if ($item->weapon->alcanceNormal != $item->weapon->alcanceExtra)
-                        <p class="mb-1">
+                        <div class="mb-1">
                             <strong>Alcance con desventaja:</strong> {{ $item->weapon->alcanceExtra }}
-                        </p>
+                        </div>
                     @endif
 
-                    <p class="mb-1"><strong>Tipo de arma:</strong> {{ $item->weapon->tipoArma }}</p>
+                    <div class="mb-1"><strong>Tipo de arma:</strong> {{ $item->weapon->tipoArma }}</div>
 
-                    <ul class="mb-2">
+                    <div class="mb-2">
                         @if ($item->weapon->propSut == 1)
-                            <li>Sutil</li>
+                            Sutil <br>
                         @endif
                         @if ($item->weapon->prop2Manos == 1)
-                            <li>A 2 manos</li>
+                            A 2 manos <br>
                         @endif
                         @if ($item->weapon->propPesada == 1)
-                            <li>Pesada</li>
+                            Pesada
                         @endif
-                    </ul>
+                    </div>
 
-                    @if ($item->descripcion != "")
-                        <p class="mt-2">{{ $item->descripcion }}</p>
-                    @endif
+
+                    <div class="mt-2">{{ $item->descripcion }}</div>
                 </div>
             </div>
         @endif
@@ -78,28 +91,28 @@
             <div class="armor-card card mb-3 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->nombre }}</h5>
-                    <p class="mb-1"><strong>Tipo de armadura:</strong> {{ $item->armor->tipoArm }}</p>
+                    <div class="mb-1"><strong>Tipo de armadura:</strong> {{ $item->armor->tipoArm }}</div>
 
                     @if ($item->armor->tipoArm == 'escudo')
-                        <p class="mb-1"><strong>Bono a la CA:</strong> +{{ $item->armor->CA }}</p>
+                        <div class="mb-1"><strong>Bono a la CA:</strong> +{{ $item->armor->CA }}</div>
                     @else
-                        <p class="mb-1">
+                        <div class="mb-1">
                             <strong>CA:</strong> {{ $item->armor->CA }}
                             @if ($item->armor->DESMax)
                                 <small class="text-muted">+ hasta {{ $item->armor->DESMax }} por modificador de destreza</small>
                             @endif
-                        </p>
+                        </div>
                     @endif
 
                     @if ($item->armor->desSig)
-                        <div class="alert alert-warning p-2 mt-2">
+                        <div class="alert alert-warning div-2 mt-2">
                             <strong>Advertencia:</strong> Este objeto da desventaja en las pruebas de sigilo.
                         </div>
                     @endif
 
-                    <p class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</p>
-                    <p class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</p>
-                    <p class="mt-2">{{ $item->descripcion }}</p>
+                    <div class="mb-1"><strong>Valor:</strong> {{ $item->precio }} monedas de oro</div>
+                    <div class="mb-1"><strong>Peso:</strong> {{ $item->peso }}</div>
+                    <div class="mt-2">{{ $item->descripcion }}</div>
                 </div>
             </div>
         @endif

@@ -48,9 +48,8 @@ Tamaño de la raza: {{$race->tamaño}}</br>
                                 <div class="col-12">{{$ability->nombre}}</div>
                             @endif
                         @endif
-                        @if ($ability->descripcion!="")
-                            <div class="">{{$ability->descripcion}}</div>
-                        @endif
+
+                        <div class="">{{$ability->descripcion}}</div>
                         <div class="">Coste de habilidad: {{$ability->coste}}</div>
                         <div class="">{{$ability->reuseTime}}</div>
                     </div>
@@ -91,13 +90,12 @@ Tamaño de la raza: {{$race->tamaño}}</br>
                             @endif
                         </div>
                         <div class="row">
-                            @if ($subrace->descripcion!="")
-                                <div class="col-12">{{$subrace->descripcion}}</div>
-                            @endif
+                            <div class="col-12">{{$subrace->descripcion}}</div>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
                                         @forelse ($subrace->abilities as $ability )
+                                        <br>
                                             <div class="card">
                                                 <div class="row">
                                                     @if (Auth::check())
@@ -139,5 +137,5 @@ Tamaño de la raza: {{$race->tamaño}}</br>
         </div>
     </div>
 </div>
-
+<br>
 @endsection('body')

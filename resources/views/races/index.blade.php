@@ -15,7 +15,7 @@
                         <h5 class="card-title">{{ $race->nombre }}</h5>
                         <p class="card-text mb-1"><strong>Tamaño:</strong> {{ $race->tamaño }}</p>
                         <p class="card-text mb-3"><strong>Velocidad de movimiento:</strong> {{ $race->velocidad }}</p>
-                        <a href="{{ route('races.show', $race->id) }}" class="btn btn-outline-primary">Ver detalles</a>
+                        <a href="{{ route('races.show', $race->id) }}" class="btn btn-primary w-100">Ver detalles</a>
                     </div>
                 </div>
             @empty

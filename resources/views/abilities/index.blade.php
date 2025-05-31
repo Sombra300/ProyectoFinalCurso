@@ -15,13 +15,18 @@ Habilidades
             <div class="card-body">
                 <div>Coste de habilidad: {{$ability->coste}}</div>
                 <div>{{$ability->reuseTime}}</div>
-                <br> 
+                <br>
                 <div >{{$ability->descripcion}}</div>
+                @if (Auth::check())
+                    @if (Auth::user()->rol=='admin')
+                        <a href="{{ route('abilities.edit', $ability->id) }}" class="btn btn-primary">Editar</a>
+                    @endif
+                @endif
             </div>
         </div>
     </div>
 
-
+    <br>
     @empty
 </div>
 
