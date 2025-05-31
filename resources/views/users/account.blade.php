@@ -45,16 +45,8 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-between mt-3 px-2">
-                    <a href="{{route('characters.show', $character->id)}}" class="btn btn-primary btn-sm">
-                        Ver
-                    </a>
-                    @if (Auth::check())
-                        <form action="{{ route('likes.like')}}" method="DELETE">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    @endif
+                    <a href="{{route('characters.show', $character->id)}}" class="btn btn-primary btn-sm">Ver</a>
+                    <a href="{{route('characters.edit', $character->id)}}" class="btn btn-primary btn-sm">Editar</a>
                 </div>
             </div>
         </div>

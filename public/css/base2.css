@@ -1,0 +1,83 @@
+body {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #faeddb;
+  height: 100vh;
+}
+
+li {
+  list-style-type: none;
+}
+
+.card {
+  border-radius: 15px;
+  filter: drop-shadow(1px 1px 10px rgba(56, 56, 56, 0.24));
+}
+
+.miniCard {
+  text-align: initial;
+}
+
+.acido {
+  border: 2px solid #f8f8b2;
+  filter: drop-shadow(1px 1px 10px #505219);
+}
+
+.cura {
+  border: 2px solid #83f4f3;
+  filter: drop-shadow(1px 1px 10px #325653);
+}
+
+.fuego {
+  border: 2px solid #fee0a4;
+  filter: drop-shadow(1px 1px 10px #d77217);
+}
+
+.frio {
+  border: 2px solid #8eecff;
+  filter: drop-shadow(1px 1px 10px #195266);
+}
+
+.fuerza {
+  border: 2px solid #ffc8c9;
+  filter: drop-shadow(1px 1px 10px #802827);
+}
+
+.necrotico {
+  border: 2px solid #daffed;
+  filter: drop-shadow(1px 1px 10px #1f462b);
+}
+
+.psiquico {
+  border: 2px solid #f1bcdd;
+  filter: drop-shadow(1px 1px 10px #554a51);
+}
+
+.radiante {
+  border: 2px solid #fff9cc;
+  filter: drop-shadow(1px 1px 10px #47401e);
+}
+
+.rayo {
+  border: 2px solid #b0d2ff;
+  filter: drop-shadow(1px 1px 10px #213659);
+}
+
+.sin {
+  border: 2px solid #474747;
+  filter: drop-shadow(1px 1px 10px rgba(56, 56, 56, 0.24));
+}
+
+.trueno {
+  border: 2px solid #debcf5;
+  filter: drop-shadow(1px 1px 10px #54425e);
+}
+
+.veneno {
+  border: 2px solid rgba(146, 234, 64, 0.9450980392);
+  filter: drop-shadow(1px 1px 10px #32351a);
+}/*# sourceMappingURL=base2.css.map */

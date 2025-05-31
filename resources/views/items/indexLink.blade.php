@@ -7,6 +7,22 @@ Añadir Objeto
 @endsection('estilo')
 @section('body')
 
+<div class="container">
+    <div class="item-card card mb-3 shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="#ITEMS">Objetos</a>
+                    <a class="nav-link" aria-current="page" href="#WEAPONS">Armas</a>
+                    <a class="nav-link" aria-current="page" href="#ARMORS">Armaduras</a>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
 <div id="ITEMS" class="container my-4">
     @if ($errors->any())
         <ul class="alert alert-danger">
@@ -23,14 +39,14 @@ Añadir Objeto
                     <strong>{{ $item->nombre }}</strong>
                 </div>
                 <div class="card-body">
-                    <p><strong>Valor:</strong> {{ $item->precio }}</p>
-                    <p><strong>Peso:</strong> {{ $item->peso }}</p>
-                    <p>{{ $item->descripcion }}</p>
+                    <div><strong>Valor:</strong> {{ $item->precio }}</div>
+                    <div><strong>Peso:</strong> {{ $item->peso }}</div>
+                    <div>{{ $item->descripcion }}</div>
                     <form action="{{ route('items.linkItems', ['external_id' => $id, 'item_id' => $item->id]) }}" method="POST" class="mt-2">
                         @csrf
                         <div class="mb-2">
-                            <label for="cantidad_{{ $item->id }}" class="form-label">Cantidad</label>
-                            <input type="number" id="cantidad_{{ $item->id }}" name="cantidad" class="form-control" required>
+                            <label for="cantidad" class="form-label">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Añadir objeto</button>
                     </form>
@@ -38,7 +54,6 @@ Añadir Objeto
             </div>
         @endif
     @empty
-        <p>No hay objetos disponibles.</p>
     @endforelse
 </div>
 
@@ -50,26 +65,26 @@ Añadir Objeto
                     <strong>{{ $item->nombre }}</strong>
                 </div>
                 <div class="card-body">
-                    <p><strong>Valor:</strong> {{ $item->precio }}</p>
-                    <p><strong>Peso:</strong> {{ $item->peso }}</p>
-                    <p>{{ $item->descripcion }}</p>
+                    <div><strong>Valor:</strong> {{ $item->precio }}</div>
+                    <div><strong>Peso:</strong> {{ $item->peso }}</div>
+                    <div>{{ $item->descripcion }}</div>
                     <div class="mb-2">
-                        <p>1d{{ $item->weapon->daño }} de daño {{ $item->weapon->tipoDaño }}</p>
-                        <p>Alcance normal: {{ $item->weapon->alcanceNormal }}</p>
+                        <div>1d{{ $item->weapon->daño }} de daño {{ $item->weapon->tipoDaño }}</div>
+                        <div>Alcance normal: {{ $item->weapon->alcanceNormal }}</div>
                         @if ($item->weapon->alcanceNormal != $item->weapon->alcanceExtra)
-                            <p>Alcance con desventaja: {{ $item->weapon->alcanceExtra }}</p>
+                            <div>Alcance con desventaja: {{ $item->weapon->alcanceExtra }}</div>
                         @endif
-                        <p>Tipo de arma: {{ $item->weapon->tipoArma }}</p>
-                        <ul>
-                            @if ($item->weapon->propSut) <li>Sutil</li> @endif
-                            @if ($item->weapon->prop2Manos) <li>A 2 manos</li> @endif
-                            @if ($item->weapon->propPesada) <li>Pesada</li> @endif
-                        </ul>
+                        <div>Tipo de arma: {{ $item->weapon->tipoArma }}</div>
+                        <div>
+                            @if ($item->weapon->propSut) Sutil <br> @endif
+                            @if ($item->weapon->prop2Manos) A 2 manos</br> @endif
+                            @if ($item->weapon->propPesada) Pesada</br> @endif
+                        </div>
                     </div>
                     <form action="{{ route('items.linkItems', ['external_id' => $id, 'item_id' => $item->id]) }}" method="POST">
                         @csrf
                         <div class="mb-2">
-                            <label for="cantidad_{{ $item->id }}" class="form-label">Cantidad</label>
+                            <label for="cantidad_{{ $item->id }}" class="form-label">Cantidad:</label>
                             <input type="number" name="cantidad" id="cantidad_{{ $item->id }}" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Añadir objeto</button>
@@ -78,7 +93,6 @@ Añadir Objeto
             </div>
         @endif
     @empty
-        <p>No hay armas disponibles.</p>
     @endforelse
 </div>
 
@@ -90,26 +104,26 @@ Añadir Objeto
                     <strong>{{ $item->nombre }}</strong>
                 </div>
                 <div class="card-body">
-                    <p><strong>Tipo de armadura:</strong> {{ $item->armor->tipoArm }}</p>
+                    <div><strong>Tipo de armadura:</strong> {{ $item->armor->tipoArm }}</div>
                     @if ($item->armor->tipoArm == 'escudo')
-                        <p><strong>Bono a la CA:</strong> +{{ $item->armor->CA }}</p>
+                        <div><strong>Bono a la CA:</strong> +{{ $item->armor->CA }}</div>
                     @else
-                        <p><strong>CA:</strong> {{ $item->armor->CA }}
+                        <div><strong>CA:</strong> {{ $item->armor->CA }}
                             @if ($item->armor->DESMax != 0)
                                 + hasta {{ $item->armor->DESMax }} por modificador de destreza
                             @endif
-                        </p>
+                        </div>
                     @endif
                     @if ($item->armor->desSig)
-                        <div class="alert alert-warning p-2">Desventaja en las pruebas de sigilo al usar esta armadura.</div>
+                        <div class="alert alert-warning div-2">Desventaja en las pruebas de sigilo al usar esta armadura.</div>
                     @endif
-                    <p><strong>Valor:</strong> {{ $item->precio }}</p>
-                    <p><strong>Peso:</strong> {{ $item->peso }}</p>
-                    <p>{{ $item->descripcion }}</p>
+                    <div><strong>Valor:</strong> {{ $item->precio }}</div>
+                    <div><strong>Peso:</strong> {{ $item->peso }}</div>
+                    <div>{{ $item->descripcion }}</div>
                     <form action="{{ route('items.linkItems', ['external_id' => $id, 'item_id' => $item->id]) }}" method="POST">
                         @csrf
                         <div class="mb-2">
-                            <label for="cantidad_{{ $item->id }}" class="form-label">Cantidad</label>
+                            <label for="cantidad_{{ $item->id }}" class="form-label">Cantidad:</label>
                             <input type="number" name="cantidad" id="cantidad_{{ $item->id }}" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Añadir objeto</button>
@@ -118,7 +132,6 @@ Añadir Objeto
             </div>
         @endif
     @empty
-        <p>No hay armaduras disponibles.</p>
     @endforelse
 </div>
 

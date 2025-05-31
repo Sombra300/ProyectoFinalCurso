@@ -65,6 +65,7 @@ class AbilityController extends Controller
      */
     public function update(AbilityRequest $request, string $id)
     {
+        $ability=Ability::find($id);
         $ability->nombre=$request->input('nombre');
         $ability->descripcion=$request->input('descripcion');
         $ability->coste=$request->input('coste');

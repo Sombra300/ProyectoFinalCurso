@@ -51,8 +51,8 @@ class SubClaseController extends Controller
      */
     public function edit(string $id)
     {
-        $subClase=SubClase::find($id);
-        return view('subClases.edit', compact('id'), compact('subClase'));
+        $subclase=SubClase::find($id);
+        return view('subClases.edit', compact('subclase', 'id'));
     }
 
     /**
@@ -60,6 +60,7 @@ class SubClaseController extends Controller
      */
     public function update(SubClaseRequest $request, string $id)
     {
+        $subClase=SubClase::find($id);
         $subClase->name=$request->input('name');
         $subClase->descripcion=$request->input('descripcion');
         $subClase->save();

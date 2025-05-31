@@ -68,6 +68,7 @@ class ClaseController extends Controller
      */
     public function update(ClaseRequest $request, string $id)
     {
+        $clase=Clase::findOrFail($id);
         $clase->nombre=$request->input('nombre');
         $clase->descripcion=$request->input('descripcion');
         $clase->CompArmaSimple=$request->input('CompArmaSimple');

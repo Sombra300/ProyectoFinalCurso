@@ -9,84 +9,89 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-5">
-            <div class="card" style="width: 18rem">
-                <div class="row">
-                    <div class="col-12">{{$character->nombre}}</div>
-                </div>
-                <div class="row">
-                    @if ($character->subrace_id!='')
-                        <div class="col-4">{{$background->nombre}}</div>
-                        <div class="col-4">{{$race->nombre}}</div>
-                        <div class="col-4">{{$subrace->nombre}}</div>
-                    @else
-                        <div class="col-6">{{$background->nombre}}</div>
-                        <div class="col-6">{{$background->nombre}}</div>
-                    @endif
+        <div class="col-12 col-md-5 mb-3">
+            <div class="card" style="max-width: 18rem; margin: auto;">
+            <div class="row">
+                <div class="col-12 text-center py-2">
+                {{$character->nombre}}
                 </div>
             </div>
-        </div>
-        <div class="col-2">
-            <div class="card">
-                <div class="col-12">CA</div>
-                <div class="col-12">{{$character->CA}}</div>
+            <div class="row text-center">
+                @if ($character->subrace_id != '')
+                <div class="col-4">{{$background->nombre}}</div>
+                <div class="col-4">{{$race->nombre}}</div>
+                <div class="col-4">{{$subrace->nombre}}</div>
+                @else
+                <div class="col-6">{{$background->nombre}}</div>
+                <div class="col-6">{{$background->nombre}}</div>
+                @endif
+            </div>
             </div>
         </div>
-        <div class="col-5">
-            <div class="card">
-                <div class="row">
-                    <div class="col-12">Puntos de Vida</div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="col-12">Actuales:</div>
-                            <div class="col-12" id="vida">{{$character->vida}}</div>
-                        </div>
-                        <div class="col-6">
-                            <div class="col-12">Temporales: <span id="temporales">{{$character->vidaTemp}}</span></div>
-                            <div class="col-12">Maximos:{{$character->vidaMax}}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6"><button class="btn btn-success w-100" id="masVida">+</button></div>
-                        <div class="col-6"><button class="btn btn-danger w-100"  id="menosVida">-</button></div>
-                    </div>
-                </div>
+
+        <div class="col-12 col-md-2 mb-3">
+            <div class="card text-center py-3">
+            <div>CA</div>
+            <div>{{$character->CA}}</div>
             </div>
         </div>
-    </div>
+
+        <div class="col-12 col-md-5 mb-3">
+            <div class="card p-3">
+            <div class="row">
+                <div class="col-12 text-center mb-2">Puntos de Vida</div>
+                <div class="col-6 text-center">
+                <div>Actuales:</div>
+                <div id="vida">{{$character->vida}}</div>
+                </div>
+                <div class="col-6 text-center">
+                <div>Temporales: <span id="temporales">{{$character->vidaTemp}}</span></div>
+                <div>Maximos: {{$character->vidaMax}}</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                <button class="btn btn-success w-100" id="masVida">+</button>
+                </div>
+                <div class="col-6">
+                <button class="btn btn-danger w-100" id="menosVida">-</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
 
     <div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="card border-dark">
-                <div class="card-body d-flex flex-column flex-md-row flex-wrap justify-content-between gap-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-dark">
+                    <div class="card-body d-flex flex-column flex-md-row flex-wrap justify-content-between gap-2">
 
-                    <div class="border p-3 flex-fill text-center"><button id="d4">1d4</button></div>
-
-
-                    <div class="border p-3 flex-fill text-center"><button id="d6">1d6</button></div>
+                        <div class="border p-3 flex-fill text-center"><button id="d4">1d4</button></div>
 
 
-                    <div class="border p-3 flex-fill text-center"><button id="d8">1d8</button></div>
+                        <div class="border p-3 flex-fill text-center"><button id="d6">1d6</button></div>
 
 
-                    <div class="border p-3 flex-fill text-center"><button id="d10">1d10</button></div>
+                        <div class="border p-3 flex-fill text-center"><button id="d8">1d8</button></div>
 
 
-                    <div class="border p-3 flex-fill text-center"><button id="d12">1d12</button></div>
+                        <div class="border p-3 flex-fill text-center"><button id="d10">1d10</button></div>
 
 
-                    <div class="border p-3 flex-fill text-center"><button id="d20">1d20</button></div>
+                        <div class="border p-3 flex-fill text-center"><button id="d12">1d12</button></div>
+
+
+                        <div class="border p-3 flex-fill text-center"><button id="d20">1d20</button></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <br>
 
-    <hr>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -440,9 +445,8 @@
                                 @if (Auth::user()->id==$character->user_id)
                                     <div class="card-title d-flex align-items-center gap-2">
                                         <h6 class="mb-0">{{ $clase->nombre }}</h6>
-                                        <a href="{{ route('characters.modClaseLVL', ['character_id'=>$character->id, 'clase_id'=>$clase->id]) }}"
-                                        class="btn btn-sm btn-primary py-0">
-                                            Editar clase
+                                        <a href="{{ route('characters.modClaseLVL', ['character_id'=>$character->id, 'clase_id'=>$clase->id]) }}" class="btn btn-sm btn-primary py-0">
+                                            Editar nivel de clase
                                         </a>
                                     </div>
                                 @else
@@ -474,39 +478,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                         @endif
                     @endforeach
                     <div class="card">
                         <div class="card-body" id="competencias">
-                            <div class="col-2" id="compArmaSimple">
-                                @if ($background->CompArmaSimple==1)
-                                    Armas simples
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaMarcial">
-                                @if ($background->CompArmaMarcial==1)
-                                    Armas marciales
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraLigera">
-                                @if ($background->CompArmaduraLig==1)
-                                    Armadura ligera
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraMedia">
-                                @if ($background->CompArmaduraMed==1)
-                                    Armadura media
-                                @endif
-                            </div>
-                            <div class="col-2" id="compArmaduraPesada">
-                                @if ($background->CompArmaduraPes==1)
-                                    Armadura pesada
-                                @endif
-                            </div>
-                            <div class="col-2" id="compescudo">
-                                @if ($background->CompEscudo==1)
-                                    Escudo
-                                @endif
+                            <div class="row row-cols-2 row-cols-lg-3 g-3">
+                            <div class="col competencia" ><span id="compArmaSimple"></span></div>
+                            <div class="col competencia" ><span id="compArmaMarcial"></span></div>
+                            <div class="col competencia" ><span id="compArmaduraLigera"></span></div>
+                            <div class="col competencia" ><span id="compArmaduraMedia"></span></div>
+                            <div class="col competencia" ><span id="compArmaduraPesada"></span></div>
+                            <div class="col competencia" ><span id="compEscudo"></span></div>
                             </div>
                         </div>
                     </div>
@@ -527,8 +510,10 @@
                                         <div class="col-6">{{$ability->reuseTime}}</div>
                                     </div>
                                 </div>
+                                <br>
                             </div>
                         @endforeach
+
                         @foreach ($subrace->abilities as $ability)
                             <div class="col-12">
                                 <div class="card">
@@ -539,6 +524,7 @@
                                         <div class="col-6">{{$ability->reuseTime}}</div>
                                     </div>
                                 </div>
+                                <br>
                             </div>
                         @endforeach
                         @foreach ($character->clases as $clase)
@@ -553,6 +539,7 @@
                                                 <div class="col-6">{{$ability->reuseTime}}</div>
                                             </div>
                                         </div>
+                                        <br>
                                     </div>
                                 @endif
                             @endforeach
@@ -569,6 +556,7 @@
                                                             <div class="col-6">{{$ability->reuseTime}}</div>
                                                         </div>
                                                     </div>
+                                                    <br>
                                                 </div>
                                             @endif
                                     @endforeach
@@ -584,6 +572,7 @@
                 <div class="card">
                     <div class="card-body" id="objetos">
                         <a href="{{ route('items.indexLink', $character->id) }}" class="btn btn-primary">Añadir Objetos</a>
+                        <br>
                         @foreach ($character->items as $item)
                             @if ($item->weapon)
                                 <div class="card weapon">
@@ -637,48 +626,50 @@
         </div>
     </div>
     <div class="container mt-4">
-    <div class="row g-3">
+        <div class="card">
+            <div class="card-body">
+            <div class="row g-3">
 
-        <div class="col-md-12">
-            <h6 class="card-title">Historia del personaje</h6>
-            <div class="border p-4 text-center">
-                {{$character->historiaPersonaje}}
+                <div class="col-md-12">
+                <h6 class="card-title">Historia del personaje</h6>
+                <div class="border p-4 text-center">
+                    {{$character->historiaPersonaje}}
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                <h6 class="card-title">Rasgos del personaje</h6>
+                <div class="border p-4 text-center">
+                    {{$character->rasfosPersonaje}}
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                <h6 class="card-title">Ideales del Personaje</h6>
+                <div class="border p-4 text-center">
+                    {{$character->idealesPersonaje}}
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                <h6 class="card-title">Vinculos del personaje</h6>
+                <div class="border p-4 text-center">
+                    {{$character->vinculosPersonaje}}
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                <h6 class="card-title">Defectos/manias del personaje</h6>
+                <div class="border p-4 text-center">
+                    {{$character->defectosPersonaje}}
+                </div>
+                </div>
             </div>
-
-
-        </div><div class="col-md-6">
-            <h6 class="card-title">Rasgos del personaje</h6>
-            <div class="border p-4 text-center">
-                {{$character->rasfosPersonaje}}
             </div>
         </div>
-
-
-        <div class="col-md-6">
-            <h6 class="card-title">Ideales del Personaje</h6>
-            <div class="border p-4 text-center">
-                {{$character->idealesPersonaje}}
-            </div>
         </div>
 
-
-        <div class="col-md-6">
-            <h6 class="card-title">Vinculos del personaje</h6>
-            <div class="border p-4 text-center">
-                {{$character->vinculosPersonaje}}
-            </div>
-        </div>
-
-
-        <div class="col-md-6">
-            <h6 class="card-title">Defectos/manias del personaje</h6>
-            <div class="border p-4 text-center">
-                {{$character->defectosPersonaje}}
-            </div>
-        </div>
-    </div>
-</div>
-
+    <br>
 </div>
 <div style="opacity: 0" id="modCompMax"></div>
 
@@ -689,6 +680,9 @@
     console.log('inicio js');
 
     const maxModComp = @json($maxModComp);
+    console.log('clases');
+    const clases = @json($clases);
+    console.log(clases);
 
     const character=@json($characterJS);
     console.log('1');
@@ -767,13 +761,21 @@
     const btn2Persu=document.getElementById('btn2Persu')
 
 
-
     const dado4=document.getElementById('d4')
     const dado6=document.getElementById('d6')
     const dado8=document.getElementById('d8')
     const dado10=document.getElementById('d10')
     const dado12=document.getElementById('d12')
     const dado20=document.getElementById('d20')
+
+
+    const divCompArmaSiple=document.getElementById('compArmaSimple')
+    const divCompArmaMarcial=document.getElementById('compArmaMarcial')
+    const divCompArmaduraLigera=document.getElementById('compArmaduraLigera')
+    const divCompArmaduraMedia=document.getElementById('compArmaduraMedia')
+    const divCompArmaduraPesada=document.getElementById('compArmaduraPesada')
+    const divCompEscudo=document.getElementById('compEscudo')
+
 
     console.log('antes de la funcion')
 
@@ -1560,6 +1562,29 @@
             vidaDiv.textContent=vidaActual
         }
 
+    })
+
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+
+    clases.forEach(clase=>{
+        if(clase.CompArmaSimple==1){
+            divCompArmaSiple.innerText='Armas Simples'
+        }
+        if(clase.CompArmaMarcial==1){
+            divCompArmaMarcial.innerText='Armas Marciales'
+        }
+        if(clase.CompArmaduraLig==1){
+            divCompArmaduraLigera.innerText='Armaduras Ligeras'
+        }
+        if(clase.CompArmaduraMed==1){
+            divCompArmaduraMedia.innerText='Armaduras Medias'
+        }
+        if(clase.CompArmaduraPes==1){
+            divCompArmaduraPesada.innerText='Armaduras Pesadas'
+        }
+        if(clase.CompEscudo==1){
+            divCompEscudo.innerText='Escudos'
+        }
     })
 
     console.log('fin');

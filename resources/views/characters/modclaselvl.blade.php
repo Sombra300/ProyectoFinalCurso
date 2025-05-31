@@ -7,29 +7,35 @@
 @endsection('estilo')
 @section('body')
 
-<div class="form-container">
-    <form action="{{route('characters.updateClaseLVL')}}" method="post">
+<div class="container my-4 p-4 border rounded shadow-sm bg-light" style="max-width: 450px;">
+    <form action="{{ route('characters.updateClaseLVL') }}" method="post">
         @csrf
         <input type="hidden" name="character_id" value="{{ $character->id }}">
         <input type="hidden" name="clase_id" value="{{ $clase->id }}">
-        <label for="subject">{{$clase->nombre}}</label>
-        <br>
-        <label for="subclase_id">Subclase</label>
-        <select name="subclase_id" id="subclase_id"></select>
-        <br>
-        <label for="lvl">Nivel de la clase</label>
-        <input type="number" name="lvl" id="lvl" value="{{$currentlvl}}">
-        <br>
-        <input type="submit" value="Guardar">
+
+        <div class="mb-3">
+            <label for="subject" class="form-label">{{ $clase->nombre }}</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="subclase_id" class="form-label">Subclase</label>
+            <select name="subclase_id" id="subclase_id" class="form-select @error('subclase_id') is-invalid @enderror"></select>
+            @error('subclase_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="lvl" class="form-label">Nivel de la clase</label>
+            <input type="number" name="lvl" id="lvl" value="{{ $currentlvl }}" class="form-control @error('lvl') is-invalid @enderror" min="1">
+            @error('lvl')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <button type="submit" class="btn btn-success w-100">Guardar</button>
     </form>
-    @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
 </div>
+
 
 @endsection('body')
 @section('scrips')
