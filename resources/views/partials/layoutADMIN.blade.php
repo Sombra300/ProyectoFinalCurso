@@ -16,7 +16,7 @@
 
     @if (Auth::check())
         @if (Auth::user()->rol=='admin')
-        @yield('body')
+            @yield('body')
         @else
             <script>window.location.href = "{{ route('index') }}"</script>
         @endif

@@ -103,7 +103,7 @@
                                 <p class="card-text" id="FUE">{{$character->FUE}}</p>
 
                                 <div class="col-12">
-                                    <div class="card">
+                                    <div class="card Micard">
                                         <card class="row">
                                             <div class="col-6">Atletismo</div>
                                             <div class="col-6">
@@ -115,6 +115,7 @@
                                         </card>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-6"><button class="btn-primary tirar" id="purFUE">Puro</button></div>
                                     <div class="col-6"><button class="btn-primary tirar" id="salvFUE">Salvación</button></div>
@@ -127,7 +128,7 @@
                             <div class="card">
                                 <h6 class="card-title">DES</h6>
                                 <p class="card-text" id="DES">{{$character->DES}}</p><div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Acrobacias</div>
                                                 <div class="col-6">
@@ -139,9 +140,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                 <div class="col-12">
-                                    <div class="card">
+                                    <div class="card Micard">
                                         <card class="row">
                                             <div class="col-6">Juego de manos</div>
                                             <div class="col-6">
@@ -152,8 +153,10 @@
                                             </div>
                                         </card>
                                     </div>
-                                </div><div class="col-12">
-                                        <div class="card">
+                                </div>
+                                <br>
+                                <div class="col-12">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Sigilo</div>
                                                 <div class="col-6">
@@ -166,7 +169,7 @@
                                         </div>
                                     </div>
 
-
+                                    <br>
                                 <div class="row">
                                     <div class="col-6"><button class="btn-primary tirar" id="purDES">Puro</button></div>
                                     <div class="col-6"><button class="btn-primary tirar" id="salvDES">Salvación</button></div>
@@ -191,7 +194,7 @@
                             <div class="card">
                                 <h6 class="card-title">INT</h6>
                                 <p class="card-text" id="INT">{{$character->INT}}</p><div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">C. Arcano</div>
                                                 <div class="col-6">
@@ -203,9 +206,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Historia</div>
                                                 <div class="col-6">
@@ -217,9 +220,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Investigación</div>
                                                 <div class="col-6">
@@ -231,9 +234,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Naturaleza</div>
                                                 <div class="col-6">
@@ -245,9 +248,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Religión</div>
                                                 <div class="col-6">
@@ -260,7 +263,7 @@
                                         </div>
                                     </div>
 
-
+                                    <br>
                                 <div class="row">
                                     <div class="col-6"><button class="btn-primary tirar" id="purINT">Puro</button></div>
                                     <div class="col-6"><button class="btn-primary tirar" id="salvINT">Salvación</button></div>
@@ -275,7 +278,7 @@
                                 <p class="card-text" id="SAB">{{$character->SAB}}</p>
 
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">T. con Animales</div>
                                                 <div class="col-6">
@@ -287,9 +290,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Medicina</div>
                                                 <div class="col-6">
@@ -301,9 +304,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Percepción</div>
                                                 <div class="col-6">
@@ -315,9 +318,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Perspicacia</div>
                                                 <div class="col-6">
@@ -329,9 +332,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Supervivencia</div>
                                                 <div class="col-6">
@@ -343,7 +346,7 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
 
                                 <div class="row">
                                     <div class="col-6"><button class="btn-primary tirar" id="purSAB">Puro</button></div>
@@ -359,7 +362,7 @@
                                 <p class="card-text" id="CAR">{{$character->CAR}}</p>
 
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Engaño</div>
                                                 <div class="col-6">
@@ -371,9 +374,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Interpretación</div>
                                                 <div class="col-6">
@@ -385,9 +388,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Intimidación</div>
                                                 <div class="col-6">
@@ -399,9 +402,9 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                     <div class="col-12">
-                                        <div class="card">
+                                        <div class="card Micard">
                                             <card class="row">
                                                 <div class="col-6">Persuasión</div>
                                                 <div class="col-6">
@@ -413,7 +416,7 @@
                                             </card>
                                         </div>
                                     </div>
-
+                                    <br>
                                 <div class="row">
                                     <div class="col-6"><button class="btn-primary tirar" id="purCAR">Puro</button></div>
                                     <div class="col-6"><button class="btn-primary tirar" id="salvCAR">Salvación</button></div>
@@ -431,36 +434,44 @@
         <div class="row g-3">
             <div class="col-md-6">
                 <div class="stacked">
-                    @if (Auth::check())
-                        @if (Auth::user()->id==$character->user_id)
-                            <div class="card">
-                                <a href="{{ route('characters.addClase', $character->id) }}" class="btn btn-primary card-body">Añadir clase</a>
-                            </div>
-                        @endif
-                    @endif
-                    @foreach ($character->clases as $clase)
-                        <div class="card">
-
-                            @if (Auth::check())
-                                @if (Auth::user()->id==$character->user_id)
-                                    <div class="card-title d-flex align-items-center gap-2">
-                                        <h6 class="mb-0">{{ $clase->nombre }}</h6>
-                                        <a href="{{ route('characters.modClaseLVL', ['character_id'=>$character->id, 'clase_id'=>$clase->id]) }}" class="btn btn-sm btn-primary py-0">
-                                            Editar nivel de clase
-                                        </a>
-                                    </div>
-                                @else
-                                    <div class="card-title"><h6>{{$clase->nombre}}</h6></div>
-                                @endif
-                            @else
-                                <div class="card-title"><h6>{{$clase->nombre}}</h6></div>
+                    <div class="card p-4 mb-4">
+                        @if (Auth::check())
+                            @if (Auth::user()->id==$character->user_id)
+                                <div class="card">
+                                    <a href="{{ route('characters.addClase', $character->id) }}" class="btn btn-primary card-body">Añadir clase</a>
+                                </div>
                             @endif
-                            <div class="card-body" id="clases">
-                                Nivel de clase: {{$clase->pivot->lvl}}    Subclase: {{$clase->pivot->subclase_name}} <br>
-                                modComp de la clase {{$clase->pivot->modComp}}
-                            </div>
+                        @endif
+                        <div class="row g-3">
+                            @foreach ($character->clases as $clase)
+                                <div class="col-12">
+                                    <div class="card">
+                                        @if (Auth::check())
+                                            @if (Auth::user()->id == $character->user_id)
+                                                <div class="card-header d-flex align-items-center gap-2">
+                                                    <h6 class="mb-0">{{ $clase->nombre }}</h6>
+                                                    <a href="{{ route('characters.modClaseLVL', ['character_id' => $character->id, 'clase_id' => $clase->id]) }}" class="btn btn-sm btn-primary py-0">
+                                                        Editar nivel de clase
+                                                    </a>
+                                                </div>
+                                            @else
+                                                <div class="card-header"><h6 class="mb-0">{{ $clase->nombre }}</h6></div>
+                                            @endif
+                                        @else
+                                            <div class="card-header"><h6 class="mb-0">{{ $clase->nombre }}</h6></div>
+                                        @endif
+
+                                        <div class="card-body" id="clases">
+                                            Nivel de clase: {{ $clase->pivot->lvl }} <br>
+                                            Subclase: {{ $clase->pivot->subclase_name }} <br>
+                                            modComp de la clase: {{ $clase->pivot->modComp }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
+
                     @foreach ($character->items as $item)
                         @if ($item->weapon)
                             <div class="card">
@@ -571,8 +582,15 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body" id="objetos">
-                        <a href="{{ route('items.indexLink', $character->id) }}" class="btn btn-primary">Añadir Objetos</a>
-                        <br>
+                        @if (Auth::check())
+                            @if (Auth::user()->id == $character->user_id)
+                                <a href="{{ route('items.indexLink', $character->id) }}" class="btn btn-primary">Añadir Objetos</a>
+                                <br>
+                            @else
+                            @endif
+                        @else
+                        @endif
+
                         @foreach ($character->items as $item)
                             @if ($item->weapon)
                                 <div class="card weapon">
@@ -585,7 +603,14 @@
                                 @if ($item->armor)
                                     <br> Tipo armadura: {{$item->armor->tipoArm}}
                                 @endif
-                                <a href="{{route('items.modCantidad', ['character_id'=>$character->id, 'item_id'=>$item->id])}}" class="btn enlaceBTN">Editar cantidad</a>
+                                @if (Auth::check())
+                                    @if (Auth::user()->id == $character->user_id)
+                                        <a href="{{route('items.modCantidad', ['character_id'=>$character->id, 'item_id'=>$item->id])}}" class="btn enlaceBTN">Editar cantidad</a>
+                                        <br>
+                                    @else
+                                    @endif
+                                @else
+                                @endif
                             </div>
                         @endforeach
                     </div>
@@ -677,23 +702,14 @@
 
 @section('scrips')
 <script>
-    console.log('inicio js');
-
     const maxModComp = @json($maxModComp);
-    console.log('clases');
     const clases = @json($clases);
-    console.log(clases);
-
     const character=@json($characterJS);
-    console.log('1');
     const weapons=@json($weapons);
 
 
-    console.log('2');
-
     document.addEventListener('DOMContentLoaded', function() {
     const btnFUE=document.getElementById('purFUE')
-    console.log('btnFUE:', btnFUE);
     const btnDES=document.getElementById('purDES')
     const btnCON=document.getElementById('purCON')
     const btnINT=document.getElementById('purINT')
@@ -777,7 +793,7 @@
     const divCompEscudo=document.getElementById('compEscudo')
 
 
-    console.log('antes de la funcion')
+    //Codigo de las funciones
 
     function tirarDado(lados) {
         return Math.floor(Math.random() * lados) + 1
@@ -816,63 +832,63 @@
     btnsalvFUE.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvFUE == 1) {
-            alert(`${result}+${character.ModFUE}+${maxModComp}=${result+character.ModFUE+maxModComp}`);
+            alert(`${result}+${character.ModFUE}+${maxModComp}=${result+character.ModFUE+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModFUE}=${result+character.ModFUE}`);
+            alert(`${result}+${character.ModFUE}=${result+character.ModFUE}`)
         }
     }
 
     btnsalvDES.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvDES == 1) {
-            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`);
+            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModDES}=${result+character.ModDES}`);
+            alert(`${result}+${character.ModDES}=${result+character.ModDES}`)
         }
     }
 
     btnsalvCON.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvCON == 1) {
-            alert(`${result}+${character.ModCON}+${maxModComp}=${result+character.ModCON+maxModComp}`);
+            alert(`${result}+${character.ModCON}+${maxModComp}=${result+character.ModCON+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModCON}=${result+character.ModCON}`);
+            alert(`${result}+${character.ModCON}=${result+character.ModCON}`)
         }
     }
 
     btnsalvINT.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvINT == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
     btnsalvSAB.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvSAB == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
     btnsalvCAR.onclick = function () {
         let result=tirarDado((20))
         if (character.SalvCAR == 1) {
-            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`);
+            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`);
+            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`)
         }
     }
 
     btnAtlet.onclick = function () {
         let result=tirarDado((20))
         if (character.CompAtletismo == 1) {
-            alert(`${result}+${character.ModFUE}+${maxModComp}=${result+character.ModFUE+maxModComp}`);
+            alert(`${result}+${character.ModFUE}+${maxModComp}=${result+character.ModFUE+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModFUE}=${result+character.ModFUE}`);
+            alert(`${result}+${character.ModFUE}=${result+character.ModFUE}`)
         }
     }
 
@@ -904,9 +920,9 @@
     btnAcro.onclick = function () {
         let result=tirarDado((20))
         if (character.CompAcrobacias == 1) {
-            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`);
+            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModDES}=${result+character.ModDES}`);
+            alert(`${result}+${character.ModDES}=${result+character.ModDES}`)
         }
     }
 
@@ -938,9 +954,9 @@
     btnJuegManos.onclick = function () {
         let result=tirarDado((20))
         if (character.CompJuegoManos == 1) {
-            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`);
+            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModDES}=${result+character.ModDES}`);
+            alert(`${result}+${character.ModDES}=${result+character.ModDES}`)
         }
     }
 
@@ -972,9 +988,9 @@
     btnSig.onclick = function () {
         let result=tirarDado((20))
         if (character.CompSigilo == 1) {
-            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`);
+            alert(`${result}+${character.ModDES}+${maxModComp}=${result+character.ModDES+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModDES}=${result+character.ModDES}`);
+            alert(`${result}+${character.ModDES}=${result+character.ModDES}`)
         }
     }
 
@@ -1006,9 +1022,9 @@
     btnCArc.onclick = function () {
         let result=tirarDado((20))
         if (character.CompConocimArcano == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
@@ -1040,9 +1056,9 @@
     btnHis.onclick = function () {
         let result=tirarDado((20))
         if (character.CompHistoria == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
@@ -1074,9 +1090,9 @@
     btnInv.onclick = function () {
         let result=tirarDado((20))
         if (character.CompInvestigacion == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
@@ -1108,9 +1124,9 @@
     btnNat.onclick = function () {
         let result=tirarDado((20))
         if (character.CompNaturaleza == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
@@ -1142,9 +1158,9 @@
     btnRel.onclick = function () {
         let result=tirarDado((20))
         if (character.CompReligion == 1) {
-            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`);
+            alert(`${result}+${character.ModINT}+${maxModComp}=${result+character.ModINT+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModINT}=${result+character.ModINT}`);
+            alert(`${result}+${character.ModINT}=${result+character.ModINT}`)
         }
     }
 
@@ -1176,9 +1192,9 @@
     btnTAnim.onclick = function () {
         let result=tirarDado((20))
         if (character.CompTratoAnimales == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
@@ -1210,9 +1226,9 @@
     btnMed.onclick = function () {
         let result=tirarDado((20))
         if (character.CompMedicina == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
@@ -1244,9 +1260,9 @@
     btnPerce.onclick = function () {
         let result=tirarDado((20))
         if (character.CompPercepcion == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
@@ -1278,9 +1294,9 @@
     btnPerspi.onclick = function () {
         let result=tirarDado((20))
         if (character.CompPerspicacia == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
@@ -1312,9 +1328,9 @@
     btnSuperv.onclick = function () {
         let result=tirarDado((20))
         if (character.CompSupervivencia == 1) {
-            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`);
+            alert(`${result}+${character.ModSAB}+${maxModComp}=${result+character.ModSAB+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`);
+            alert(`${result}+${character.ModSAB}=${result+character.ModSAB}`)
         }
     }
 
@@ -1346,9 +1362,9 @@
     btnEng.onclick = function () {
         let result=tirarDado((20))
         if (character.CompEngaño == 1) {
-            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`);
+            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`);
+            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`)
         }
     }
 
@@ -1380,9 +1396,9 @@
     btnInter.onclick = function () {
         let result=tirarDado((20))
         if (character.CompInterpretacion == 1) {
-            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`);
+            alert(`${result}+${character.ModCAR}+${maxModComp}=${result+character.ModCAR+maxModComp}`)
         } else {
-            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`);
+            alert(`${result}+${character.ModCAR}=${result+character.ModCAR}`)
         }
     }
 
@@ -1502,7 +1518,8 @@
     dado20.onclick = function () {
         alert('d20: ' + tirarDado(20))
     }
-    console.log('armas')
+
+    //codigo de las armas
 
     weapons.forEach(arma=>{
         arma.buttonId ='arma.'+arma.id
@@ -1527,7 +1544,7 @@
     })
 
 
-    console.log(vida);
+    //codigo de la gestion de la vida
 
     const vidaDiv=document.getElementById('vida')
     const vidaTempDiv=document.getElementById('temporales')
@@ -1561,10 +1578,9 @@
             vidaActual--
             vidaDiv.textContent=vidaActual
         }
-
     })
 
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    //codigo de las competencias
 
     clases.forEach(clase=>{
         if(clase.CompArmaSimple==1){
@@ -1586,8 +1602,6 @@
             divCompEscudo.innerText='Escudos'
         }
     })
-
-    console.log('fin');
 })
 
 </script>

@@ -27,12 +27,12 @@ class Character extends Model
     }
 
     public function clases(): BelongsToMany{
-        return $this->belongsToMany(Clase::class)->withPivot('lvl', 'sub_clase_id','subclase_name', 'modComp');
+        return $this->belongsToMany(Clase::class)->withPivot('lvl', 'sub_clase_id',
+        'subclase_name', 'modComp');
     }
 
     public function items(): BelongsToMany{
         return $this->belongsToMany(Item::class)->withPivot('cantidad');
     }
-
 
 }

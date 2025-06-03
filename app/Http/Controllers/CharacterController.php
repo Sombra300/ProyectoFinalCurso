@@ -168,14 +168,14 @@ class CharacterController extends Controller
                 'CompReligion', 'CompSigilo', 'CompSupervivencia', 'CompTratoAnimales')->first();
 
         $weapons = $character->items
-        ->filter(fn($item) => $item->weapon)
-        ->map(fn($item) => [
-            'id' => $item->id,
-            'nombre' => $item->weapon->nombre,
-            'daño' => $item->weapon->daño,
-            'tipoDaño' => $item->weapon->tipoDaño,
-            'tipoArma' => $item->weapon->tipoArma,
-            'propSut' => $item->weapon->propSut,
+            ->filter(fn($item) => $item->weapon)
+            ->map(fn($item) => [
+                'id' => $item->id,
+                'nombre' => $item->weapon->nombre,
+                'daño' => $item->weapon->daño,
+                'tipoDaño' => $item->weapon->tipoDaño,
+                'tipoArma' => $item->weapon->tipoArma,
+                'propSut' => $item->weapon->propSut,
         ]);
 
         $clases = DB::table('clases')
@@ -252,7 +252,12 @@ class CharacterController extends Controller
         $character->vinculosPersonaje=$request->input('vinculosPersonaje');
         $character->defectosPersonaje=$request->input('defectosPersonaje');
 
-        $character->save();
+
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                $character->save();
+            }
+        }
 
         return redirect()->route('characters.show', $character->id);
     }
@@ -262,8 +267,13 @@ class CharacterController extends Controller
      */
     public function destroy(string $id)
     {
-        Character::findOrFail($id)->delete();
-       return redirect()->route('characters.index');
+        $character=Character::findOrFail($id);
+        if(Auth::check()){
+            if(Auth::user()->id==$character->user_id){
+                Character::findOrFail($id)->delete();
+            }
+        }
+        return redirect()->route('characters.index');
     }
 
     public function have(Character $character, CharacterRequest $request)
